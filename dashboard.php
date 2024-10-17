@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Predefined credentials
 $predefinedUsername = "admin";
 $predefinedPassword = "password";
@@ -10,15 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate credentials
     if ($username == $predefinedUsername && $password == $predefinedPassword) {
-        // Successful login, continue to dashboard
+        // Successful login, set session variables
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
     } else {
-        // Redirect back to login page
-        header(header: 'Location: incorrect.php');
+        // Redirect to incorrect credentials page
+        header('Location: incorrect.php');
         exit();
     }
-} else {
-    // Redirect if accessed directly without login
-    header(header: 'Location: login.html');
+}
+
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: login.html');
     exit();
 }
 ?>

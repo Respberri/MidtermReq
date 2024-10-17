@@ -7,11 +7,11 @@
 body {
    font-family:"Monaco", Monospace;
     background-color: #c9d6ff;
-    background:linear-gradient(to left, #e2e2e2, #d7afeb);
+    background:linear-gradient(to left, #000000, #403744);
 }
 
 .menu-bar {
-    background-color: #3a1e3f;
+    background-color:#2d262e;
     height: 80px;
     width: 100%;
     display: flex;
@@ -48,7 +48,7 @@ body {
     text-decoration: none;
 }
 .menu-bar ul li a:hover{
-    background-color:black;
+    background-color:#a14da0;
     transition:0.9s;
 }
 
@@ -64,7 +64,7 @@ body {
 }
 
 .dropdown li a:hover {
-    background-color:black;
+    background-color:#a14da0;
     transition:0.9s;
 }
 

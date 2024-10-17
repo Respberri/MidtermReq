@@ -6,7 +6,7 @@
 }
 body{
     background-color: #c9d6ff;
-    background:linear-gradient(to left, #e2e2e2, #b524f8);
+    background:linear-gradient(to left, #000000, #403744); 
 }
 .container{
     background:white;
@@ -73,7 +73,7 @@ input:focus~label,input:not(:placeholder-shown)~label{
     outline:none;
     border:none;
     width:100%;
-    background:rgb(197, 137, 247);
+    background:rgb(197, 137, 247); 
     color:white;
     cursor:pointer;
     transition:0.9s;
