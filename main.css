@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   font-family:"poppins", sans-serif;
+    background-color: #c9d6ff;
+    background:linear-gradient(to left, #e2e2e2, #b524f8);
+}
+
+.menu-bar {
+    background-color: #8d369e;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    transition:0.9s;
+}
+
+.grp-num {
+    color: white;
+    font-size: 30px;
+}
+
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar ul li {
+    position: relative;
+}
+
+.menu-bar ul li a {
+    color: white;
+    display: block;
+    border-radius:30px;
+    padding: 20px 25px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+.menu-bar ul li a:hover{
+    background-color:black;
+    transition:0.9s;
+}
+
+.menu-bar ul li ul.dropdown {
+    display: none;
+    position: absolute;
+    
+    top: 100%; /* Position the dropdown below the parent item */
+    left: 0;
+    width: 200px; /* Adjust the width as needed */
+    background-color: #b524f8;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+}
+
+.menu-bar ul li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown li {
+    display: block;
+}
+
+.dropdown li a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+}
+
+.dropdown li a:hover {
+    background-color:black;
+    transition:0.9s;
+}
+
+.grp{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    text-align: center; 
+    line-height: 2;
+    width: 80%;
+    margin: auto;
+}
+
+.wrapper img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+
+.names{
+    margin-top: 30px;
+}

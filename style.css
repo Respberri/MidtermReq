@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"poppins", sans-serif;
+}
+body{
+    background-color: #c9d6ff;
+    background:linear-gradient(to left, #e2e2e2, #b524f8);
+}
+.container{
+    background:white;
+    width:450px;
+    padding:3rem;
+    margin:250px auto;
+    border-radius:30px;
+    box-shadow:0 20px 35px rgba(0, 0, 1, 0.9);
+}
+form{
+    margin:0 1rem; 
+}
+.form-title{
+    font-size:1.5 rem;
+    font-weight:bold;
+    text-align:center;
+    padding:1.3rem;
+    margin-bottom:0rem;
+}
+input{
+    color:inherit;
+    width:100%;
+    background-color:transparent;
+    border:none;
+    border-bottom:1px solid #757575;
+    padding-left:1.5rem;
+    font-size:15px;
+}
+.input-group{
+    padding:1% 0;
+    position:relative;
+
+}
+.input-group i{
+    position:absolute;
+    color:black;
+}
+input:focus{
+    background-color:transparent;
+    outline:transparent;
+    border-bottom:2px solid hsl(327,90%,28%);
+}
+input::placeholder{
+    color:transparent;
+}
+label{
+    color: #757575;
+    position:relative;
+    left:1.2em;
+    top:-1.3em;
+    cursor: auto;
+    transition:0.3s ease all;
+}
+input:focus~label,input:not(:placeholder-shown)~label{
+    top: -3em;
+    color: hsl(327,90%,28%);
+    font-size:15px;
+}
+
+.btn{
+    font-size:1.1rem;
+    padding:8px 0;
+    border-radius:30px;
+    outline:none;
+    border:none;
+    width:100%;
+    background:rgb(197, 137, 247);
+    color:white;
+    cursor:pointer;
+    transition:0.9s;
+}
+.btn:hover{
+    background:#07001f;
+}
+.resetBtn{
+    font-size:1.1rem;
+    padding:8px 0;
+    border-radius:30px;
+    outline:none;
+    border:none;
+    width:100%;
+    background:rgb(247, 137, 137);
+    color:white;
+    cursor:pointer;
+    transition:0.9s;
+    margin-top:0.5rem;
+}
+.resetBtn:hover{
+    background:#07001f;
+}
+.or{
+    font-size:1.1rem;
+    margin-top:0.5rem;
+    text-align:center;
+}
+.reset{
+    text-align:center;
+    margin-top:.2rem;
+}
+button{
+    color: rgb(197, 137, 247);
+    border:none;
+    background-color:transparent;
+    font-size:1rem;
+    font-weight:bold;
+    margin-top:0.2rem
+}
