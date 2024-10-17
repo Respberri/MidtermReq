@@ -52,22 +52,6 @@ body {
     transition:0.9s;
 }
 
-.menu-bar ul li ul.dropdown {
-    display: none;
-    position: absolute;
-    
-    top: 100%; /* Position the dropdown below the parent item */
-    left: 0;
-    width: 200px; /* Adjust the width as needed */
-    background-color: #3a1e3f;
-    z-index: 999;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
-}
-
-.menu-bar ul li:hover .dropdown {
-    display: block; /* Show dropdown on hover */
-}
-
 .dropdown li {
     display: block;
 }

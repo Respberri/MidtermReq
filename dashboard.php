@@ -36,17 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>Admin Page</p>
         </div>
         <ul>
-            <li><a href="">Admin Page</a></li>
-            <li><a href="">Project Description</a></li>
-            <li>
-                <a href="#">Members</a>
-                <ul class="dropdown">
-                    <li><a href="">Cruz</a></li>
-                    <li><a href="">Nagamany</a></li>
-                    <li><a href="">Salenga</a></li>
-                    <li><a href="">Valdecañas</a></li>
-                </ul>
-            </li>
+            <li><a href="#">Admin Page</a></li>
+            <li><a href="#">Project Description</a></li>
+            <li><a href="members.html">Members</a></li>
             <li><a href="login.html">Logout</a></li>
         </ul>
     </div>
