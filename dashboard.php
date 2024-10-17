@@ -1,9 +1,33 @@
+<?php
+// Predefined credentials
+$predefinedUsername = "admin";
+$predefinedPassword = "password";
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['uName'];
+    $password = $_POST['pass'];
+
+    // Validate credentials
+    if ($username == $predefinedUsername && $password == $predefinedPassword) {
+        // Successful login, continue to dashboard
+    } else {
+        // Redirect back to login page
+        header('Location: incorrect.php');
+        exit();
+    }
+} else {
+    // Redirect if accessed directly without login
+    header('Location: login.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>

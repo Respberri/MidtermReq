@@ -5,13 +5,13 @@
 }
 
 body {
-   font-family:"poppins", sans-serif;
+   font-family:"Monaco", Monospace;
     background-color: #c9d6ff;
-    background:linear-gradient(to left, #e2e2e2, #b524f8);
+    background:linear-gradient(to left, #e2e2e2, #bf82dd);
 }
 
 .menu-bar {
-    background-color: #8d369e;
+    background-color: #3a1e3f;
     height: 80px;
     width: 100%;
     display: flex;
@@ -59,7 +59,7 @@ body {
     top: 100%; /* Position the dropdown below the parent item */
     left: 0;
     width: 200px; /* Adjust the width as needed */
-    background-color: #8d369e;
+    background-color: #3a1e3f;
     z-index: 999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
 }

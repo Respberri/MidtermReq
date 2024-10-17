@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"poppins", sans-serif;
+    font-family:"Monaco", Monospace;
 }
 body{
     background-color: #c9d6ff;
@@ -113,4 +113,8 @@ button{
     font-size:1rem;
     font-weight:bold;
     margin-top:0.2rem
+}
+button:hover{
+    text-decoration:underline;
+    color:rgb(96, 59, 228);
 }
