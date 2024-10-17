@@ -1,0 +1,187 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family:"Monaco", Monospace;
+}
+
+body{
+    background:linear-gradient(to left, #e2e2e2, #d7afeb);
+}
+
+.menu-bar {
+    background-color: #3a1e3f;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    transition:0.9s;
+}
+
+.grp-num {
+    color: white;
+    font-size: 30px;
+}
+
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar ul li {
+    position: relative;
+}
+
+.menu-bar ul li a {
+    color: white;
+    display: block;
+    border-radius:30px;
+    padding: 20px 25px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+.menu-bar ul li a:hover{
+    background-color:black;
+    transition:0.9s;
+}
+
+.dropdown li {
+    display: block;
+}
+
+.dropdown li a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+}
+
+.dropdown li a:hover {
+    background-color:black;
+    transition:0.9s;
+}
+
+.grp{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    text-align: center; 
+    line-height: 2;
+    width: 80%;
+    margin: auto;
+}
+
+.wrapper img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+
+.names{
+    margin-top: 30px;
+}
+
+
+/* main code */
+.team-section{
+    width: 100%;
+}
+
+.team-section .container{
+    width: 80%;
+    margin: auto;
+}
+
+.team-section .container .row{
+    width: 60%;
+    margin: auto;
+}
+
+.team-section .container .row .title{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.team-section .container .row .title h1{
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #3a1e3f;
+    font-weight: 100px;
+}
+
+.team-section .container .row .title p{
+    font-size: 18px;
+    margin: 30px 0px;
+}
+
+.team-section .container .team-card{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.team-section .container .team-card .card{
+    width: 100%;
+    background-color: #3a1e3f;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.team-section .container .team-card .card:hover{
+    background-color: #f3f3f3;
+    transition: 0.3s;
+
+}
+
+.team-section .container .team-card .image-section img{
+    height: 150px;
+    width: 150px;
+    border-radius: 10%;
+    border: 6px solid #e2e2e2;
+}
+
+.team-section .container .team-card .card .content{
+    width: 100%;
+    text-align: center;
+}
+
+.team-section .container .team-card .card .content h3{
+    font-size: 27px;
+    margin-top: 10px;
+    letter-spacing: 1.5px;
+    color: white;
+}
+
+.team-section .container .team-card .card .content h4{
+    font-size: 17px;
+    margin-top: 10px;
+    letter-spacing: 1.5px;
+    color: white;
+}
+
+.team-section .container .team-card .card .content p{
+    font-size: 15px;
+    margin: 16px 0px;
+    letter-spacing: 1.5px;
+    color: white;
+
+}
+
