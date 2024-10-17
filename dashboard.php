@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Successful login, continue to dashboard
     } else {
         // Redirect back to login page
-        header('Location: incorrect.php');
+        header(header: 'Location: incorrect.php');
         exit();
     }
 } else {
     // Redirect if accessed directly without login
-    header('Location: login.html');
+    header(header: 'Location: login.html');
     exit();
 }
 ?>
