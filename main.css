@@ -46,10 +46,10 @@ body {
     font-size: 20px;
     text-align: center;
     text-decoration: none;
+    transition:0.9s;
 }
 .menu-bar ul li a:hover{
     background-color:#a14da0;
-    transition:0.9s;
 }
 
 .dropdown li {
@@ -61,11 +61,11 @@ body {
     color: white;
     text-decoration: none;
     text-align: left;
+    transition:0.9s;
 }
 
 .dropdown li a:hover {
     background-color:#a14da0;
-    transition:0.9s;
 }
 
 .grp{
