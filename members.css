@@ -110,14 +110,15 @@ body{
 .team-section .container .row .title{
     text-align: center;
     margin-top: 50px;
-    color:white
+    color:white;
+    margin-top:150px;
 }
 
 .team-section .container .row .title h1{
     font-size: 40px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #a14da0;
+    color: white;
     font-weight: 100px;
 }
 
@@ -136,7 +137,7 @@ body{
 
 .team-section .container .team-card .card{
     width: 100%;
-    background-color: #5f3963;
+    background-color: #5d4e5f;
     border-radius: 10%;
     display: flex;
     justify-content: center;

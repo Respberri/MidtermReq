@@ -50,13 +50,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     </div>
     <div class="container">
         <div class="box">
-            <h1> Title of Proposed Project </h1>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-             nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-             sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+            <h1> Student Information System For Bepz Multinational School Incorporated  </h1>
+            <p>We are Group V from BSCS-SD3B. Our goal is to create a functional SIS for a local school in Mariveles.
+                This is due to the school constantly facing challenges in managing their student inventory, and 
+                keeping track with its student records — leading to data inconsistencies and data anomalies towards student evaluations. </p>
         </div>
+        
     </div>
 </body>
 </html>
