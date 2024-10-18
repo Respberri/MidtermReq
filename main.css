@@ -91,3 +91,31 @@ body {
 .names{
     margin-top: 30px;
 }
+
+.box{
+    color: #ffffff;
+    text-align: justify;
+    width: 100%;
+    max-width: 800px;
+    background-color: #5f3963;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.box h1{
+    text-align: center;
+    color: #ffffff;
+}
+
+.box p{
+    margin-top: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}

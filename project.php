@@ -1,33 +1,3 @@
-<?php
-session_start();
-
-// Predefined credentials
-$predefinedUsername = "admin";
-$predefinedPassword = "password";
-
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['uName'];
-    $password = $_POST['pass'];
-
-    // Validate credentials
-    if ($username == $predefinedUsername && $password == $predefinedPassword) {
-        // Successful login, set session variables
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-    } else {
-        // Redirect to incorrect credentials page
-        header('Location: incorrect.php');
-        exit();
-    }
-}
-
-// Check if user is logged in
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.html');
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -39,18 +9,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <body>
     <div class="menu-bar">
         <div class="grp-num">
-            <p>Admin Page</p>
+            <p>Project Description</p>
         </div>
         <ul>
-            <li><a href="#">Admin Page</a></li>
-            <li><a href="project.php">Project Description</a></li>
+            <li><a href="dashboard.php">Admin Page</a></li>
+            <li><a href="#">Project Description</a></li>
             <li><a href="members.html">Members</a></li>
             <li><a href="login.html">Logout</a></li>
         </ul>
     </div>
     <div class="container">
         <div class="box">
-            <h1> Title of Proposed Project </h1>
+            <h1> Project Description </h1>
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
