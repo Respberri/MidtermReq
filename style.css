@@ -16,6 +16,17 @@ body{
     border-radius:30px;
     box-shadow:0 20px 35px rgba(0, 0, 1, 0.9);
 }
+
+.containerin{
+    text-align:center;
+    background:white;
+    width:450px;
+    padding:3rem;
+    margin:250px auto;
+    border-radius:30px;
+    box-shadow:0 20px 35px rgba(0, 0, 1, 0.9);
+}
+
 form{
     margin:0 1rem; 
 }
