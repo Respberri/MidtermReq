@@ -9,7 +9,7 @@
 <body>
     <div class="containerin">
         <h1>Not Properly Logged In!</h1>
-        <form action="login.html" method="post">
+        <form action="login.php" method="post">
         <p>Please input the proper credentials.</p>
 
     <p class="or">

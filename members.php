@@ -1,3 +1,18 @@
+<?php
+
+// Stop browser caching
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: incorrect.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +30,7 @@
             <li><a href="dashboard.php">Admin Page</a></li>
             <li><a href="project.php">Project Description</a></li>
             <li><a href="#">Members</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="login.php">Logout</a></li>
         </ul>
     </div>
 

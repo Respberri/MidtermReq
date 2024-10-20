@@ -1,30 +1,15 @@
 <?php
+
+// Stop browser caching
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 session_start();
-
-// Predefined credentials
-$predefinedUsername = "admin";
-$predefinedPassword = "password";
-
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['uName'];
-    $password = $_POST['pass'];
-
-    // Validate credentials
-    if ($username == $predefinedUsername && $password == $predefinedPassword) {
-        // Successful login, set session variables
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-    } else {
-        // Redirect to incorrect credentials page
-        header('Location: incorrect.php');
-        exit();
-    }
-}
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.html');
+    header('Location: incorrect.php');
     exit();
 }
 ?>
@@ -44,8 +29,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <ul>
             <li><a href="#">Admin Page</a></li>
             <li><a href="project.php">Project Description</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="members.php">Members</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
     <div class="container">
