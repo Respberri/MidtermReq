@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['uName']) && isset($_POST['pass'])) {
+        $username = $_POST['uName'];
+        $password = $_POST['pass'];
+
+    // Predefined credentials
+    $predefinedUsername = "admin";
+    $predefinedPassword = "password";
+
+    // Validate credentials
+    if ($username == $predefinedUsername && $password == $predefinedPassword) {
+        // Successful login, set session variables
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        // Redirect to incorrect credentials page
+        header('Location: incorrect.php');
+        exit();
+    }
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +39,7 @@
 <body>
     <div class="container" id="signIn">
         <h1 class="form-title">Sign In</h1>
-        <form action="dashboard.php" method="post">
+        <form action="login.php" method="post">
             <div class="input-group">
                 <i class="fas fa-user"></i>    
                 <input type="text" name = "uName" placeholder="Username" required>

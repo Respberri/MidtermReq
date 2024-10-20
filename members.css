@@ -146,6 +146,7 @@ body{
     padding: 20px;
     cursor: pointer;
     transition: 0.5s;
+    margin-bottom: 40px;
 }
 
 .team-section .container .team-card .card:hover{
@@ -185,4 +186,3 @@ body{
     color: white;
 
 }
-

@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: incorrect.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +24,7 @@
             <li><a href="dashboard.php">Admin Page</a></li>
             <li><a href="project.php">Project Description</a></li>
             <li><a href="#">Members</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 
@@ -33,10 +42,11 @@
                 </div>
                 <div class="content">
                     <h3>Cruz, Ralph Jaisell S.</h3>
-                    <h4>Cloud Developer</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                         Ipsa, repellat porro excepturi tempora molestias nihil
-                        </p>
+                    <h4>Developer</h4>
+                    <p>Address: Orani</p>
+                    <p>Age: 21</p>
+                    <p>Hobbies: Reading and Watching</p>
+                    <p>Role: Applied Back-end revisions</p>
                 </div>
             </div>
             <div class="card">
@@ -45,10 +55,11 @@
                 </div>
                 <div class="content">
                     <h3>Nagamany, Marc Steven G.</h3>
-                    <h4>Cloud Developer</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                         Ipsa, repellat porro excepturi tempora molestias nihil
-                        </p>
+                    <h4>Developer</h4>
+                    <p>Address: Mariveles</p>
+                    <p>Age: 21</p>
+                    <p>Hobbies: Music and Playing sports</p>
+                    <p>Role: Applied Front-end Development</p>
                 </div>
             </div>
             <div class="card">
@@ -57,10 +68,11 @@
                 </div>
                 <div class="content">
                     <h3>Salenga, Lhyon Victor S.</h3>
-                    <h4>Cloud Developer</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                         Ipsa, repellat porro excepturi tempora molestias nihil
-                        </p>
+                    <h4>Developer</h4>
+                    <p>Address: Orani</p>
+                    <p>Age: 20</p>
+                    <p>Hobbies: Gaming and Watching</p>
+                    <p>Role: Applied Web Development</p>
                 </div>
             </div>
             <div class="card">

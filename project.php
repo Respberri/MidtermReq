@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: incorrect.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -14,8 +23,8 @@
         <ul>
             <li><a href="dashboard.php">Admin Page</a></li>
             <li><a href="#">Project Description</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="members.php">Members</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
     <div class="container">
