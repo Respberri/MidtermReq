@@ -136,7 +136,7 @@ body {
 }
 
 .container .box h1:hover::before{
-    height:62%;
+    height:65%;
 }
 
 .container .box h1{
