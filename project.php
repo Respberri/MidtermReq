@@ -1,10 +1,4 @@
 <?php
-
-// Stop browser caching
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
-
 session_start();
 
 // Check if user is logged in
@@ -30,7 +24,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <li><a href="dashboard.php">Admin Page</a></li>
             <li><a href="#">Project Description</a></li>
             <li><a href="members.php">Members</a></li>
-            <li><a href="login.php">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
     <div class="container">
