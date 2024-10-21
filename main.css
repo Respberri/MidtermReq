@@ -109,9 +109,9 @@ body {
     text-align:center;
     color: white;
     font-size: 20px;
-    margin-bottom: 97px;
+    margin-bottom: 30px;
     border-radius: 100px;
-    padding: 50px;
+    padding: 20px;
     
 }
 
@@ -152,7 +152,6 @@ body {
     padding: 200px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
     margin-top: 50px;
 }
 
@@ -180,9 +179,9 @@ body {
     text-align:center;
     color: white;
     font-size: 20px;
-    margin-bottom: 97px;
+    margin-bottom: 20px;
     border-radius: 100px;
-    padding: 50px;
+    padding: 30px;
     
 }
 
@@ -207,7 +206,7 @@ body {
 }
 
 .container .box2 h1:hover::before{
-    height:56%;
+    height:36%;
 }
 
 .container .box2 h1{
@@ -220,10 +219,9 @@ body {
     width: 100%;
     max-width: 11000px;
     font-size: 60px;
-    padding: 200px;
+    padding: 100px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 50px;
 }
 
 .container{

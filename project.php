@@ -35,6 +35,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                  staff and student data. These invaluable insights, brought about by detailed reporting, is not only feasible for implementation, but also flexible 
                  in terms of scaling — especially, for security and the protection of private/sensitive information of both parties.
             </p>
+            <p>Organize Student Information: Simplify the organized and effective handling of student data, including attendance, academic records, personal information and more.
+            </p>
+            <p>Make Information Easily Accessible: Ensure that authorized users can quickly and easily access relevant information when needed.</p>
+            <p>Enhance Security and Privacy: Implement strict access controls and data encryption to protect sensitive student information from unauthorized access, ensuring compliance with privacy regulation.</p>
         </div>
     </div>
 </body>

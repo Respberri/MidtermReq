@@ -33,6 +33,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <p>We are Group V from BSCS-SD3B. Our goal is to create a functional SIS for a local school in Mariveles.
                 This is due to the school constantly facing challenges in managing their student inventory, and 
                 keeping track with its student records — leading to data inconsistencies and data anomalies towards student evaluations. </p>
+            <p>Globally, the growth of education technology sectors constantly prove necessary towards the longevity and foundational upkeep of maintaining
+                 an efficient and effective school system. In response to such demand, the Philippines utilized countless software that is designed to cater
+                  towards attaining this goal for all educational institutions; in relation, greatly overhauling the outdated school systems, with a more
+                   refined and cost-effective alternative. 
+            </p>
         </div>
         
     </div>
