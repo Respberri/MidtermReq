@@ -138,9 +138,9 @@ body{
 .team-section .container .team-card .card{
     width: 100%;
     background-color: #5d4e5f;
-    border-radius: 10%;
+    border-radius: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     padding: 20px;
