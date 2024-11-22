@@ -32,35 +32,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-in Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Student Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container" id="signIn">
-        <h1 class="form-title">Sign In</h1>
-        <form action="login.php" method="post">
-            <div class="input-group">
-                <i class="fas fa-user"></i>    
-                <input type="text" name = "uName" placeholder="Username" required>
-                <label for="uName">Username</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>    
-                <input type="password" name = "pass" placeholder="Password" required>
-                <label for="pass">Password</label>
-            </div>
-            <input type="submit" class="btn" value="Sign In" name="signIn"> 
-        
-        <p class="or">
-            ------------- or -------------
-        </p>
-        <div class="reset">
-            <p>Want To Reset Credentials?</p>
-            <input type="reset" class="resetBtn" value="Reset" name="reset"> 
-
+    <div class="container">
+        <!-- Left panel: Illustration -->
+        <div class="left-panel">
+            <img src="/images/bmsi-logo.png" alt="Student Illustration">
         </div>
-    </form>
+
+        <!-- Right panel: Login Form -->
+        <div class="right-panel">
+            <h1 class="form-title">Student Login</h1>
+            <p>smth idk as of now </p>
+
+            <form action="login.php" method="POST">
+                <!-- Username Input -->
+                <div class="input-group">
+                    <input type="text" name="uName" placeholder="Enter your username/email" required>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group">
+                    <input type="password" name="pass" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Submit Button -->
+                <input type="submit" class="btn" value="Login In">
+            </form>
+        </div>
     </div>
 </body>
 </html>
