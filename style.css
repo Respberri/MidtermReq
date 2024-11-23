@@ -16,17 +16,17 @@ body {
 
 .container {
     display: flex;
-    background: rgb(225, 90, 88);
+    background: transparent;
     width: 800px;
     height: 600px;
     border-radius: 30px;
-    border-style: solid;
-    border-width: 3px;
+    border-style:solid;
+    border-width: 2px;
     border-color: white;
 }
 
 .left-panel {
-    background-color: blue;
+    background-color: rgb(158, 31, 31);
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     display: flex;
@@ -40,8 +40,7 @@ body {
     height: auto;
 }
 
-.right-panel {
-    
+.right-panel { 
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -49,7 +48,7 @@ body {
 }
 
 .form-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -66,13 +65,14 @@ body {
 .input-group {
     position: relative;
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 
 
 .input-group input {
     width: 100%;
-    padding: 10px 15px 10px 35px;
+    padding: 10px 0px 10px 10px;
     font-size: 1rem;
     color: #333;
     border: 1px solid #ddd;
@@ -85,17 +85,18 @@ body {
     border-color: #2a74e4;
 }
 
+
 .btn {
-    background-color: #2a74e4;
+    background-color: rgb(158, 31, 31);
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 10px 130px 5px 130px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.8s;
 }
 
 .btn:hover {
-    background-color: #235bbf;
+    background-color: rgb(86, 72, 167)
 }

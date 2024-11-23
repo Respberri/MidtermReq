@@ -44,22 +44,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- Right panel: Login Form -->
         <div class="right-panel">
-            <h1 class="form-title">Student Login</h1>
-            <p>smth idk as of now </p>
-
+            <h1 class="form-title">Login</h1>
             <form action="login.php" method="POST">
                 <!-- Username Input -->
                 <div class="input-group">
-                    <input type="text" name="uName" placeholder="Enter your username/email" required>
+                    <input type="text" name="uName" placeholder="Employee/Student ID" required>
                 </div>
 
                 <!-- Password Input -->
                 <div class="input-group">
-                    <input type="password" name="pass" placeholder="Enter your password" required>
+                    <input type="password" name="pass" placeholder="Password" required>
                 </div>
 
                 <!-- Submit Button -->
-                <input type="submit" class="btn" value="Login In">
+                <input type="submit" class="btn" value="Login">
             </form>
         </div>
     </div>
