@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once 'db.php';
+
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -7,19 +9,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_POST['uName'];
         $password = $_POST['pass'];
 
-        // Predefined credentials
-        $predefinedUsername = "admin";
-        $predefinedPassword = "password";
+        // Prepare a SQL query to fetch user details
+        $query = "SELECT * FROM users WHERE username = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $username); // Bind username to the query
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Validate credentials
-        if ($username == $predefinedUsername && $password == $predefinedPassword) {
-            // Successful login, set session variables
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $username;
-            header('Location: dashboard.php');
-            exit();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            // Verify the password
+            if ($password === $user['password']) {
+                // Successful login
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
+
+                header('Location: dashboard.php');
+                exit();
+            } else {
+                // Incorrect password
+                header('Location: incorrect.php');
+                exit();
+            }
         } else {
-            // Redirect to incorrect credentials page
+            // User not found
+
             header('Location: incorrect.php');
             exit();
         }
