@@ -16,32 +16,75 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="menu-bar">
-        <div class="grp-num">
-            <p>Admin Page</p>
-        </div>
+    <div class="sidebar">
+        <h2>Welcome, Admin!</h2>
         <ul>
-            <li><a href="#">Admin Page</a></li>
-            <li><a href="project.php">Project Description</a></li>
-            <li><a href="members.php">Members</a></li>
+            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="project.php">Students</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="members.php">Departments</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
-    <div class="container">
-        <div class="box">
-            <h1> Student Information System For Bepz Multinational School Incorporated  </h1>
-            <p>We are Group V from BSCS-SD3B. Our goal is to create a functional SIS for a local school in Mariveles.
-                This is due to the school constantly facing challenges in managing their student inventory, and 
-                keeping track with its student records — leading to data inconsistencies and data anomalies towards student evaluations. </p>
-            <p>Globally, the growth of education technology sectors constantly prove necessary towards the longevity and foundational upkeep of maintaining
-                 an efficient and effective school system. In response to such demand, the Philippines utilized countless software that is designed to cater
-                  towards attaining this goal for all educational institutions; in relation, greatly overhauling the outdated school systems, with a more
-                   refined and cost-effective alternative. 
-            </p>
-        </div>
-        
+
+    <div class="main-content">
+        <header>
+            <h1>Dashboard</h1>
+        </header>
+        <main>
+            <div class="stats">
+                <div class="stat">
+                    <img src="/images/student.png" alt="Students">
+                    <h2>Students</h2>
+                </div>
+                <div class="stat">
+                    <img src="/images/course.png" alt="Courses">
+                    <h2>Courses</h2>
+                </div>
+                <div class="stat">
+                    <img src="/images/department.png" alt="Departments">
+                    <h2>Departments</h2>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="studentChart"></canvas>
+            </div>
+        </main>
     </div>
+
+    <script>
+        var ctx = document.getElementById('studentChart').getContext('2d');
+        var studentChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Elementary', 'Junior High', 'Senior High'],
+                datasets: [{
+                    label: 'Enrolled Students',
+                    data: [300, 150, 100], // Update these numbers based on your actual data
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

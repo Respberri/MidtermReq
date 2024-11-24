@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form action="login.php" method="POST">
                 <!-- Username Input -->
                 <div class="input-group">
-                    <input type="text" name="uName" placeholder="Employee/Student ID" required>
+                    <input type="text" name="uName" placeholder="User ID" required>
                 </div>
 
                 <!-- Password Input -->
