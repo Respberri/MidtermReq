@@ -13,7 +13,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 // Display a success message as a pop-up
 echo '<script>
         window.onload = function() {
@@ -26,7 +25,7 @@ echo '<script>
             }, 100);
             setTimeout(() => {
                 notification.classList.remove("show");
-            }, 4000); // Hide the notification after 4 seconds
+            }, 3000); // Hide the notification after 4 seconds
         };
       </script>';
 

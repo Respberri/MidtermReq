@@ -39,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h2>Edit Subject</h2>
-    <form method="POST" action="">
+    < method="POST" action="">
+    
         <label for="name">Subject Name:</label><br>
         <input type="text" id="name" name="name" value="<?php echo $subject['name']; ?>" required><br><br>
 
@@ -51,5 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Update Subject</button>
     </form>
+
 </body>
 </html>

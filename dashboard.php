@@ -24,7 +24,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <ul>
             <li><a href="dashboard.php">Home</a></li>
             <li><a href="project.php">Students</a></li>
-            <li><a href="#">Courses</a></li>
+            <li><a href="courses.php">Courses</a></li>
             <li><a href="members.php">Departments</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -60,10 +60,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         var studentChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Elementary', 'Junior High', 'Senior High'],
+                labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6'],
                 datasets: [{
                     label: 'Enrolled Students',
-                    data: [300, 150, 100], 
+                    data: [180, 150, 100, 130,80, 68, 50], 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
