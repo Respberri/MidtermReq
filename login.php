@@ -3,7 +3,6 @@ session_start();
 require_once 'db.php';
 
 
-error_log("LOG");
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['uName']) && isset($_POST['pass'])) {
@@ -30,14 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             } else {
                 // Incorrect password
-				error_log("A");
-
                 header('Location: incorrect.php');
                 exit();
             }
         } else {
             // User not found
-			error_log("LOG");
 
             header('Location: incorrect.php');
             exit();
