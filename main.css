@@ -150,19 +150,23 @@ form select {
     font-family: "Monaco", Monospace;
 }
 
-form button {
-    background-color: #9e1f1f;
-    color: white;
+button, .btn {
     padding: 10px 20px;
+    background-color: rgb(158, 31, 31);
+    color: white;
     border: none;
     border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-form button:hover {
+button:hover, .btn:hover {
     background-color: #be9191;
+    transform: translateY(-2px);
 }
+
 
 @media (max-width: 768px) {
     .sidebar {
@@ -258,7 +262,7 @@ a.btn:hover {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    display: none; /* Initially hidden */
+    display: none; 
     z-index: 9999;
     text-align: center;
 }
@@ -283,25 +287,86 @@ a.btn:hover {
     transform: scale(1.05);
 }
 
+/* Sidebar Styling */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 250px;
     height: 100vh;
-    background-color: rgb(158, 31, 31);
+    background: linear-gradient(135deg, rgb(158, 31, 31), #9c2525); 
     color: white;
-    padding: 20px;
+    padding: 30px 20px; 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    z-index: 1000; /* Ensure it stays above other content */
+    align-items: flex-start;
+    z-index: 1000; 
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); 
 }
 
+.sidebar h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px; 
+    letter-spacing: 2px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    width: 100%;
+    margin-bottom: 20px; 
+    transition: transform 0.3s ease;
+}
+
+.sidebar ul li:hover {
+    transform: translateX(10px); 
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #be9191;
+    padding-left: 20px; 
+}
+
+.sidebar ul li a i {
+    margin-right: 10px; 
+    font-size: 20px; 
+}
+
+
 .main-content {
-    margin-left: 270px; /* Adjust this value based on the width of your sidebar */
+    margin-left: 270px;
     padding: 20px;
 }
+
+.sidebar ul li a {
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #be9191;
+    padding-left: 20px; 
+}
+
+
+
+
 
 
 

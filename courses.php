@@ -47,6 +47,7 @@ function setActiveStat($pageName) {
     $currentFile = basename($_SERVER['PHP_SELF'], ".php");
     return $currentFile === $pageName ? 'active-stat' : '';
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +57,8 @@ function setActiveStat($pageName) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="sidebar">
@@ -72,7 +75,7 @@ function setActiveStat($pageName) {
     <div class="content-container">
         <div class="main-content">
             <header>
-                <h1>Dashboard</h1>
+                <h1>Courses</h1>
             </header>
             <main>
                 <div class="stats">
