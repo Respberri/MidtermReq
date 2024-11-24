@@ -1,29 +1,48 @@
 <?php
 session_start();
+require_once 'db.php';
 
+
+error_log("LOG");
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['uName']) && isset($_POST['pass'])) {
         $username = $_POST['uName'];
         $password = $_POST['pass'];
 
-    // Predefined credentials
-    $predefinedUsername = "admin";
-    $predefinedPassword = "password";
+        // Prepare a SQL query to fetch user details
+        $query = "SELECT * FROM users WHERE username = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $username); // Bind username to the query
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    // Validate credentials
-    if ($username == $predefinedUsername && $password == $predefinedPassword) {
-        // Successful login, set session variables
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: dashboard.php');
-        exit();
-    } else {
-        // Redirect to incorrect credentials page
-        header('Location: incorrect.php');
-        exit();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            // Verify the password
+            if ($password === $user['password']) {
+                // Successful login
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
+
+                header('Location: dashboard.php');
+                exit();
+            } else {
+                // Incorrect password
+				error_log("A");
+
+                header('Location: incorrect.php');
+                exit();
+            }
+        } else {
+            // User not found
+			error_log("LOG");
+
+            header('Location: incorrect.php');
+            exit();
+        }
     }
-}
 }
 ?>
 
