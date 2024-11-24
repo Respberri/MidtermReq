@@ -20,8 +20,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <div class="sidebar">
         <h2>Welcome, Admin!</h2>
         <ul>
-            <li><a href="#">Students</a></li>
-            <li><a href="project.php">Courses</a></li>
+            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="project.php">Students</a></li>
+            <li><a href="#">Courses</a></li>
             <li><a href="members.php">Departments</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -59,8 +60,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             data: {
                 labels: ['Elementary', 'Junior High', 'Senior High'],
                 datasets: [{
-                    label: 'Number of Students',
-                    data: [200, 150, 100], // Update these numbers based on your actual data
+                    label: 'Enrolled Students',
+                    data: [300, 150, 100], // Update these numbers based on your actual data
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

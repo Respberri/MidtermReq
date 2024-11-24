@@ -126,3 +126,55 @@ header {
         margin-bottom: 20px;
     }
 }
+
+.student-list {
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: rgb(158, 31, 31);
+    color: white;
+}
+
+tr:hover {
+    background-color: #f4f4f4;
+}
+
+a.btn {
+    padding: 8px 15px;
+    background-color: rgb(158, 31, 31);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+a.btn:hover {
+    background-color: #be9191;
+}
+
+@media (max-width: 768px) {
+    .student-list table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+

@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3307";
+$servername = "localhost:3306";
 $username = "root";
 $password = ""; // Your MySQL password
 $dbname = "bmsi_sis_db";

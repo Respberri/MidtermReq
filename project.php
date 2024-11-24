@@ -1,45 +1,86 @@
 <?php
 session_start();
+require_once 'db.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: incorrect.php');
     exit();
 }
+
+// Fetch students data from the database
+$query = "SELECT * FROM students"; // Assuming 'students' is the table name
+$result = $conn->query($query);
 ?>
+
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Students</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="menu-bar">
-        <div class="grp-num">
-            <p>Project Description</p>
-        </div>
+    <div class="sidebar">
+        <h2>Welcome, Admin!</h2>
         <ul>
-            <li><a href="dashboard.php">Admin Page</a></li>
-            <li><a href="#">Project Description</a></li>
-            <li><a href="members.php">Members</a></li>
+            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="project.php">Students</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="members.php">Departments</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
-    <div class="container">
-        <div class="box2">
-            <h1> Project Description </h1>
-            <p> The implementation of our Student Information System (SIS) greatly overhauls and launches Bepz Multinational School Incorporated (BMSI) into a new light.
-                 It addresses the current operational challenges and deficits of the old system — thus, enhancing the overall experience in handling and managing both 
-                 staff and student data. These invaluable insights, brought about by detailed reporting, is not only feasible for implementation, but also flexible 
-                 in terms of scaling — especially, for security and the protection of private/sensitive information of both parties.
-            </p>
-            <p>Organize Student Information: Simplify the organized and effective handling of student data, including attendance, academic records, personal information and more.
-            </p>
-            <p>Make Information Easily Accessible: Ensure that authorized users can quickly and easily access relevant information when needed.</p>
-            <p>Enhance Security and Privacy: Implement strict access controls and data encryption to protect sensitive student information from unauthorized access, ensuring compliance with privacy regulation.</p>
-        </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Students</h1>
+        </header>
+        <main>
+            <div class="stats">
+                <div class="stat">
+                    <img src="/images/student.png" alt="Students">
+                    <h2>Students</h2>
+                </div>
+                <div class="stat">
+                    <img src="/images/course.png" alt="Courses">
+                    <h2>Courses</h2>
+                </div>
+                <div class="stat">
+                    <img src="/images/department.png" alt="Departments">
+                    <h2>Departments</h2>
+                </div>
+            </div>
+            
+            <!-- Student List -->
+            <div class="student-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Department</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($student = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($student['student_id']); ?></td>
+                                <td><?php echo htmlspecialchars($student['first_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['last_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['department']); ?></td>
+                                <td>
+                                    <a href="view_student.php?id=<?php echo $student['student_id']; ?>" class="btn view-btn">View</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </div>
 </body>
 </html>
