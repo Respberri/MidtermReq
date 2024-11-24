@@ -178,3 +178,35 @@ a.btn:hover {
     }
 }
 
+/* Notification Style */
+#connectionNotification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    display: none; /* Initially hidden */
+    z-index: 9999;
+    text-align: center;
+}
+
+#connectionNotification.show {
+    display: block;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
