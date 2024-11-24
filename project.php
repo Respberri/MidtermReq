@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 // Fetch students data from the database
-$query = "SELECT * FROM students"; // Assuming 'students' is the table name
+$query = "SELECT * FROM students"; 
 $result = $conn->query($query);
 ?>
 

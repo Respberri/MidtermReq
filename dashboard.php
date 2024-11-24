@@ -61,7 +61,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 labels: ['Elementary', 'Junior High', 'Senior High'],
                 datasets: [{
                     label: 'Enrolled Students',
-                    data: [300, 150, 100], // Update these numbers based on your actual data
+                    data: [300, 150, 100], 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
