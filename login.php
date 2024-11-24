@@ -7,23 +7,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_POST['uName'];
         $password = $_POST['pass'];
 
-    // Predefined credentials
-    $predefinedUsername = "admin";
-    $predefinedPassword = "password";
+        // Predefined credentials
+        $predefinedUsername = "admin";
+        $predefinedPassword = "password";
 
-    // Validate credentials
-    if ($username == $predefinedUsername && $password == $predefinedPassword) {
-        // Successful login, set session variables
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: dashboard.php');
-        exit();
-    } else {
-        // Redirect to incorrect credentials page
-        header('Location: incorrect.php');
-        exit();
+        // Validate credentials
+        if ($username == $predefinedUsername && $password == $predefinedPassword) {
+            // Successful login, set session variables
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            // Redirect to incorrect credentials page
+            header('Location: incorrect.php');
+            exit();
+        }
     }
-}
 }
 ?>
 
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form action="login.php" method="POST">
                 <!-- Username Input -->
                 <div class="input-group">
-                    <input type="text" name="uName" placeholder="Employee/Student ID" required>
+                    <input type="text" name="uName" placeholder="User ID" required>
                 </div>
 
                 <!-- Password Input -->
