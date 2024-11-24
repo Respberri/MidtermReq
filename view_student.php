@@ -42,6 +42,32 @@ if (isset($_GET['student_id'])) {
         echo "<p><strong>Address:</strong> " . $student['address'] . "</p>";
         echo "<p><strong>Date of Birth:</strong> " . $student['date_of_birth'] . "</p>";
         echo "<p><strong>Enrollment Date:</strong> " . $student['enrollment_date'] . "</p>";
+		
+		// Fetch current subjects of the student
+        $subjects_sql = "
+            SELECT subjects.subject_id, subjects.name, subjects.description, subjects.credits
+            FROM student_subjects
+            INNER JOIN subjects ON student_subjects.subject_id = subjects.subject_id
+            WHERE student_subjects.student_id = $student_id";
+
+        $subjects_result = $conn->query($subjects_sql);
+
+        echo "<h3>Current Subjects</h3>";
+
+        if ($subjects_result->num_rows > 0) {
+            echo "<ul>";
+            while ($subject = $subjects_result->fetch_assoc()) {
+                echo "<li>";
+                echo "<strong>Subject ID:</strong> " . $subject['subject_id'] . "<br>";
+                echo "<strong>Name:</strong> " . $subject['name'] . "<br>";
+                echo "<strong>Description:</strong> " . $subject['description'] . "<br>";
+                echo "<strong>Credits:</strong> " . $subject['credits'] . "<br>";
+                echo "</li><hr>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p>No subjects found for this student.</p>";
+        }
     } else {
         echo "<p>No student found with ID $student_id.</p>";
     }
