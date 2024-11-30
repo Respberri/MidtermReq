@@ -16,20 +16,30 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
 </head>
+
 <body>
     <div class="sidebar">
+        <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
-        <ul>
-            <li><a href="dashboard.php">Home</a></li>
-            <li><a href="project.php">Students</a></li>
-            <li><a href="courses.php">Courses</a></li>
-            <li><a href="members.php">Departments</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
+        <div class="menu">
+            <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
+            <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item"><a href="courses.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
+            <i class="fa-solid fa-chevron-down dropdown"></i></a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="mission_vision.php" class="sub-item">Mission & Vision</a>
+                <a href="members.php" class="sub-item">Developers</a>
+            </div>
+        </div>
+            <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
+        </div>
     </div>
 
     <div class="main-content">
@@ -56,6 +66,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </main>
     </div>
+
+<!-- jquery for sub-menu toggle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            })
+        })
+    </script>
 
     <script>
         var ctx = document.getElementById('studentChart').getContext('2d');
