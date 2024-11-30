@@ -23,16 +23,61 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="sidebar">
+        <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
-        <ul>
-            <li><a href="dashboard.php">Home</a></li>
-            <li><a href="project.php">Students</a></li>
-            <li><a href="courses.php">Courses</a></li>
-            <li><a href="members.php">Departments</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
+        <div class="menu">
+            <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
+            <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item"><a href="courses.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
+            <i class="fa-solid fa-chevron-down dropdown"></i></a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="mission_vision.php" class="sub-item">Mission & Vision</a>
+                <a href="members.php" class="sub-item">Developers</a>
+            </div>
+        </div>
+            <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
+        </div>
     </div>
+=======
+<div class="sidebar">
+    <h2>Welcome, Admin!</h2>
+    <ul>
+        <li><a href="dashboard.php">Home</a></li>
+        <li><a href="project.php">Students</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Courses</a>
+            <div class="dropdown-content">
+                <a href="courses.php">Manage Subjects</a>
+                <a href="subjects_dashboard.php">View Subjects</a>
+            </div>
+        </li>
+        <li><a href="members.php">Departments</a></li>
+        <li><a href="logout.php">Logout</a></li>
+    </ul>
+</div>
+
+<script>
+    // Function to toggle the dropdown visibility
+    function toggleDropdown(event) {
+        const dropdownContent = event.target.nextElementSibling; // Get the dropdown content (div)
+        
+        // Toggle the 'show' class which controls visibility
+        dropdownContent.classList.toggle('show');
+        
+        // Close the dropdown if clicked anywhere outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    }
+</script>
+
+>>>>>>> 6dc3e8ae7966352fe8b71d7dfb932983e9718363
 
     <div class="main-content">
         <header>

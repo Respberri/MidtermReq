@@ -63,7 +63,6 @@ function setActiveStat($pageName) {
 
 </head>
 <body>
-<<<<<<< HEAD
     <div class="sidebar">
         <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
@@ -82,42 +81,6 @@ function setActiveStat($pageName) {
             <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
         </div>
     </div>
-=======
-<div class="sidebar">
-    <h2>Welcome, Admin!</h2>
-    <ul>
-        <li><a href="dashboard.php">Home</a></li>
-        <li><a href="project.php">Students</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Courses</a>
-            <div class="dropdown-content">
-                <a href="courses.php">Manage Subjects</a>
-                <a href="subjects_dashboard.php">View Subjects</a>
-            </div>
-        </li>
-        <li><a href="members.php">Departments</a></li>
-        <li><a href="logout.php">Logout</a></li>
-    </ul>
-</div>
-
-<script>
-    // Function to toggle the dropdown visibility
-    function toggleDropdown(event) {
-        const dropdownContent = event.target.nextElementSibling; // Get the dropdown content (div)
-        
-        // Toggle the 'show' class which controls visibility
-        dropdownContent.classList.toggle('show');
-        
-        // Close the dropdown if clicked anywhere outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                dropdownContent.classList.remove('show');
-            }
-        });
-    }
-</script>
-
->>>>>>> 6dc3e8ae7966352fe8b71d7dfb932983e9718363
 
     <div class="content-container">
         <div class="main-content">
