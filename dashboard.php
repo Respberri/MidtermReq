@@ -16,45 +16,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
 </head>
+
 <body>
-<div class="sidebar">
-    <h2>Welcome, Admin!</h2>
-    <ul>
-        <li><a href="dashboard.php">Home</a></li>
-        <li><a href="project.php">Students</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Courses</a>
-            <div class="dropdown-content">
-                <a href="courses.php">Manage Subjects</a>
-                <a href="subjects_dashboard.php">View Subjects</a>
-            </div>
-        </li>
-        <li><a href="members.php">Departments</a></li>
-        <li><a href="logout.php">Logout</a></li>
-    </ul>
-</div>
-
-<script>
-    // Function to toggle the dropdown visibility
-    function toggleDropdown(event) {
-        const dropdownContent = event.target.nextElementSibling; // Get the dropdown content (div)
-        
-        // Toggle the 'show' class which controls visibility
-        dropdownContent.classList.toggle('show');
-        
-        // Close the dropdown if clicked anywhere outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                dropdownContent.classList.remove('show');
-            }
-        });
-    }
-</script>
-
+    <div class="sidebar">
+        <h2>Welcome, Admin!</h2>
+        <ul>
+            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="project.php">Students</a></li>
+            <li><a href="courses.php">Courses</a></li>
+            <li><a href="members.php">Departments</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
 
     <div class="main-content">
         <header>
@@ -80,6 +58,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </main>
     </div>
+
+<!-- jquery for sub-menu toggle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            })
+        })
+    </script>
 
     <script>
         var ctx = document.getElementById('studentChart').getContext('2d');

@@ -57,10 +57,32 @@ function setActiveStat($pageName) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="main.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />">
 
 </head>
 <body>
+<<<<<<< HEAD
+    <div class="sidebar">
+        <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
+        <h2>Welcome, Admin!</h2>
+        <div class="menu">
+            <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
+            <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item"><a href="courses.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
+            <i class="fa-solid fa-chevron-down dropdown"></i></a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="" class="sub-item">Mission & Vision</a>
+                <a href="" class="sub-item">Developers</a>
+            </div>
+        </div>
+            <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
+        </div>
+    </div>
+=======
 <div class="sidebar">
     <h2>Welcome, Admin!</h2>
     <ul>
@@ -95,11 +117,12 @@ function setActiveStat($pageName) {
     }
 </script>
 
+>>>>>>> 6dc3e8ae7966352fe8b71d7dfb932983e9718363
 
     <div class="content-container">
         <div class="main-content">
             <header>
-                <h1>Courses</h1>
+                <h1>Subjects</h1>
             </header>
             <main>
                 <div class="stats">
@@ -109,7 +132,7 @@ function setActiveStat($pageName) {
                     </div>
                     <div class="stat <?php echo setActiveStat('courses'); ?>">
                         <img src="/images/course.png" alt="Courses">
-                            <h2>Courses</h2>
+                            <h2>Subjects</h2>
                     </div>
                     <div class="stat">
                         <img src="/images/department.png" alt="Departments">
@@ -121,7 +144,7 @@ function setActiveStat($pageName) {
 
         <div class="main-content">
             <header>
-                <h1>Manage Courses</h1>
+                <h1>Manage Subjects</h1>
             </header>
             <main>
                 <section>
@@ -170,5 +193,16 @@ function setActiveStat($pageName) {
             </main>
         </div>
     </div>
+
+    <!-- jquery for sub-menu toggle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            })
+        })
+    </script>
 </body>
 </html>
