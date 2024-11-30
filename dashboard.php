@@ -24,22 +24,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 <body>
     <div class="sidebar">
-        <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
-        <div class="menu">
-            <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
-            <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
-            <div class="item"><a href="courses.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
-            <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
-            <i class="fa-solid fa-chevron-down dropdown"></i></a>
-            <div class="sub-menu">
-                <a href="" class="sub-item"></a>
-                <a href="mission_vision.php" class="sub-item">Mission & Vision</a>
-                <a href="members.php" class="sub-item">Developers</a>
-            </div>
-        </div>
-            <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
-        </div>
+        <ul>
+            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="project.php">Students</a></li>
+            <li><a href="courses.php">Courses</a></li>
+            <li><a href="members.php">Departments</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
     </div>
 
     <div class="main-content">

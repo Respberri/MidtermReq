@@ -316,9 +316,132 @@ h2{
     display: none;
 }
 
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
 
+/* Dropdown Button (the 'Courses' link) */
+.dropbtn {
+    background-color: #9e1f1f;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
 
+/* Hover effect on dropdown button */
+.dropbtn:hover {
+    background-color: #be9191;
+}
 
+/* Dropdown Content (hidden by default) */
+.dropdown-content {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: #be9191;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
 
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #333;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
 
+/* Hover effect on links inside dropdown */
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: #9e1f1f;
+}
 
+<<<<<<< HEAD
+=======
+/* Show dropdown when toggled */
+.dropdown .show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Active state for dropdown */
+.dropdown.active .dropbtn {
+    background-color: #8c1414;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Styling */
+.subject-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.subject-table th, .subject-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.subject-table th {
+    background-color: #8c1414;
+    font-weight: bold;
+}
+
+.subject-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Button Styling */
+.edit-btn, .delete-btn {
+    color: #007BFF;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.edit-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.delete-btn {
+    color: red;
+}
+
+.delete-btn:hover {
+    background-color: #f8d7da;
+}
+
+/* Add New Subject Button */
+.add-new-subject-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.add-new-subject-btn:hover {
+    background-color: #218838;
+}
+
+>>>>>>> 6dc3e8ae7966352fe8b71d7dfb932983e9718363
