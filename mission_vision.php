@@ -60,7 +60,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     to equip the youth to become authentic channels of faith and zealous bearers of truth.</p>
             </div>
         </div>
-
     </div>
 
     <!-- jquery for sub-menu toggle -->

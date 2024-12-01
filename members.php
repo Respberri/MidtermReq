@@ -13,84 +13,70 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members</title>
-    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 <body>
-    <div class="menu-bar">
-        <div class="grp-num">
-            <p>Developers</p>
+    <div class="sidebar">
+        <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
+        <h2>Welcome, Admin!</h2>
+        <div class="menu">
+            <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
+            <div class="item"><a href="#"><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item"><a href="#"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
+            <i class="fa-solid fa-chevron-down drpdown"></i>
+            </a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="mission_vision.php" class="sub-item">Mission & Vision</a>
+                <a href="members.php" class="sub-item">Developers</a>
+            </div>
         </div>
-        <ul>
-            <li><a href="dashboard.php">Admin Page</a></li>
-            <li><a href="project.php">Project Description</a></li>
-            <li><a href="#">Members</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
+            <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
+        </div>
     </div>
 
-<div class="team-section">
-    <div class="container">
-        <div class="row">
-            <div class="title">
-                <h1>---- Meet The Team ----</h1>
+    <div class="main-content">
+        <header>
+            <h1>Developers</h1>
+        </header>
+        <div class="member-row">
+            <div class="member-col">
+                <img class="img-pic" src="/images/pic_rjc.jpg" alt="picture of Cruz">
+                <h3>Ralph Jaisell S. Cruz</h3>
+                <p>Backend Developer</p>
             </div>
-        </div>
-        <div class="team-card">
-            <div class="card">
-                <div class="image-section">
-                    <img src="/images/pic_rjc.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>Cruz, Ralph Jaisell S.</h3>
-                    <h4>Developer</h4>
-                    <p>Address: Orani</p>
-                    <p>Age: 21</p>
-                    <p>Hobbies: Reading and Watching</p>
-                    <p>Role: Applied Back-end revisions</p>
-                </div>
+            <div class="member-col">
+                <img class="img-pic" src="/images/pic_msn.png" alt="picture of Nagamany">
+                <h3>Marc Steven G. Nagamany</h3>
+                <p>System Analyst</p>
+            </div>  
+            <div class="member-col">
+                <img class="img-pic" src="/images/pic_lvs.jpg" alt="picture of Salenga">
+                <h3>Lhyon Victor S. Salenga</h3>
+                <p>Backend Developer</p>
             </div>
-            <div class="card">
-                <div class="image-section">
-                    <img src="/images/pic_msn.png" alt="">
-                </div>
-                <div class="content">
-                    <h3>Nagamany, Marc Steven G.</h3>
-                    <h4>Developer</h4>
-                    <p>Address: Mariveles</p>
-                    <p>Age: 21</p>
-                    <p>Hobbies: Music and Playing sports</p>
-                    <p>Role: Applied Front-end Development</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image-section">
-                    <img src="/images/pic_lvs.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>Salenga, Lhyon Victor S.</h3>
-                    <h4>Developer</h4>
-                    <p>Address: Orani</p>
-                    <p>Age: 20</p>
-                    <p>Hobbies: Gaming and Watching</p>
-                    <p>Role: Applied Web Development</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image-section">
-                    <img src="/images/pic_ktav.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>Valdecañas, Kurt Timothy Aston C.</h3>
-                    <h4>Developer</h4>
-                    <p>Address: Balanga City                          
-                        </p>
-                    <p>Age: 20</p>
-                    <p>Hobbies: Music and Illustration</p>
-                    <p>Role: Applied UI/UX revisions</p>
-                </div>
-            </div>
+            <div class="member-col">
+                <img class="img-pic" src="/images/pic_ktav.jpg" alt="picture of Valdecanas">
+                <h3>Kurt Timothy Aston C. Valdecañas</h3>
+                <p>Frontend Developer</p>
+            </div>  
+        
+
         </div>
     </div>
-</div>    
+
+    <!-- jquery for sub-menu toggle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.drpdown').toggleClass('rotate');
+            })
+        })
+    </script>
+
 </body>
 </html>
