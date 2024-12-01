@@ -26,16 +26,32 @@ body {
 }
 
 .left-panel {
-    background-color: rgb(158, 31, 31);
+    background-color: #912c2c;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-panel img{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 15px;
 }
 
-.left-panel img {
-    max-width: 80%;
-    height: auto;
+.left-panel p{
+    color: white;
+    font-size: 20px;
+    text-align: center;   
+}
+
+.left-panel span{
+    font-weight: 800;
+    font-style: italic;
 }
 
 .right-panel {
@@ -51,7 +67,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    color: rgb(158, 31, 31);
+    color: #912c2c;
     margin-bottom: 1rem;
 }
 
@@ -72,11 +88,11 @@ body {
 
 .input-group input:focus {
     outline: none;
-    border-color: rgb(158, 31, 31);
+    border-color: #912c2c;
 }
 
 .btn {
-    background-color: rgb(158, 31, 31);
+    background-color: #912c2c;
     color: white;
     border: none;
     border-radius: 10px;

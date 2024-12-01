@@ -69,9 +69,9 @@ function setActiveStat($pageName) {
         <div class="menu">
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
             <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
-            <div class="item"><a href="courses.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a href="subjects.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
-            <i class="fa-solid fa-chevron-down dropdown"></i></a>
+            <i class="fa-solid fa-chevron-down drpdown"></i></a>
             <div class="sub-menu">
                 <a href="" class="sub-item"></a>
                 <a href="" class="sub-item">Mission & Vision</a>

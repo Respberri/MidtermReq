@@ -6,9 +6,8 @@
 }
 
 body {
-    min-height: 100vh;
     font-family: "Poppins", sans-serif;
-     font-weight: 500;
+    font-weight: 500;
     font-style: normal;
     background-color: #f4f4f4;
     display: flex;
@@ -26,6 +25,7 @@ body {
     flex-direction: column;
     margin-left: 300px;
     padding: 20px;
+    min-height: 100vh;
 }
 
 header {
@@ -254,7 +254,7 @@ a.btn:hover {
 
 /* Sidebar Styling */
 .sidebar{
-    background-color: #9e1f1f;;
+    background-color: #912c2c;
     height: 100vh;
     width: 270px;
     position: fixed;
@@ -288,12 +288,11 @@ h2{
 .menu .item{
     position: relative;
     cursor: pointer;
-    font-size: 100px;
 }
 
 .menu .item a{
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     display: block;
     padding: 5px 30px;
@@ -304,17 +303,20 @@ h2{
     margin-right: 15px;
 }
 
-.item a .dropdown{
+.item a .drpdown{
     position: absolute;
-    right: 0;
+    right: 0; 
     margin: 20px;
-    transition: 0.3s ease  ;
+    transition: 0.3s ease;
 }
 
 .item .sub-menu{
     background-color: #b14c4d;
     display: none;
 }
+
+
+
 
 /* Dropdown Container */
 .dropdown {
@@ -323,7 +325,6 @@ h2{
     width: 100%;
 }
 
-/* Dropdown Button (the 'Courses' link) */
 .dropbtn {
     background-color: #9e1f1f;
     color: white;
@@ -336,14 +337,13 @@ h2{
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Hover effect on dropdown button */
 .dropbtn:hover {
     background-color: #be9191;
 }
 
 /* Dropdown Content (hidden by default) */
 .dropdown-content {
-    display: none; /* Initially hidden */
+    display: none; 
     position: absolute;
     background-color: #be9191;
     min-width: 200px;
@@ -373,8 +373,6 @@ h2{
     color: #9e1f1f;
 }
 
-<<<<<<< HEAD
-=======
 /* Show dropdown when toggled */
 .dropdown .show {
     display: block;
@@ -444,4 +442,38 @@ h2{
     background-color: #218838;
 }
 
->>>>>>> 6dc3e8ae7966352fe8b71d7dfb932983e9718363
+
+/* Misison and Vision CSS */
+
+h3{
+    font-size: 35px;
+    margin-bottom: 10%;
+}
+
+.card-row{
+    width: 70%;
+    max-width: 1100px;
+    margin: auto;
+    top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 25px;
+}
+
+.card-col{
+    background-color:  #912c2c;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-color: #f4f4f4;
+    height: 720px;
+    width: 550px;
+    padding: 10% 15%;
+    border-style: solid;
+    border-width: 12px;
+    border-radius: 30px;
+    text-align: center;
+    letter-spacing: 2.0px;
+
+}
+
+
