@@ -47,20 +47,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Left panel: Illustration -->
+        <!-- Left panel -->
         <div class="left-panel">
             <img src="/images/bmsi-logo.png" alt="Student Illustration">
+            <p>Where  <br><span>ACADEMIC EXCELLENCE</span><br> is a <br><span>TRADITION</span></p>
         </div>
 
         <!-- Right panel: Login Form -->
         <div class="right-panel">
             <h1 class="form-title">Login</h1>
             <form action="login.php" method="POST">
+
                 <!-- Username Input -->
                 <div class="input-group">
                     <input type="text" name="uName" placeholder="User ID" required>
