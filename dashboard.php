@@ -26,8 +26,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <h2>Welcome, Admin!</h2>
         <div class="menu">
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
-            <div class="item"><a href="#"><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
-            <div class="item"><a href="#"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a href="project.php"><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item dropdown">
+    <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+        <i class="fa-solid fa-book"></i>Subjects
+    </a>
+    <div class="dropdown-content">
+        <a href="courses.php">Manage Subjects</a>
+        <a href="subjects_dashboard.php">View Subjects</a>
+    </div>
+</div>
+
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
             <i class="fa-solid fa-chevron-down drpdown"></i>
             </a>

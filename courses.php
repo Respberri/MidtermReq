@@ -59,28 +59,55 @@ function setActiveStat($pageName) {
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />">
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
-    <div class="sidebar">
+<div class="sidebar">
         <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
         <div class="menu">
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
-            <div class="item"><a href=""><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
-            <div class="item"><a href="subjects.php"><i class="fa-solid fa-book"></i>Subjects</a></div>
+            <div class="item"><a href="project.php"><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
+            <div class="item dropdown">
+            <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+        <i class="fa-solid fa-book"></i>Subjects
+    </a>
+    <div class="dropdown-content">
+        <a href="courses.php">Manage Subjects</a>
+        <a href="subjects_dashboard.php">View Subjects</a>
+    </div>
+</div>
+
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
-            <i class="fa-solid fa-chevron-down drpdown"></i></a>
+            <i class="fa-solid fa-chevron-down drpdown"></i>
+            </a>
             <div class="sub-menu">
                 <a href="" class="sub-item"></a>
-                <a href="" class="sub-item">Mission & Vision</a>
-                <a href="" class="sub-item">Developers</a>
+                <a href="mission_vision.php" class="sub-item">Mission & Vision</a>
+                <a href="members.php" class="sub-item">Developers</a>
             </div>
         </div>
             <div class="item"><a href="logout.php"><i class="fa-solid fa-circle-left"></i>Logout</a></div>
         </div>
     </div>
+    
+    <script>
+    // Function to toggle the dropdown visibility
+    function toggleDropdown(event) {
+        const dropdownContent = event.target.nextElementSibling; // Get the dropdown content (div)
+        
+        // Toggle the 'show' class which controls visibility
+        dropdownContent.classList.toggle('show');
+        
+        // Close the dropdown if clicked anywhere outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    }
+</script>
 
     <div class="content-container">
         <div class="main-content">
