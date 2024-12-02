@@ -62,8 +62,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 <h3>Kurt Timothy Aston C. Valdecañas</h3>
                 <p>Frontend Developer</p>
             </div>  
-        
-
         </div>
     </div>
 
@@ -77,6 +75,5 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             })
         })
     </script>
-
 </body>
 </html>

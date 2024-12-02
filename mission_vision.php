@@ -39,7 +39,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="main-contentbg">
         <header>
             <h1>Mission and Vision</h1>
         </header>
