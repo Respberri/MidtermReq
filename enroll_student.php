@@ -44,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function filterSections() {
             const yearLevelFilter = document.getElementById('year_level_filter').value;
 
+            // Update the hidden year_level input
+            document.getElementById('year_level').value = yearLevelFilter;
+
             const options = document.querySelectorAll('.section-option');
             options.forEach(option => {
                 const yearLevel = option.getAttribute('data-year-level');
@@ -75,6 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="<?= $level['year_level'] ?>">Year <?= $level['year_level'] ?></option>
             <?php endwhile; ?>
         </select><br><br>
+
+        <!-- Hidden year_level field -->
+        <input type="hidden" id="year_level" name="year_level" value="">
 
         <label for="section_id">Select Section:</label>
         <select id="section_id" name="section_id" required>
