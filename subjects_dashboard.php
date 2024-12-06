@@ -22,7 +22,7 @@ if (isset($_GET['delete_id'])) {
 }
 
 // Fetch subjects
-$subjects = $conn->query("SELECT subject_id, name, description, credits FROM subjects");
+$subjects = $conn->query("SELECT subject_id, name, description FROM subjects");
 
 function setActiveStat($pageName) {
     $currentFile = basename($_SERVER['PHP_SELF'], ".php");
@@ -116,7 +116,6 @@ function setActiveStat($pageName) {
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Credits</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -126,7 +125,6 @@ function setActiveStat($pageName) {
                                     <td><?php echo $row['subject_id']; ?></td>
                                     <td><?php echo $row['name']; ?></td>
                                     <td><?php echo $row['description']; ?></td>
-                                    <td><?php echo $row['credits']; ?></td>
                                     <td>
                                         <a href="edit_subject.php?subject_id=<?php echo $row['subject_id']; ?>" class="edit-btn">Edit</a>
                                         |
