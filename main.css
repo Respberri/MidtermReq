@@ -103,6 +103,7 @@ form label {
 
 form input[type="text"],
 form input[type="number"],
+form input[type="password"],
 form textarea,
 form select {
     width: 100%;
