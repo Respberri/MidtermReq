@@ -8,25 +8,29 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: incorrect.php');
     exit();
 }
+$subject_id = null;
 
 // Fetch subject for editing
-$subject_id = $_GET['subject_id'];
-$subject = $conn->query("SELECT * FROM subjects WHERE subject_id = $subject_id")->fetch_assoc();
+if (isset($_GET['subject_id'])) {
+	$subject_id = $_GET['subject_id'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
+	$subject = $conn->query("SELECT * FROM subjects WHERE subject_id = $subject_id")->fetch_assoc();
 
-    $sql = "UPDATE subjects 
-            SET name = '$name', description = '$description'
-            WHERE subject_id = $subject_id";
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		$name = $_POST['name'];
+		$description = $_POST['description'];
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Subject updated successfully.'); window.location.href = 'subjects_dashboard.php';</script>";
-        exit();
-    } else {
-        echo "<script>alert('Error: " . $conn->error . "');</script>";
-    }
+		$sql = "UPDATE subjects 
+				SET name = '$name', description = '$description'
+				WHERE subject_id = $subject_id";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "<script>alert('Subject updated successfully.'); window.location.href = 'subjects_dashboard.php';</script>";
+			exit();
+		} else {
+			echo "<script>alert('Error: " . $conn->error . "');</script>";
+		}
+	}
 }
 ?>
 
@@ -153,8 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-
-    <div class="container">
+	<div class="container">
+	<?php if(isset($_GET['subject_id'])):?>
+    
         <h2>Edit Subject</h2>
 
         <form method="POST" action="">
@@ -167,7 +172,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Update Subject</button>
             <a href="subjects_dashboard.php" class="cancel-btn">Cancel</a>
         </form>
-    </div>
-
+    
+	<?php else: ?>
+		<h2>Improper Usage!</h2>
+		<a href="subjects_dashboard.php" class="cancel-btn">BACK</a>
+    </form>
+	<?php endif;?>
+	</div>
 </body>
 </html>
