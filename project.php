@@ -104,9 +104,7 @@ function setActiveStat($pageName) {
                     <thead>
                         <tr>
                             <th>Student ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Department</th>
+                            <th>Name</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -114,9 +112,7 @@ function setActiveStat($pageName) {
                         <?php while ($student = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($student['student_id']); ?></td>
-                                <td><?php echo htmlspecialchars($student['first_name']); ?></td>
-                                <td><?php echo htmlspecialchars($student['last_name']); ?></td>
-                                <td><?php echo htmlspecialchars($student['department']); ?></td>
+                                <td><?php echo htmlspecialchars($student['name']); ?></td>
                                 <td>
                                     <a href="view_student.php?id=<?php echo $student['student_id']; ?>" class="btn view-btn">View</a>
                                 </td>
