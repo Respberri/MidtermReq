@@ -26,16 +26,42 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <h2>Welcome, Admin!</h2>
         <div class="menu">
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
-            <div class="item"><a href="project.php"><i class="fa-solid fa-graduation-cap"></i>Students</a></div>
-            <div class="item dropdown">
-    <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
-        <i class="fa-solid fa-book"></i>Subjects
-    </a>
-    <div class="dropdown-content">
-        <a href="courses.php">Manage Subjects</a>
-        <a href="subjects_dashboard.php">View Subjects</a>
-    </div>
-</div>
+
+            <div class="item"><a class="sub-btn"><i class="fa-solid fa-graduation-cap"></i>Students
+            <i class="fa-solid fa-chevron-down drpdown"></i>
+            </a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="#" class="sub-item">Student List</a>
+                <a href="#" class="sub-item">Enroll Students</a>
+                <a href="#" class="sub-item">Assign Student Subject</a>
+                <a href="#" class="sub-item">View Student</a>
+                <a href="#" class="sub-item">View Student Grades</a>
+            </div>
+        </div>
+
+        <div class="item"><a class="sub-btn"><i class="fa-solid fa-book"></i>Manage Subjects
+            <i class="fa-solid fa-chevron-down drpdown"></i>
+            </a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="#" class="sub-item">Create Subject</a>
+                <a href="#" class="sub-item">Create Section Subject</a>
+                <a href="#" class="sub-item">Assign Faculty Subject</a>
+                <a href="#" class="sub-item">View Subject</a>
+            </div>
+        </div>
+
+        <div class="item"><a class="sub-btn"><i class="fa-solid fa-clipboard"></i>Curriculum Planning
+            <i class="fa-solid fa-chevron-down drpdown"></i>
+            </a>
+            <div class="sub-menu">
+                <a href="" class="sub-item"></a>
+                <a href="#" class="sub-item">Create Section</a>
+                <a href="#" class="sub-item">Assign Section Subject</a>
+            </div>
+        </div>
+
 
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
             <i class="fa-solid fa-chevron-down drpdown"></i>
