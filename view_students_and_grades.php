@@ -19,7 +19,7 @@ if (!$section_subject_id) {
 
 // Fetch section subject details
 $sql = "
-    SELECT sections.section_name AS section_name, subjects.name AS subject_name
+    SELECT ss.subject_id, sections.section_name AS section_name, subjects.name AS subject_name
     FROM section_subject ss
     INNER JOIN sections ON ss.section_id = sections.section_id
     INNER JOIN subjects ON ss.subject_id = subjects.subject_id
@@ -50,19 +50,21 @@ $students_result = $stmt->get_result();
 // Handle grade submission for each period
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($_POST['grades'] as $student_id => $grades) {
-        // Update grades for each period (1 to 4) and the final grade (5)
         foreach ($grades as $period => $grade) {
+            if ($grade === '' || $grade === null) continue; // Skip empty grades
+
             $update_sql = "
                 INSERT INTO grades (student_id, subject_id, period, grade)
                 VALUES (?, ?, ?, ?)
-                ON DUPLICATE KEY UPDATE grade = ?";
+                ON DUPLICATE KEY UPDATE grade = VALUES(grade)";
             $update_stmt = $conn->prepare($update_sql);
-            $update_stmt->bind_param("iiidi", $student_id, $section_subject['subject_id'], $period, $grade, $grade);
+            $update_stmt->bind_param("iiid", $student_id, $section_subject['subject_id'], $period, $grade);
             $update_stmt->execute();
         }
     }
     echo "<p>Grades updated successfully!</p>";
     header("Refresh:0"); // Refresh the page to show updated grades
+    exit();
 }
 
 ?>
@@ -108,18 +110,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 $student_grades[$grade_row['period']] = $grade_row['grade'];
                             }
                             ?>
-                            <?php for ($period = 1; $period <= 4; $period++): ?>
+                            <?php for ($period = 1; $period <= 5; $period++): ?>
                                 <td>
-                                    <input type="number" name="grades[<?= $student['student_id'] ?>][<?= $period ?>]" 
+                                    <input type="number" 
+                                           name="grades[<?= $student['student_id'] ?>][<?= $period ?>]" 
                                            value="<?= isset($student_grades[$period]) ? htmlspecialchars($student_grades[$period]) : '' ?>" 
                                            step="0.01" min="0" max="100">
                                 </td>
                             <?php endfor; ?>
-                            <td>
-                                <input type="number" name="grades[<?= $student['student_id'] ?>][5]" 
-                                       value="<?= isset($student_grades[5]) ? htmlspecialchars($student_grades[5]) : '' ?>" 
-                                       step="0.01" min="0" max="100">
-                            </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
