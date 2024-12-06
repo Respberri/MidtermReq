@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Enroll Student</title>
+    <link rel="stylesheet" href="main.css">
     <script>
         function filterSections() {
             const yearLevelFilter = document.getElementById('year_level_filter').value;
@@ -60,7 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
-    <h2>Enroll Student</h2>
+    <?php include 'sidebar.php' ?>
+    <div class="main-content">
+        <header>
+            <h1>Enroll Student</h1>
+        </header>
     <form method="post" action="">
         <label for="student_id">Select Student:</label>
         <select id="student_id" name="student_id" required>
@@ -97,5 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Enroll Student</button>
     </form>
+    </div>
 </body>
 </html>

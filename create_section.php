@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Create Section</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Create Section</h2>
     <form method="post" action="">
         <label for="section_name">Section Name:</label>

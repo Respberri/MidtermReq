@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Create Section-Subject</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Assign Subjects to Section</h2>
     <form method="post" action="">
         <label for="section_id">Select Section:</label>
