@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Create Subject</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Create a New Subject</h2>
     <form method="POST" action="">
         <label for="name">Subject Name:</label><br>

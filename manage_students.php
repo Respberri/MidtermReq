@@ -45,6 +45,7 @@ $students = $conn->query($students_sql);
     </script>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Manage Students and Their Assigned Subjects</h2>
     <label for="year_level_filter">Filter by Year Level:</label>
     <select id="year_level_filter" onchange="filterStudents()">

@@ -35,6 +35,7 @@ $result = $stmt->get_result();
     <title>My Section Subjects</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>My Section Subjects</h2>
     <?php if ($result->num_rows > 0): ?>
         <ul>

@@ -34,6 +34,7 @@ $faculty_records = $conn->query("SELECT f.faculty_id, f.name, f.email, f.phone, 
     <title>Manage Faculty</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Manage Faculty</h2>
     <a href="create_faculty.php">Add New Faculty Member</a>
     <br><br>

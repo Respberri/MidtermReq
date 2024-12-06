@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>View Grades for <?= $student['name'] ?></title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Grades for <?= $student['name'] ?></h2>
     <table border="1">
         <thead>

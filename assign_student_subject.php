@@ -97,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Assign Students to Section-Subjects</h2>
 
     <form method="post" action="">
