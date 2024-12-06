@@ -114,7 +114,7 @@ $students = $conn->query($students_sql);
                         ?>
                     </td>
                     <td>
-                        <a href="edit_student.php?student_id=<?= $student['student_id'] ?>">Edit</a>
+                        <a href="view_student.php?student_id=<?= $student['student_id'] ?>">Edit</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
