@@ -16,10 +16,9 @@ $subject = $conn->query("SELECT * FROM subjects WHERE subject_id = $subject_id")
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $credits = $_POST['credits'];
 
     $sql = "UPDATE subjects 
-            SET name = '$name', description = '$description', credits = '$credits' 
+            SET name = '$name', description = '$description'
             WHERE subject_id = $subject_id";
 
     if ($conn->query($sql) === TRUE) {
@@ -164,9 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" required><?php echo htmlspecialchars($subject['description']); ?></textarea>
-
-            <label for="credits">Credits:</label>
-            <input type="number" id="credits" name="credits" value="<?php echo htmlspecialchars($subject['credits']); ?>" required>
 
             <button type="submit">Update Subject</button>
             <a href="subjects_dashboard.php" class="cancel-btn">Cancel</a>

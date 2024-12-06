@@ -9,6 +9,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 
+// Pre-selected user_id from URL (if provided)
+$selected_user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : null;
+
 // Handle student creation
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = intval($_POST['user_id']); // User ID of the student (from user table)
@@ -67,9 +70,13 @@ $users = $conn->query("SELECT user_id, username FROM users WHERE role = 'student
         <label for="user_id">Assign User ID:</label>
         <select id="user_id" name="user_id" required>
             <option value="">Select User</option>
-            <?php while ($user = $users->fetch_assoc()): ?>
-                <option value="<?= $user['user_id'] ?>"><?= $user['username'] ?></option>
+			<?php while ($user = $users->fetch_assoc()): ?>
+                <option value="<?= $user['user_id'] ?>" 
+                        <?= $user['user_id'] == $selected_user_id ? 'selected' : '' ?>>
+                    <?= $user['username'] ?>
+                </option>
             <?php endwhile; ?>
+
         </select><br><br>
 
         <label for="name">Name:</label>

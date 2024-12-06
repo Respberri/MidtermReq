@@ -12,9 +12,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $credits = $_POST['credits'];
 
-    $sql = "INSERT INTO subjects (name, description, credits) VALUES ('$name', '$description', '$credits')";
+    $sql = "INSERT INTO subjects (name, description) VALUES ('$name', '$description')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Subject created successfully.";
@@ -37,9 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="description">Description:</label><br>
         <textarea id="description" name="description" required></textarea><br><br>
-
-        <label for="credits">Credits:</label><br>
-        <input type="number" id="credits" name="credits" required><br><br>
 
         <button type="submit">Create Subject</button>
     </form>
