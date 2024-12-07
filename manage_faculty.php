@@ -34,7 +34,7 @@ $faculty_records = $conn->query("SELECT f.faculty_id, f.name, f.email, f.phone, 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Faculty</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>

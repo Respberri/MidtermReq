@@ -33,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selected_students = $_POST['student_ids'] ?? []; // Array of selected student IDs
     $selected_section_subjects = $_POST['section_subject_ids'] ?? []; // Array of selected section-subject IDs
 
+    $success_message = '';
+    $error_message = '';
+
     foreach ($selected_students as $student_id) {
         foreach ($selected_section_subjects as $section_subject_id) {
             $student_id = intval($student_id);
@@ -44,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("ii", $student_id, $section_subject_id);
 
             if (!$stmt->execute()) {
-                echo "<p>Error assigning section-subject ID $section_subject_id to student $student_id: " . $conn->error . "</p>";
+                $error_message = "Error assigning section-subject ID $section_subject_id to student $student_id: " . $conn->error;
+            } else {
+                $success_message = "Assigned Successfully!";
             }
             $stmt->close();
         }
     }
-
-    echo "<p>Students assigned to section-subjects successfully!</p>";
 }
 ?>
 
@@ -60,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assign Students to Section-Subjects</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="page.css"> 
     <script>
         function filterSectionSubjects() {
             const sectionFilter = document.getElementById('section_filter').value.toLowerCase();
@@ -96,16 +99,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             });
         }
+        
+        // JavaScript for fade-out of the popup message
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupMessage = document.getElementById('popup-message');
+            if (popupMessage) {
+                setTimeout(function() {
+                    popupMessage.style.animation = 'fadeOut 1s ease-in-out forwards';
+                }, 3000); // Wait 3 seconds before fading out
+            }
+        });
     </script>
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
     <div class="main-content">
         <header><h1>Assign Students to Section-Subjects</h1></header>
+
+        <!-- Display Success/Error Popup Message -->
+        <?php if (isset($success_message)): ?>
+            <div class="popup-message" id="popup-message">
+                <?= $success_message ?>
+            </div>
+        <?php elseif (isset($error_message)): ?>
+            <div class="popup-message error" id="popup-message">
+                <?= $error_message ?>
+            </div>
+        <?php endif; ?>
+
         <form method="post" action="">
             <!-- Filter Students -->
             <section>
-                <h3>Filter Students</h3>
                 <label for="year_filter">Filter by Enrollment Year:</label>
                 <select id="year_filter" onchange="filterStudents()">
                     <option value="">All</option>
@@ -129,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="6">6th Grade</option>
                 </select><br><br>
 
-                <h3>Select Students:</h3>
+                <header><h1>Select Students:</h1></header>
                 <?php while ($student = $students_result->fetch_assoc()): ?>
                     <div class="student-checkbox" data-year="<?= $student['enrollment_year'] ?>" data-level="<?= $student['year_level'] ?>">
                         <input type="checkbox" name="student_ids[]" value="<?= $student['student_id'] ?>">
@@ -140,14 +164,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Filter Section-Subjects -->
             <section>
-                <h3>Filter Section-Subjects</h3>
                 <label for="section_filter">Filter by Section:</label>
                 <input type="text" id="section_filter" onkeyup="filterSectionSubjects()" placeholder="Enter section name"><br><br>
 
                 <label for="subject_filter">Filter by Subject:</label>
                 <input type="text" id="subject_filter" onkeyup="filterSectionSubjects()" placeholder="Enter subject name"><br><br>
 
-                <h3>Select Section-Subjects:</h3>
+                <header><h1>Select Section-Subjects:</h1></header>
                 <?php while ($ss = $section_subjects->fetch_assoc()): ?>
                     <div>
                         <input 

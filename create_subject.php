@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ss", $name, $description);
 
     if ($stmt->execute()) {
-        $success_message = "Subject created successfully.";
+        $success_message = "Subject Created Successfully!";
     } else {
         $error_message = "Error: " . $stmt->error;
     }
@@ -40,11 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <header>
             <h1>Create a New Subject</h1>
         </header>
+
+        <!-- Display Success/Error Popup Message -->
         <?php if (isset($success_message)): ?>
-            <p><?= $success_message ?></p>
+            <div class="popup-message" id="popup-message">
+                <?= $success_message ?>
+            </div>
         <?php elseif (isset($error_message)): ?>
-            <p><?= $error_message ?></p>
+            <div class="popup-message error" id="popup-message">
+                <?= $error_message ?>
+            </div>
         <?php endif; ?>
+
         <form method="POST" action="">
             <label for="name">Subject Name:</label><br>
             <input type="text" id="name" name="name" required><br><br>
@@ -55,5 +62,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Create Subject</button>
         </form>
     </div>
+
+    <!-- JavaScript to fade out the popup message -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupMessage = document.getElementById('popup-message');
+            if (popupMessage) {
+                // Fade-out effect after 3 seconds
+                setTimeout(function() {
+                    popupMessage.style.animation = 'fadeOut 1s ease-in-out forwards';
+                }, 3000); // Wait 3 seconds before starting fade-out
+            }
+        });
+    </script>
 </body>
 </html>

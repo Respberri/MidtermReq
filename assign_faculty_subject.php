@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ii", $faculty_id, $section_subject_id);
 
     if ($stmt->execute()) {
-        $success_message = "Faculty assigned successfully!";
+        $success_message = "Faculty Assigned Successfully!";
     } else {
         $error_message = "Error assigning faculty: " . $conn->error;
     }
@@ -46,19 +46,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assign Faculty to Section-Subject</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="page.css">
+    <script>
+        // JavaScript for fade-out of the popup message
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupMessage = document.getElementById('popup-message');
+            if (popupMessage) {
+                setTimeout(function() {
+                    popupMessage.style.animation = 'fadeOut 1s ease-in-out forwards';
+                }, 3000); // Wait 3 seconds before fading out
+            }
+        });
+    </script>
 </head>
 <body>
-    <?php include 'sidebar.php' ?>
+    <?php include 'sidebar.php'; ?>
     <div class="main-content">
         <header>
             <h1>Assign Faculty to Section-Subject</h1>
         </header>
+
+        <!-- Display Success/Error Popup Message -->
         <?php if (isset($success_message)): ?>
-            <p><?= $success_message ?></p>
+            <div class="popup-message" id="popup-message">
+                <?= $success_message ?>
+            </div>
         <?php elseif (isset($error_message)): ?>
-            <p><?= $error_message ?></p>
+            <div class="popup-message error" id="popup-message">
+                <?= $error_message ?>
+            </div>
         <?php endif; ?>
+
         <form method="post" action="">
             <label for="faculty_id">Select Faculty:</label>
             <select id="faculty_id" name="faculty_id" required>

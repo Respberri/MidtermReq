@@ -74,113 +74,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Subject List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Apply some css */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        header h1 {
-            font-size: 2em;
-            color: #333;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat img {
-            width: 50px;
-            height: 50px;
-        }
-
-        .stat h2 {
-            font-size: 1.1em;
-            margin-top: 10px;
-        }
-
-        .active-stat {
-            background-color: #0056b3;
-            color: #fff;
-        }
-
-        section {
-            margin-top: 20px;
-        }
-
-        .subject-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .subject-table th, .subject-table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .subject-table th {
-            background-color: #f0f0f0;
-        }
-
-        .subject-table tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .edit-btn, .delete-btn {
-            color: #007bff;
-            text-decoration: none;
-            padding: 6px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .edit-btn:hover, .delete-btn:hover {
-            background-color: #e0e0e0;
-        }
-
-        .add-new-subject-btn {
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .add-new-subject-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+     <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
@@ -209,7 +103,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                 <section>
                     <h2>Filter Section Subjects</h2>
                     <form method="get">
-                        <label for="year_level">Year Level:</label>
+                        <label for="year_level">Grade Level:</label>
                         <input type="number" name="year_level" id="year_level" value="<?= htmlspecialchars($year_level) ?>">
 
                         <label for="year">Year:</label>
@@ -253,7 +147,6 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                         </tbody>
                     </table>
                     <br>
-                    <a href="add_subject.php" class="add-new-subject-btn">Add New Subject</a>
                 </section>
 
                 <h2>Section Subjects</h2>
@@ -261,12 +154,10 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                     <?php if ($section_subjects_result->num_rows > 0): ?>
                         <?php while ($section_subject = $section_subjects_result->fetch_assoc()): ?>
                             <li>
-                                <strong>Year:</strong> <?= htmlspecialchars($section_subject['year']) ?>,
-                                <strong>Year Level:</strong> <?= htmlspecialchars($section_subject['year_level']) ?>,
-                                <strong>Section:</strong> <?= htmlspecialchars($section_subject['section_name']) ?>,
+                                <strong>Year:</strong> <?= htmlspecialchars($section_subject['year']) ?>
+                                <strong>Grade Level:</strong> <?= htmlspecialchars($section_subject['year_level']) ?>
+                                <strong>Section:</strong> <?= htmlspecialchars($section_subject['section_name']) ?>
                                 <strong>Subject:</strong> <?= htmlspecialchars($section_subject['subject_name']) ?>
-                                <a href="view_section_subject.php?section_subject_id=<?= $section_subject['section_subject_id'] ?>" class="edit-btn">View</a>
-                                <a href="?delete_id=<?php echo $row['subject_id']; ?>" onclick="return confirm('Are you sure you want to delete this subject?');" class="delete-btn">Delete</a>
                             </li>
                         <?php endwhile; ?>
                     <?php else: ?>

@@ -555,3 +555,46 @@ h3{
     text-align: center;
 }
 
+/* Popup Message Styles */
+.popup-message {
+    position: fixed;
+    top: 5%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #28a745; /* Green background for success */
+    color: #fff; /* White text */
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s ease-in-out forwards;
+    z-index: 1000; /* Make sure it is on top of other content */
+}
+
+/* Error Popup Message Styles */
+.popup-message.error {
+    background-color: #dc3545; /* Red background for error */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

@@ -12,6 +12,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 // Check if the logged-in user is an admin
 $is_admin = $_SESSION['role'] === 'admin';
 
+// Variable to indicate if the update was successful
+$update_success = false;
+
 // Check if student_id parameter is provided
 if (isset($_GET['id'])) { // Changed to 'id' to match the link
     $student_id = intval($_GET['id']); // Sanitize input
@@ -40,9 +43,10 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
             $stmt->bind_param("ssssssi", $updated_name, $updated_email, $updated_phone, $updated_age, $updated_address, $updated_dob, $student_id);
 
             if ($stmt->execute()) {
-                echo "<p>Student details updated successfully!</p>";
+                $update_success = true;
+                // echo "<p>Student details updated successfully!</p>";
                 // Reload the page to reflect changes
-                header("Refresh:0");
+                // header("Refresh:0");
             } else {
                 echo "<p>Error updating student: " . $conn->error . "</p>";
             }
@@ -85,7 +89,7 @@ $conn->close();
             <!-- Display student details in either view or edit mode -->
             <?php if ($is_admin): ?>
                 <!-- If admin, allow for editing -->
-                <form method="POST">
+                <form method="POST" id="updateForm">
                     <label>Name:</label><br>
                     <input type="text" name="name" value="<?= htmlspecialchars($student['name']) ?>" required><br><br>
 
@@ -106,7 +110,6 @@ $conn->close();
 
                     <button type="submit">Save Changes</button>
                     <a href="project.php" class="btn">Back</a>
-
                 </form>
             <?php else: ?>
                 <!-- If not admin, just display the student information -->
@@ -139,6 +142,29 @@ $conn->close();
             <p>Invalid student ID or no student found.</p>
         <?php endif; ?>
         
+        <!-- Popup Message -->
+        <div id="popup" class="popup">
+            <p>Updated Successfully!</p>
+        </div>
+
+        <!-- JavaScript to show the popup -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                <?php if ($update_success): ?>
+                    const popup = document.getElementById('popup');
+                    popup.style.display = 'block';
+                    setTimeout(function() {
+                        popup.style.opacity = '1';
+                        setTimeout(function() {
+                            popup.style.opacity = '0';
+                            setTimeout(function() {
+                                popup.style.display = 'none';
+                            }, 1000); // Hide completely after 1 second
+                        }, 3000); // Fade out after 3 seconds
+                    }, 100); // Short delay to trigger CSS transition
+                <?php endif; ?>
+            });
+        </script>
     </div>
 </body>
 </html>

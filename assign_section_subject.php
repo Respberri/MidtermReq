@@ -16,6 +16,9 @@ $sections = $conn->query("SELECT section_id, section_name FROM sections");
 $subjects = $conn->query("SELECT subject_id, name FROM subjects");
 
 // Handle form submission
+$popup_message = '';
+$popup_type = '';  // 'success' or 'error'
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $section_id = intval($_POST['section_id']);
     $selected_subjects = $_POST['subject_ids'] ?? []; // Array of selected subject IDs
@@ -29,12 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ii", $section_id, $subject_id);
 
         if (!$stmt->execute()) {
-            echo "<p>Error assigning subject ID $subject_id: " . $conn->error . "</p>";
+            $popup_message = "Error assigning subject ID $subject_id: " . $conn->error;
+            $popup_type = "error";
+            break; // Stop after the first error
         }
         $stmt->close();
     }
 
-    echo "<p>Subjects assigned to the section successfully!</p>";
+    if ($popup_message === '') {
+        $popup_message = "Subjects Assigned Successfully!";
+        $popup_type = "success";
+    }
 }
 ?>
 
@@ -43,13 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Section-Subject</title>
+    <title>Assign Section-Subject</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <?php include 'sidebar.php' ?>
+    
     <div class="main-content">
         <h2>Assign Subjects to Section</h2>
+        
+        <!-- Popup message -->
+        <?php if ($popup_message): ?>
+            <div id="popup" class="popup-message <?php echo $popup_type; ?>">
+                <p><?php echo $popup_message; ?></p>
+            </div>
+        <?php endif; ?>
+        
         <form method="post" action="">
             <label for="section_id">Select Section:</label>
             <select id="section_id" name="section_id" required>
@@ -67,5 +84,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Assign Subjects</button>
         </form>
     </div>
+
+    <script>
+        // Function to show the popup (fade-in effect)
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            if (popup) {
+                popup.style.animation = 'fadeIn 1s ease-in-out forwards'; // Trigger fade-in animation
+            }
+        }
+
+        // Function to hide the popup after some time (fade-out effect)
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            if (popup) {
+                popup.style.animation = 'fadeOut 1s ease-in-out forwards'; // Trigger fade-out animation
+                setTimeout(() => {
+                    popup.style.display = 'none'; // Hide the popup after fade-out
+                }, 1000); // Match fade-out duration
+            }
+        }
+
+        // Trigger the popup if there's a message
+        <?php if ($popup_message): ?>
+            setTimeout(showPopup, 100); // Show popup after the page loads
+        <?php endif; ?>
+    </script>
 </body>
 </html>

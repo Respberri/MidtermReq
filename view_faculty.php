@@ -49,39 +49,6 @@ if (isset($_GET['faculty_id'])) {
             $stmt->close();
         }
 
-        echo "<h2>Faculty Profile</h2>";
-
-        // Display faculty details in either view or edit mode
-        if ($is_admin) {
-            // If admin, allow for editing
-            echo "<form method='POST'>
-                    <label>Name:</label><br>
-                    <input type='text' name='name' value='" . htmlspecialchars($faculty['name']) . "' required><br><br>
-
-                    <label>Email:</label><br>
-                    <input type='email' name='email' value='" . htmlspecialchars($faculty['email']) . "' required><br><br>
-
-                    <label>Phone:</label><br>
-                    <input type='text' name='phone' value='" . htmlspecialchars($faculty['phone']) . "' required><br><br>
-
-                    <label>Age:</label><br>
-                    <input type='number' name='age' value='" . htmlspecialchars($faculty['age']) . "' required><br><br>
-
-                    <label>Hire Date:</label><br>
-                    <input type='date' name='hire_date' value='" . htmlspecialchars($faculty['hire_date']) . "' required><br><br>
-
-                    <button type='submit'>Save Changes</button>
-                  </form>";
-        } else {
-            // If not admin, just display the faculty information
-            echo "<p><strong>Faculty ID:</strong> " . $faculty['faculty_id'] . "</p>";
-            echo "<p><strong>Name:</strong> " . $faculty['name'] . "</p>";
-            echo "<p><strong>Email:</strong> " . $faculty['email'] . "</p>";
-            echo "<p><strong>Phone:</strong> " . $faculty['phone'] . "</p>";
-            echo "<p><strong>Age:</strong> " . $faculty['age'] . "</p>";
-            echo "<p><strong>Hire Date:</strong> " . $faculty['hire_date'] . "</p>";
-        }
-
         // Fetch section-subject assignments for the faculty
         $section_subjects_sql = "
             SELECT ss.section_id, sections.section_name AS section_name, subjects.name AS subject_name, ss.subject_id 
@@ -93,22 +60,6 @@ if (isset($_GET['faculty_id'])) {
         ";
 
         $section_subjects_result = $conn->query($section_subjects_sql);
-
-        echo "<h3>Assigned Section-Subjects</h3>";
-
-        if ($section_subjects_result->num_rows > 0) {
-            echo "<ul>";
-            while ($assignment = $section_subjects_result->fetch_assoc()) {
-                echo "<li>";
-                echo "<strong>Section Name:</strong> " . htmlspecialchars($assignment['section_name']) . "<br>";
-                echo "<strong>Subject Name:</strong> " . htmlspecialchars($assignment['subject_name']) . "<br>";
-                echo "</li><hr>";
-            }
-            echo "</ul>";
-        } else {
-            echo "<p>No section-subject assignments found for this faculty.</p>";
-        }
-
     } else {
         echo "<p>No faculty member found with ID $faculty_id.</p>";
     }
@@ -116,5 +67,74 @@ if (isset($_GET['faculty_id'])) {
     echo "<p>Invalid Usage.</p>";
 }
 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Profile</title>
+    <link rel="stylesheet" href="page.css">
+</head>
+<body>
+    <?php include 'sidebar.php'; ?>
+    <div class="main-content">
+        <header><h1>Faculty Profile</h1></header>
+
+        <?php if (isset($faculty)): ?>
+            <?php if ($is_admin): ?>
+                <!-- Admin can edit the faculty details -->
+                <form method="POST">
+                    <label>Name:</label><br>
+                    <input type="text" name="name" value="<?= htmlspecialchars($faculty['name']) ?>" required><br><br>
+
+                    <label>Email:</label><br>
+                    <input type="email" name="email" value="<?= htmlspecialchars($faculty['email']) ?>" required><br><br>
+
+                    <label>Phone:</label><br>
+                    <input type="text" name="phone" value="<?= htmlspecialchars($faculty['phone']) ?>" required><br><br>
+
+                    <label>Age:</label><br>
+                    <input type="number" name="age" value="<?= htmlspecialchars($faculty['age']) ?>" required><br><br>
+
+                    <label>Hire Date:</label><br>
+                    <input type="date" name="hire_date" value="<?= htmlspecialchars($faculty['hire_date']) ?>" required><br><br>
+
+                    <button type="submit" class="btn">Save Changes</button>
+                    <a href="manage_faculty.php" class="btn">Back</a>
+                </form>
+            <?php else: ?>
+                <!-- Display faculty details for non-admin users -->
+                <p><strong>Faculty ID:</strong> <?= htmlspecialchars($faculty['faculty_id']) ?></p>
+                <p><strong>Name:</strong> <?= htmlspecialchars($faculty['name']) ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($faculty['email']) ?></p>
+                <p><strong>Phone:</strong> <?= htmlspecialchars($faculty['phone']) ?></p>
+                <p><strong>Age:</strong> <?= htmlspecialchars($faculty['age']) ?></p>
+                <p><strong>Hire Date:</strong> <?= htmlspecialchars($faculty['hire_date']) ?></p>
+            <?php endif; ?>
+
+            <!-- Fetch section-subject assignments for the faculty -->
+            <Header><h1>Assigned Section-Subjects</h1></Header>
+            <?php if ($section_subjects_result->num_rows > 0): ?>
+                <ul>
+                    <?php while ($assignment = $section_subjects_result->fetch_assoc()): ?>
+                        <li>
+                            <strong>Section Name:</strong> <?= htmlspecialchars($assignment['section_name']) ?><br>
+                            <strong>Subject Name:</strong> <?= htmlspecialchars($assignment['subject_name']) ?><br>
+                        </li>
+                        <hr>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p>No section-subject assignments found for this faculty.</p>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
+
+<?php
+// Ensure the connection is closed after all queries are done
 $conn->close();
 ?>
