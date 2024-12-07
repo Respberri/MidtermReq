@@ -57,7 +57,7 @@ $subject_id = filter_input(INPUT_GET, 'subject_id', FILTER_VALIDATE_INT);
                     $update_stmt->close();
                 }
 
-                echo "<h2>Subject Details</h2>";
+                echo "<header><h1>Subject Details</h1></header>";
 
                 // Display subject details in either view or edit mode
                 if ($is_admin) {
@@ -70,6 +70,7 @@ $subject_id = filter_input(INPUT_GET, 'subject_id', FILTER_VALIDATE_INT);
                             <textarea name='description' required>" . htmlspecialchars($subject['description']) . "</textarea><br><br>
 
                             <button type='submit'>Save Changes</button>
+                            <button type='button' onclick='window.history.back()' class='btn'>Back</button>
                           </form>";
                 } else {
                     // If not admin, just display the subject information
@@ -80,24 +81,26 @@ $subject_id = filter_input(INPUT_GET, 'subject_id', FILTER_VALIDATE_INT);
 
                 // Fetch students enrolled in the subject
                 $students_sql = "
-                    SELECT DISTINCT students.student_id, students.name
+                    SELECT DISTINCT students.student_id, students.name, sections.year_level
                     FROM student_section_subject sss
                     INNER JOIN section_subject ss ON sss.section_subject_id = ss.section_subject_id
                     INNER JOIN students ON sss.student_id = students.student_id
+                    INNER JOIN sections ON ss.section_id = sections.section_id
                     WHERE ss.subject_id = ?";
                 $students_stmt = $conn->prepare($students_sql);
                 $students_stmt->bind_param("i", $subject_id);
                 $students_stmt->execute();
                 $students_result = $students_stmt->get_result();
 
-                echo "<h3>Enrolled Students</h3>";
+                echo "<header><h1>Enrolled Students</h1></header>";
 
                 if ($students_result->num_rows > 0) {
                     echo "<ul>";
                     while ($student = $students_result->fetch_assoc()) {
                         echo "<li>";
-                        echo "<strong>Student ID:</strong> " . $student['student_id'] . "<br>";
-                        echo "<strong>Name:</strong> " . $student['name'] . "<br>";
+                        echo "<strong>Student ID:</strong> " . htmlspecialchars($student['student_id']) . "<br>";
+                        echo "<strong>Name:</strong> " . htmlspecialchars($student['name']) . "<br>";
+                        echo "<strong>Grade Level:</strong> " . htmlspecialchars($student['year_level']) . "<br>";
                         echo "</li><hr>";
                     }
                     echo "</ul>";

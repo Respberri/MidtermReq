@@ -12,6 +12,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 // Check if form is submitted
 $popup_message = '';
 $popup_type = '';  // 'success' or 'error'
+$year_level = '';
+$year = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $section_name = $_POST['section_name'];
@@ -51,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <!-- Popup message -->
         <?php if ($popup_message): ?>
-            <div id="popup" class="popup-message <?php echo $popup_type; ?>">
-                <p><?php echo $popup_message; ?></p>
+            <div id="popup" class="popup-message <?php echo htmlspecialchars($popup_type); ?>">
+                <p><?php echo htmlspecialchars($popup_message); ?></p>
             </div>
         <?php endif; ?>
 
@@ -60,11 +62,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="section_name">Section Name:</label>
             <input type="text" id="section_name" name="section_name" required><br><br>
 
-            <label for="year_level">Year Level:</label>
-            <input type="number" id="year_level" name="year_level" required><br><br>
+            <label for="year_level">Grade Level:</label>
+            <select name="year_level" id="year_level" required>
+                <option value="">-- Select Grade Level --</option>
+                <?php for ($i = 1; $i <= 6; $i++): ?>
+                    <option value="<?php echo $i; ?>" <?php echo $year_level == $i ? 'selected' : ''; ?>>Grade <?php echo $i; ?></option>
+                <?php endfor; ?>
+            </select><br><br>
 
             <label for="year">Year:</label>
-            <input type="number" id="year" name="year" required><br><br>
+            <select name="year" id="year" required>
+                <option value="">-- Select Year --</option>
+                <?php for ($y = 2020; $y <= 2030; $y++): ?>
+                    <option value="<?php echo $y; ?>" <?php echo $year == $y ? 'selected' : ''; ?>><?php echo $y; ?></option>
+                <?php endfor; ?>
+            </select><br><br>
 
             <button type="submit">Create Section</button>
         </form>

@@ -56,7 +56,6 @@ $_debug = false;
                     <div class="sub-menu">
                 <a href="" class="sub-item"></a>
                 <a href="create_subject.php" class="sub-item">Create Subject</a>
-                <a href="#" class="sub-item">Create Section Subject</a>
                 <a href="assign_student_subject.php" class="sub-item">Assign Student Subject</a>
                 <a href="assign_faculty_subject.php" class="sub-item">Assign Faculty Subject</a>
                 <a href="view_subject_list.php" class="sub-item">View Subjects</a>
