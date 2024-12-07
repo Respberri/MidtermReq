@@ -36,14 +36,19 @@ $result = $stmt->get_result();
 </head>
 <body>
     <?php include 'sidebar.php' ?>
+    <div class="main-content">
+    <div class="content-container">
+    <header>
     <h2>My Section Subjects</h2>
+    </header>
     <?php if ($result->num_rows > 0): ?>
         <ul>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <li>
                     <strong>Section:</strong> <?= htmlspecialchars($row['section_name']) ?><br>
                     <strong>Subject:</strong> <?= htmlspecialchars($row['subject_name']) ?><br>
-                    <a href="view_students_and_grades.php?section_subject_id=<?= $row['section_subject_id'] ?>">View</a>
+                    <a href="view_students_and_grades.php?section_subject_id=<?= $row['section_subject_id'] ?>" 
+                    class="btn view-btn" style="margin-top: 5px; margin-bottom: 5px; display:inline-block">View</a>
                 </li>
                 <hr>
             <?php endwhile; ?>
@@ -51,5 +56,7 @@ $result = $stmt->get_result();
     <?php else: ?>
         <p>No section subjects assigned.</p>
     <?php endif; ?>
+    </div>
+    </div>
 </body>
 </html>
