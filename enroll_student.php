@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endwhile; ?>
         </select><br><br>
 
-        <label for="year_level">Select Year Level:</label>
+        <label for="year_level">Select Grade Level:</label>
         <select id="year_level_filter" onchange="filterSections()" required>
             <option value="">All</option>
             <?php 

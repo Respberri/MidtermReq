@@ -35,8 +35,7 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
             $update_sql = "
                 UPDATE students 
                 SET name = ?, email = ?, phone = ?, age = ?, address = ?, date_of_birth = ? 
-                WHERE student_id = ?
-            ";
+                WHERE student_id = ?";
             $stmt = $conn->prepare($update_sql);
             $stmt->bind_param("ssssssi", $updated_name, $updated_email, $updated_phone, $updated_age, $updated_address, $updated_dob, $student_id);
 
@@ -57,9 +56,7 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
             INNER JOIN section_subject ss ON sss.section_subject_id = ss.section_subject_id
             INNER JOIN subjects ON ss.subject_id = subjects.subject_id
             WHERE sss.student_id = $student_id";
-
         $subjects_result = $conn->query($subjects_sql);
-
     } else {
         echo "<p>No student found with ID $student_id.</p>";
     }
@@ -76,7 +73,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Student</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <?php include 'sidebar.php' ?>
@@ -108,6 +105,8 @@ $conn->close();
                     <input type="date" name="date_of_birth" value="<?= htmlspecialchars($student['date_of_birth']) ?>" required><br><br>
 
                     <button type="submit">Save Changes</button>
+                    <a href="project.php" class="btn">Back</a>
+
                 </form>
             <?php else: ?>
                 <!-- If not admin, just display the student information -->
@@ -120,7 +119,7 @@ $conn->close();
                 <p><strong>Date of Birth:</strong> <?= $student['date_of_birth'] ?></p>
             <?php endif; ?>
 
-            <h3>Current Subjects</h3>
+            <header><h1>Current Subjects</h1></header>
             <?php if ($subjects_result->num_rows > 0): ?>
                 <ul>
                     <?php while ($subject = $subjects_result->fetch_assoc()): ?>
@@ -128,6 +127,7 @@ $conn->close();
                             <strong>Subject ID:</strong> <?= $subject['subject_id'] ?><br>
                             <strong>Name:</strong> <?= $subject['name'] ?><br>
                             <strong>Description:</strong> <?= $subject['description'] ?><br>
+                            <a href="view_student_grades.php?student_id=<?= $student_id ?>&subject_id=<?= $subject['subject_id'] ?>" class="view-grades-btn">View Grades</a>
                         </li>
                         <hr>
                     <?php endwhile; ?>
@@ -138,6 +138,7 @@ $conn->close();
         <?php else: ?>
             <p>Invalid student ID or no student found.</p>
         <?php endif; ?>
+        
     </div>
 </body>
 </html>
