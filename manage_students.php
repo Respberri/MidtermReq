@@ -46,7 +46,11 @@ $students = $conn->query($students_sql);
 </head>
 <body>
     <?php include 'sidebar.php' ?>
-    <h2>Manage Students and Their Assigned Subjects</h2>
+    <div class="content-container">
+    <div class="main-content">
+    <header>
+    <h1>Manage Students and Their Assigned Subjects</h1>
+    </header>
     <label for="year_level_filter">Filter by Year Level:</label>
     <select id="year_level_filter" onchange="filterStudents()">
         <option value="">All</option>
@@ -54,7 +58,8 @@ $students = $conn->query($students_sql);
             <option value="<?= $level['year_level'] ?>">Year <?= $level['year_level'] ?></option>
         <?php endwhile; ?>
     </select><br><br>
-
+    
+    <div class="student-list">
     <table border="1">
         <thead>
             <tr>
@@ -115,11 +120,14 @@ $students = $conn->query($students_sql);
                         ?>
                     </td>
                     <td>
-                        <a href="view_student.php?student_id=<?= $student['student_id'] ?>">Edit</a>
+                        <a href="view_student.php?student_id=<?= $student['student_id'] ?>" class="edit-btn">Edit</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
+    </div>
+    </div>
+    </div>
 </body>
 </html>
