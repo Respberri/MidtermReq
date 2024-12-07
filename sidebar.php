@@ -1,4 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
+$_debug = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +21,7 @@
         <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
         <h2>Welcome, Admin!</h2>
         <div class="menu">
+			<?php if ($_SESSION['role'] == 'admin' || $_debug): ?>
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
 
             <div class="item"><a href="create_user.php"><i class="fa-solid fa-user-plus"></i>Create User</a></div>
@@ -71,17 +78,23 @@
             </div>
 
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>Faculty
-            <i class="fa-solid fa-chevron-down drpdown"></i>
-            </a>
-            <div class="sub-menu">
-                <a href="" class="sub-item"></a>
-                <a href="manage_faculty.php" class="sub-item">Faculty List</a>
-                <a href="assign_faculty_subject.php" class="sub-item">Assign Faculty Subject</a>
-            </div>
-        </div>
+				<i class="fa-solid fa-chevron-down drpdown"></i>
+				</a>
+				<div class="sub-menu">
+					<a href="" class="sub-item"></a>
+					<a href="manage_faculty.php" class="sub-item">Faculty List</a>
+					<a href="assign_faculty_subject.php" class="sub-item">Assign Faculty Subject</a>
+				</div>
+			</div>
+			<?php endif; ?>
+			<?php if ($_SESSION['role'] == 'faculty' || $_debug): ?>
+			
+			
+			<?php endif; ?>
+			<?php if ($_SESSION['role'] == 'student' || $_debug): ?>
 
-
-
+			
+			<?php endif; ?>
             <div class="item"><a class="sub-btn"><i class="fa-solid fa-circle-info"></i>More
             <i class="fa-solid fa-chevron-down drpdown"></i>
             </a>
