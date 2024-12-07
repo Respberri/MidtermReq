@@ -74,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Students and Grades</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Students for Section: <?= htmlspecialchars($section_subject['section_name']) ?>, Subject: <?= htmlspecialchars($section_subject['subject_name']) ?></h2>
     
     <form method="post">

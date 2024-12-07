@@ -157,6 +157,7 @@ if (isset($_GET['subject_id'])) {
     </style>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
 	<div class="container">
 	<?php if(isset($_GET['subject_id'])):?>
     

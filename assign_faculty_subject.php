@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Assign Faculty to Section-Subject</title>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
     <h2>Assign Faculty to Section-Subject</h2>
     <form method="post" action="">
         <label for="faculty_id">Select Faculty:</label>
