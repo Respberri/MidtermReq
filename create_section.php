@@ -31,24 +31,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Section</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <?php include 'sidebar.php' ?>
-    <h2>Create Section</h2>
-    <form method="post" action="">
-        <label for="section_name">Section Name:</label>
-        <input type="text" id="section_name" name="section_name" required><br><br>
+    <div class="main-content">
+        <h2>Create Section</h2>
+        <form method="post" action="">
+            <label for="section_name">Section Name:</label>
+            <input type="text" id="section_name" name="section_name" required><br><br>
 
-        <label for="year_level">Year Level:</label>
-        <input type="number" id="year_level" name="year_level" required><br><br>
+            <label for="year_level">Year Level:</label>
+            <input type="number" id="year_level" name="year_level" required><br><br>
 
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" required><br><br>
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required><br><br>
 
-        <button type="submit">Create Section</button>
-    </form>
+            <button type="submit">Create Section</button>
+        </form>
+    </div>
 </body>
 </html>

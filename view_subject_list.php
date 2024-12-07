@@ -68,79 +68,214 @@ $section_subjects_result = $conn->query($section_subjects_sql);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin: Subjects and Section Subjects</title>
-    <script>
-        function confirmDelete(event, form) {
-            event.preventDefault();
-            if (confirm('Are you sure you want to delete this item?')) {
-                form.submit();
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Subject List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Apply some css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
         }
-    </script>
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .stat h2 {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .active-stat {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        .subject-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .subject-table th, .subject-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .subject-table th {
+            background-color: #f0f0f0;
+        }
+
+        .subject-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .edit-btn, .delete-btn {
+            color: #007bff;
+            text-decoration: none;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .edit-btn:hover, .delete-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .add-new-subject-btn {
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .add-new-subject-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Admin: Subjects and Section Subjects</h1>
+    <?php include 'sidebar.php'; ?>
+    
+    <div class="content-container">
+        <div class="main-content">
+            <header>
+                <h1>Subjects and Section Subjects</h1>
+            </header>
+            <main>
+                <div class="stats">
+                    <div class="stat">
+                        <img src="/images/student.png" alt="Students">
+                        <h2>Students</h2>
+                    </div>
+                    <div class="stat">
+                        <img src="/images/course.png" alt="Courses">
+                        <h2>Courses</h2>
+                    </div>
+                    <div class="stat">
+                        <img src="/images/department.png" alt="Departments">
+                        <h2>Departments</h2>
+                    </div>
+                </div>
 
-    <h2>Filter Section Subjects</h2>
-    <form method="get">
-        <label for="year_level">Year Level:</label>
-        <input type="number" name="year_level" id="year_level" value="<?= htmlspecialchars($year_level) ?>">
+                <section>
+                    <h2>Filter Section Subjects</h2>
+                    <form method="get">
+                        <label for="year_level">Year Level:</label>
+                        <input type="number" name="year_level" id="year_level" value="<?= htmlspecialchars($year_level) ?>">
 
-        <label for="year">Year:</label>
-        <input type="number" name="year" id="year" value="<?= htmlspecialchars($year) ?>">
+                        <label for="year">Year:</label>
+                        <input type="number" name="year" id="year" value="<?= htmlspecialchars($year) ?>">
 
-        <label for="subject_filter">Subject:</label>
-        <select name="subject_filter" id="subject_filter">
-            <option value="">-- Select Subject --</option>
-            <?php while ($subject = $subjects_result->fetch_assoc()): ?>
-                <option value="<?= $subject['subject_id'] ?>" <?= $subject_filter == $subject['subject_id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($subject['name']) ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
+                        <label for="subject_filter">Subject:</label>
+                        <select name="subject_filter" id="subject_filter">
+                            <option value="">-- Select Subject --</option>
+                            <?php while ($subject = $subjects_result->fetch_assoc()): ?>
+                                <option value="<?= $subject['subject_id'] ?>" <?= $subject_filter == $subject['subject_id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($subject['name']) ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
 
-        <button type="submit">Filter</button>
-    </form>
-
-    <h2>Subjects</h2>
-    <ul>
-        <?php $subjects_result->data_seek(0); // Reset the pointer for reuse ?>
-        <?php while ($subject = $subjects_result->fetch_assoc()): ?>
-            <li>
-                <strong><?= htmlspecialchars($subject['name']) ?></strong>
-                <a href="view_subject.php?subject_id=<?= $subject['subject_id'] ?>">View</a>
-                <form method="post" style="display:inline;" onsubmit="confirmDelete(event, this)">
-                    <input type="hidden" name="delete_id" value="<?= $subject['subject_id'] ?>">
-                    <input type="hidden" name="type" value="subject">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        <?php endwhile; ?>
-    </ul>
-
-    <h2>Section Subjects</h2>
-    <ul>
-        <?php if ($section_subjects_result->num_rows > 0): ?>
-            <?php while ($section_subject = $section_subjects_result->fetch_assoc()): ?>
-                <li>
-                    <strong>Year:</strong> <?= htmlspecialchars($section_subject['year']) ?>,
-                    <strong>Year Level:</strong> <?= htmlspecialchars($section_subject['year_level']) ?>,
-                    <strong>Section:</strong> <?= htmlspecialchars($section_subject['section_name']) ?>,
-                    <strong>Subject:</strong> <?= htmlspecialchars($section_subject['subject_name']) ?>
-                    <a href="view_section_subject.php?section_subject_id=<?= $section_subject['section_subject_id'] ?>">View</a>
-                    <form method="post" style="display:inline;" onsubmit="confirmDelete(event, this)">
-                        <input type="hidden" name="delete_id" value="<?= $section_subject['section_subject_id'] ?>">
-                        <input type="hidden" name="type" value="section_subject">
-                        <button type="submit">Delete</button>
+                        <button type="submit">Filter</button>
                     </form>
-                </li>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <li>No section subjects found.</li>
-        <?php endif; ?>
-    </ul>
 
+                    <h2>Subjects</h2>
+                    <table class="subject-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $subjects_result->data_seek(0); // Reset the pointer for reuse ?>
+                            <?php while ($subject = $subjects_result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($subject['subject_id']) ?></td>
+                                    <td><?= htmlspecialchars($subject['name']) ?></td>
+                                    <td>
+                                        <a href="view_subject.php?subject_id=<?= $subject['subject_id'] ?>" class="edit-btn">View</a>
+                                        |
+                                        <a href="?delete_id=<?php echo $row['subject_id']; ?>" onclick="return confirm('Are you sure you want to delete this subject?');" class="delete-btn">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="add_subject.php" class="add-new-subject-btn">Add New Subject</a>
+                </section>
+
+                <h2>Section Subjects</h2>
+                <ul>
+                    <?php if ($section_subjects_result->num_rows > 0): ?>
+                        <?php while ($section_subject = $section_subjects_result->fetch_assoc()): ?>
+                            <li>
+                                <strong>Year:</strong> <?= htmlspecialchars($section_subject['year']) ?>,
+                                <strong>Year Level:</strong> <?= htmlspecialchars($section_subject['year_level']) ?>,
+                                <strong>Section:</strong> <?= htmlspecialchars($section_subject['section_name']) ?>,
+                                <strong>Subject:</strong> <?= htmlspecialchars($section_subject['subject_name']) ?>
+                                <a href="view_section_subject.php?section_subject_id=<?= $section_subject['section_subject_id'] ?>" class="edit-btn">View</a>
+                                <a href="?delete_id=<?php echo $row['subject_id']; ?>" onclick="return confirm('Are you sure you want to delete this subject?');" class="delete-btn">Delete</a>
+                            </li>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <li>No section subjects found.</li>
+                    <?php endif; ?>
+                </ul>
+
+            </main>
+        </div>
+    </div>
 </body>
 </html>

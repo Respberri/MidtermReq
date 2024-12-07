@@ -52,13 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "<p>Students assigned to section-subjects successfully!</p>";
 }
-
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assign Students to Section-Subjects</title>
+    <link rel="stylesheet" href="main.css">
     <script>
         function filterSectionSubjects() {
             const sectionFilter = document.getElementById('section_filter').value.toLowerCase();
@@ -97,65 +99,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
-    <?php include 'sidebar.php' ?>
-    <h2>Assign Students to Section-Subjects</h2>
+    <?php include 'sidebar.php'; ?>
+    <div class="main-content">
+        <header><h1>Assign Students to Section-Subjects</h1></header>
+        <form method="post" action="">
+            <!-- Filter Students -->
+            <section>
+                <h3>Filter Students</h3>
+                <label for="year_filter">Filter by Enrollment Year:</label>
+                <select id="year_filter" onchange="filterStudents()">
+                    <option value="">All</option>
+                    <?php
+                    // Fetch unique enrollment years for the filter
+                    $years = $conn->query("SELECT DISTINCT enrollment_year FROM enrollments");
+                    while ($year = $years->fetch_assoc()) {
+                        echo "<option value='" . $year['enrollment_year'] . "'>" . $year['enrollment_year'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
 
-    <form method="post" action="">
-        <!-- Filter Students -->
-        <h3>Filter Students</h3>
-        <label for="year_filter">Filter by Enrollment Year:</label>
-        <select id="year_filter" onchange="filterStudents()">
-            <option value="">All</option>
-            <?php
-            // Fetch unique enrollment years for the filter
-            $years = $conn->query("SELECT DISTINCT enrollment_year FROM enrollments");
-            while ($year = $years->fetch_assoc()) {
-                echo "<option value='" . $year['enrollment_year'] . "'>" . $year['enrollment_year'] . "</option>";
-            }
-            ?>
-        </select><br><br>
+                <label for="level_filter">Filter by Grade Level:</label>
+                <select id="level_filter" onchange="filterStudents()">
+                    <option value="">All</option>
+                    <option value="1">1st Grade</option>
+                    <option value="2">2nd Grade</option>
+                    <option value="3">3rd Grade</option>
+                    <option value="4">4th Grade</option>
+                    <option value="5">5th Grade</option>
+                    <option value="6">6th Grade</option>
+                </select><br><br>
 
-        <label for="level_filter">Filter by Year Level:</label>
-        <select id="level_filter" onchange="filterStudents()">
-            <option value="">All</option>
-            <option value="1">1st Year</option>
-            <option value="2">2nd Year</option>
-            <option value="3">3rd Year</option>
-            <option value="4">4th Year</option>
-        </select><br><br>
+                <h3>Select Students:</h3>
+                <?php while ($student = $students_result->fetch_assoc()): ?>
+                    <div class="student-checkbox" data-year="<?= $student['enrollment_year'] ?>" data-level="<?= $student['year_level'] ?>">
+                        <input type="checkbox" name="student_ids[]" value="<?= $student['student_id'] ?>">
+                        <?= htmlspecialchars($student['name']) ?> (Year: <?= htmlspecialchars($student['enrollment_year']) ?>, Level: <?= htmlspecialchars($student['year_level']) ?>)
+                    </div>
+                <?php endwhile; ?><br>
+            </section>
 
-        <h3>Select Students:</h3>
-        <?php while ($student = $students_result->fetch_assoc()): ?>
-            <div class="student-checkbox" data-year="<?= $student['enrollment_year'] ?>" data-level="<?= $student['year_level'] ?>">
-                <input type="checkbox" name="student_ids[]" value="<?= $student['student_id'] ?>">
-                <?= $student['name'] ?> (Year: <?= $student['enrollment_year'] ?>, Level: <?= $student['year_level'] ?>)
-            </div>
-        <?php endwhile; ?><br>
+            <!-- Filter Section-Subjects -->
+            <section>
+                <h3>Filter Section-Subjects</h3>
+                <label for="section_filter">Filter by Section:</label>
+                <input type="text" id="section_filter" onkeyup="filterSectionSubjects()" placeholder="Enter section name"><br><br>
 
-        <!-- Filter Section-Subjects -->
-        <h3>Filter Section-Subjects</h3>
-        <label for="section_filter">Filter by Section:</label>
-        <input type="text" id="section_filter" onkeyup="filterSectionSubjects()" placeholder="Enter section name"><br><br>
+                <label for="subject_filter">Filter by Subject:</label>
+                <input type="text" id="subject_filter" onkeyup="filterSectionSubjects()" placeholder="Enter subject name"><br><br>
 
-        <label for="subject_filter">Filter by Subject:</label>
-        <input type="text" id="subject_filter" onkeyup="filterSectionSubjects()" placeholder="Enter subject name"><br><br>
+                <h3>Select Section-Subjects:</h3>
+                <?php while ($ss = $section_subjects->fetch_assoc()): ?>
+                    <div>
+                        <input 
+                            type="checkbox" 
+                            class="section-subject-checkbox" 
+                            name="section_subject_ids[]" 
+                            value="<?= $ss['section_subject_id'] ?>"
+                            data-section="<?= $ss['section_name'] ?>"
+                            data-subject="<?= $ss['subject_name'] ?>"
+                        >
+                        <?= htmlspecialchars($ss['section_name']) ?> - <?= htmlspecialchars($ss['subject_name']) ?>
+                    </div>
+                <?php endwhile; ?><br>
+            </section>
 
-        <h3>Select Section-Subjects:</h3>
-        <?php while ($ss = $section_subjects->fetch_assoc()): ?>
-            <div>
-                <input 
-                    type="checkbox" 
-                    class="section-subject-checkbox" 
-                    name="section_subject_ids[]" 
-                    value="<?= $ss['section_subject_id'] ?>"
-                    data-section="<?= $ss['section_name'] ?>"
-                    data-subject="<?= $ss['subject_name'] ?>"
-                >
-                <?= $ss['section_name'] ?> - <?= $ss['subject_name'] ?>
-            </div>
-        <?php endwhile; ?><br>
-
-        <button type="submit">Assign Students</button>
-    </form>
+            <button type="submit">Assign Students</button>
+        </form>
+    </div>
 </body>
 </html>

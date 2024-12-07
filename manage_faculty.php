@@ -29,45 +29,48 @@ $faculty_records = $conn->query("SELECT f.faculty_id, f.name, f.email, f.phone, 
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Faculty</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <?php include 'sidebar.php' ?>
-    <h2>Manage Faculty</h2>
-    <a href="create_faculty.php">Add New Faculty Member</a>
-    <br><br>
-    <table border="1" cellpadding="10" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Faculty ID</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Age</th>
-                <th>Hire Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($faculty = $faculty_records->fetch_assoc()): ?>
+    <?php include 'sidebar.php'; ?>
+    <div class="main-content">
+        <header><h1>Manage Faculty</h1></header>
+        <table class="styled-table">
+            <thead>
                 <tr>
-                    <td><?= $faculty['faculty_id'] ?></td>
-                    <td><?= $faculty['username'] ?></td>
-                    <td><?= $faculty['name'] ?></td>
-                    <td><?= $faculty['email'] ?></td>
-                    <td><?= $faculty['phone'] ?></td>
-                    <td><?= $faculty['age'] ?></td>
-                    <td><?= $faculty['hire_date'] ?></td>
-                    <td>
-                        <a href="view_faculty.php?faculty_id=<?= $faculty['faculty_id'] ?>">Edit</a> |
-                        <a href="manage_faculty.php?delete=<?= $faculty['faculty_id'] ?>" onclick="return confirm('Are you sure you want to delete this faculty member?');">Delete</a>
-                    </td>
+                    <th>Faculty ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Hire Date</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php while ($faculty = $faculty_records->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($faculty['faculty_id']) ?></td>
+                        <td><?= htmlspecialchars($faculty['username']) ?></td>
+                        <td><?= htmlspecialchars($faculty['name']) ?></td>
+                        <td><?= htmlspecialchars($faculty['email']) ?></td>
+                        <td><?= htmlspecialchars($faculty['phone']) ?></td>
+                        <td><?= htmlspecialchars($faculty['age']) ?></td>
+                        <td><?= htmlspecialchars($faculty['hire_date']) ?></td>
+                        <td>
+                            <a class="edit-link" href="view_faculty.php?faculty_id=<?= htmlspecialchars($faculty['faculty_id']) ?>">Edit</a> |
+                            <a class="delete-link" href="manage_faculty.php?delete=<?= htmlspecialchars($faculty['faculty_id']) ?>" onclick="return confirm('Are you sure you want to delete this faculty member?');">Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

@@ -22,7 +22,7 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
 
     if ($result->num_rows > 0) {
         $student = $result->fetch_assoc();
-        
+
         // Handle form submission for updates (if the user is admin)
         if ($is_admin && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $updated_name = $_POST['name'];
@@ -50,43 +50,6 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
             $stmt->close();
         }
 
-        echo "<h2>Student Profile</h2>";
-
-        // Display student details in either view or edit mode
-        if ($is_admin) {
-            // If admin, allow for editing
-            echo "<form method='POST'>
-                    <label>Name:</label><br>
-                    <input type='text' name='name' value='" . htmlspecialchars($student['name']) . "' required><br><br>
-
-                    <label>Email:</label><br>
-                    <input type='email' name='email' value='" . htmlspecialchars($student['email']) . "' required><br><br>
-
-                    <label>Phone:</label><br>
-                    <input type='text' name='phone' value='" . htmlspecialchars($student['phone']) . "' required><br><br>
-
-                    <label>Age:</label><br>
-                    <input type='number' name='age' value='" . htmlspecialchars($student['age']) . "' required><br><br>
-
-                    <label>Address:</label><br>
-                    <input type='text' name='address' value='" . htmlspecialchars($student['address']) . "' required><br><br>
-
-                    <label>Date of Birth:</label><br>
-                    <input type='date' name='date_of_birth' value='" . htmlspecialchars($student['date_of_birth']) . "' required><br><br>
-
-                    <button type='submit'>Save Changes</button>
-                  </form>";
-        } else {
-            // If not admin, just display the student information
-            echo "<p><strong>Student ID:</strong> " . $student['student_id'] . "</p>";
-            echo "<p><strong>Name:</strong> " . $student['name'] . "</p>";
-            echo "<p><strong>Email:</strong> " . $student['email'] . "</p>";
-            echo "<p><strong>Phone:</strong> " . $student['phone'] . "</p>";
-            echo "<p><strong>Age:</strong> " . $student['age'] . "</p>";
-            echo "<p><strong>Address:</strong> " . $student['address'] . "</p>";
-            echo "<p><strong>Date of Birth:</strong> " . $student['date_of_birth'] . "</p>";
-        }
-        
         // Fetch current subjects of the student
         $subjects_sql = "
             SELECT subjects.subject_id, subjects.name, subjects.description
@@ -96,22 +59,6 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
             WHERE sss.student_id = $student_id";
 
         $subjects_result = $conn->query($subjects_sql);
-
-        echo "<h3>Current Subjects</h3>";
-
-        if ($subjects_result->num_rows > 0) {
-            echo "<ul>";
-            while ($subject = $subjects_result->fetch_assoc()) {
-                echo "<li>";
-                echo "<strong>Subject ID:</strong> " . $subject['subject_id'] . "<br>";
-                echo "<strong>Name:</strong> " . $subject['name'] . "<br>";
-                echo "<strong>Description:</strong> " . $subject['description'] . "<br>";
-                echo "</li><hr>";
-            }
-            echo "</ul>";
-        } else {
-            echo "<p>No subjects found for this student.</p>";
-        }
 
     } else {
         echo "<p>No student found with ID $student_id.</p>";
@@ -129,48 +76,68 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Student</title>
-    <style>
-        /* Just added sum styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-        }
-        form {
-            margin-top: 20px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"], input[type="email"], input[type="number"], input[type="date"] {
-            width: 100%;
-            padding: 8px;
-            margin: 10px 0;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        h3 {
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
+    <div class="main-content">
+        <header>
+            <h1>Student Profile</h1>
+        </header>
+        <?php if (isset($student)): ?>
+            <!-- Display student details in either view or edit mode -->
+            <?php if ($is_admin): ?>
+                <!-- If admin, allow for editing -->
+                <form method="POST">
+                    <label>Name:</label><br>
+                    <input type="text" name="name" value="<?= htmlspecialchars($student['name']) ?>" required><br><br>
 
+                    <label>Email:</label><br>
+                    <input type="email" name="email" value="<?= htmlspecialchars($student['email']) ?>" required><br><br>
+
+                    <label>Phone:</label><br>
+                    <input type="text" name="phone" value="<?= htmlspecialchars($student['phone']) ?>" required><br><br>
+
+                    <label>Age:</label><br>
+                    <input type="number" name="age" value="<?= htmlspecialchars($student['age']) ?>" required><br><br>
+
+                    <label>Address:</label><br>
+                    <input type="text" name="address" value="<?= htmlspecialchars($student['address']) ?>" required><br><br>
+
+                    <label>Date of Birth:</label><br>
+                    <input type="date" name="date_of_birth" value="<?= htmlspecialchars($student['date_of_birth']) ?>" required><br><br>
+
+                    <button type="submit">Save Changes</button>
+                </form>
+            <?php else: ?>
+                <!-- If not admin, just display the student information -->
+                <p><strong>Student ID:</strong> <?= $student['student_id'] ?></p>
+                <p><strong>Name:</strong> <?= $student['name'] ?></p>
+                <p><strong>Email:</strong> <?= $student['email'] ?></p>
+                <p><strong>Phone:</strong> <?= $student['phone'] ?></p>
+                <p><strong>Age:</strong> <?= $student['age'] ?></p>
+                <p><strong>Address:</strong> <?= $student['address'] ?></p>
+                <p><strong>Date of Birth:</strong> <?= $student['date_of_birth'] ?></p>
+            <?php endif; ?>
+
+            <h3>Current Subjects</h3>
+            <?php if ($subjects_result->num_rows > 0): ?>
+                <ul>
+                    <?php while ($subject = $subjects_result->fetch_assoc()): ?>
+                        <li>
+                            <strong>Subject ID:</strong> <?= $subject['subject_id'] ?><br>
+                            <strong>Name:</strong> <?= $subject['name'] ?><br>
+                            <strong>Description:</strong> <?= $subject['description'] ?><br>
+                        </li>
+                        <hr>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p>No subjects found for this student.</p>
+            <?php endif; ?>
+        <?php else: ?>
+            <p>Invalid student ID or no student found.</p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

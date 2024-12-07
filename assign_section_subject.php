@@ -39,28 +39,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Section-Subject</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <?php include 'sidebar.php' ?>
-    <h2>Assign Subjects to Section</h2>
-    <form method="post" action="">
-        <label for="section_id">Select Section:</label>
-        <select id="section_id" name="section_id" required>
-            <?php while ($section = $sections->fetch_assoc()): ?>
-                <option value="<?= $section['section_id'] ?>"><?= $section['section_name'] ?></option>
-            <?php endwhile; ?>
-        </select><br><br>
+    <div class="main-content">
+        <h2>Assign Subjects to Section</h2>
+        <form method="post" action="">
+            <label for="section_id">Select Section:</label>
+            <select id="section_id" name="section_id" required>
+                <?php while ($section = $sections->fetch_assoc()): ?>
+                    <option value="<?= $section['section_id'] ?>"><?= $section['section_name'] ?></option>
+                <?php endwhile; ?>
+            </select><br><br>
 
-        <label>Select Subjects:</label><br>
-        <?php while ($subject = $subjects->fetch_assoc()): ?>
-            <input type="checkbox" name="subject_ids[]" value="<?= $subject['subject_id'] ?>">
-            <?= $subject['name'] ?><br>
-        <?php endwhile; ?><br>
+            <label>Select Subjects:</label><br>
+            <?php while ($subject = $subjects->fetch_assoc()): ?>
+                <input type="checkbox" name="subject_ids[]" value="<?= $subject['subject_id'] ?>">
+                <?= $subject['name'] ?><br>
+            <?php endwhile; ?><br>
 
-        <button type="submit">Assign Subjects</button>
-    </form>
+            <button type="submit">Assign Subjects</button>
+        </form>
+    </div>
 </body>
 </html>
