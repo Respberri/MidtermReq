@@ -82,28 +82,31 @@ if (isset($_GET['faculty_id'])) {
             echo "<p><strong>Hire Date:</strong> " . $faculty['hire_date'] . "</p>";
         }
 
-        // Fetch sections assigned to the faculty
-        $sections_sql = "
-            SELECT sections.section_id, sections.name 
-            FROM faculty_section 
-            INNER JOIN sections ON faculty_section.section_id = sections.section_id 
-            WHERE faculty_section.faculty_id = $faculty_id";
+        // Fetch section-subject assignments for the faculty
+        $section_subjects_sql = "
+            SELECT ss.section_id, sections.section_name AS section_name, subjects.name AS subject_name, ss.subject_id 
+            FROM faculty_section_subject fss
+            INNER JOIN section_subject ss ON fss.section_subject_id = ss.section_subject_id
+            INNER JOIN sections ON ss.section_id = sections.section_id
+            INNER JOIN subjects ON ss.subject_id = subjects.subject_id
+            WHERE fss.faculty_id = $faculty_id
+        ";
 
-        $sections_result = $conn->query($sections_sql);
+        $section_subjects_result = $conn->query($section_subjects_sql);
 
-        echo "<h3>Assigned Sections</h3>";
+        echo "<h3>Assigned Section-Subjects</h3>";
 
-        if ($sections_result->num_rows > 0) {
+        if ($section_subjects_result->num_rows > 0) {
             echo "<ul>";
-            while ($section = $sections_result->fetch_assoc()) {
+            while ($assignment = $section_subjects_result->fetch_assoc()) {
                 echo "<li>";
-                echo "<strong>Section ID:</strong> " . $section['section_id'] . "<br>";
-                echo "<strong>Name:</strong> " . $section['name'] . "<br>";
+                echo "<strong>Section Name:</strong> " . htmlspecialchars($assignment['section_name']) . "<br>";
+                echo "<strong>Subject Name:</strong> " . htmlspecialchars($assignment['subject_name']) . "<br>";
                 echo "</li><hr>";
             }
             echo "</ul>";
         } else {
-            echo "<p>No sections assigned to this faculty.</p>";
+            echo "<p>No section-subject assignments found for this faculty.</p>";
         }
 
     } else {
@@ -115,6 +118,3 @@ if (isset($_GET['faculty_id'])) {
 
 $conn->close();
 ?>
-
-</body>
-</html>
