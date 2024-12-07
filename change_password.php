@@ -60,7 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Change Password</title>
 </head>
 <body>
-    <h2>Change Password</h2>
+<?php include 'sidebar.php'; ?>
+<div class="content-container">
+<div class="main-content">
+    <header>
+    <h1>Change Password</h1>
+    </header>
     <?= $message ?>
     <form method="post" action="">
         <label for="current_password">Current Password:</label><br>
@@ -74,5 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Change Password</button>
     </form>
+    </div>
+    </div>
 </body>
 </html>

@@ -71,9 +71,14 @@ $past_announcements = $stmt->get_result();
     <title>Faculty Announcements</title>
 </head>
 <body>
+<?php include 'sidebar.php'; ?>
+<div class="content-container">
+    <div class="main-content">
+    <header>
     <h1>Create Announcement</h1>
+    </header>
     <form method="POST">
-        <label for="faculty_section_subject_id">Select Section Subject:</label>
+        <label for="faculty_section_subject_id">Select Section Subject:</label><br>
         <select name="faculty_section_subject_id" required>
             <?php while ($row = $section_subjects->fetch_assoc()): ?>
                 <option value="<?= $row['faculty_section_subject_id'] ?>">
@@ -82,22 +87,23 @@ $past_announcements = $stmt->get_result();
             <?php endwhile; ?>
         </select><br><br>
         
-        <label for="title">Title:</label>
+        <label for="title">Title:</label><br>
         <input type="text" name="title" required><br><br>
         
-        <label for="message">Message:</label>
+        <label for="message">Message:</label><br>
         <textarea name="message" required></textarea><br><br>
         
         <button type="submit">Post Announcement</button>
     </form>
 
     <?= isset($message) ? "<p>$message</p>" : '' ?>
-
+    <header>           
     <h1>Your Announcements</h1>
+    </header> 
     <?php if ($past_announcements->num_rows > 0): ?>
         <?php while ($row = $past_announcements->fetch_assoc()): ?>
             <div style="border: 1px solid #000; margin-bottom: 10px; padding: 10px;">
-                <h2><?= $row['title'] ?></h2>
+                <h2 style="color:black; font-weight:400"><?= $row['title'] ?></h2>
                 <p><?= $row['message'] ?></p>
                 <small>
                     Section: <?= $row['section_name'] ?> - <?= $row['subject_name'] ?><br>
@@ -108,5 +114,7 @@ $past_announcements = $stmt->get_result();
     <?php else: ?>
         <p>You have not made any announcements yet.</p>
     <?php endif; ?>
+    </div>
+</div>
 </body>
 </html>
