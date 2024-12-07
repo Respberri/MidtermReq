@@ -19,7 +19,7 @@ $_debug = false;
 
 <div class="sidebar">
         <img class="bmsi-logo" src="/images/bmsi-logo.png" alt="logo of bmsi">
-        <h2>Welcome, Admin!</h2>
+        <h2>Welcome, <?=ucfirst($_SESSION['role']) . " - " . $_SESSION['username']?>!</h2>
         <div class="menu">
 			<?php if ($_SESSION['role'] == 'admin' || $_debug): ?>
             <div class="item"><a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a></div>
