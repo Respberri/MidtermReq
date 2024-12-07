@@ -13,8 +13,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 $is_admin = $_SESSION['role'] === 'admin';
 
 // Check if student_id parameter is provided
-if (isset($_GET['student_id'])) {
-    $student_id = intval($_GET['student_id']); // Sanitize input
+if (isset($_GET['id'])) { // Changed to 'id' to match the link
+    $student_id = intval($_GET['id']); // Sanitize input
 
     // Fetch student details
     $sql = "SELECT * FROM students WHERE student_id = $student_id";
@@ -122,6 +122,55 @@ if (isset($_GET['student_id'])) {
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Student</title>
+    <style>
+        /* Just added sum styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        h3 {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
 
 </body>
 </html>
