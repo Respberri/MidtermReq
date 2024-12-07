@@ -51,6 +51,7 @@ $students = $conn->query($students_sql);
     <header>
     <h1>Manage Students and Their Assigned Subjects</h1>
     </header>
+    <main>
     <label for="year_level_filter">Filter by Year Level:</label>
     <select id="year_level_filter" onchange="filterStudents()">
         <option value="">All</option>
@@ -126,6 +127,7 @@ $students = $conn->query($students_sql);
             <?php endwhile; ?>
         </tbody>
     </table>
+    </main>
     </div>
     </div>
     </div>

@@ -40,7 +40,12 @@ $announcements = $stmt->get_result();
     <title>Student Announcements</title>
 </head>
 <body>
+<?php include 'sidebar.php'; ?>
+<div class="content-container">
+<div class="main-content">
+    <header>
     <h1>Announcements</h1>
+    </header>
     <?php if ($announcements->num_rows > 0): ?>
         <?php while ($row = $announcements->fetch_assoc()): ?>
             <div style="border: 1px solid #000; margin-bottom: 10px; padding: 10px;">
@@ -55,5 +60,7 @@ $announcements = $stmt->get_result();
     <?php else: ?>
         <p>No announcements found.</p>
     <?php endif; ?>
+    </div>
+    </div>
 </body>
 </html>
