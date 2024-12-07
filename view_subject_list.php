@@ -74,7 +74,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Subject List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="page.css">
+    <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
@@ -104,10 +104,20 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                     <h2>Filter Section Subjects</h2>
                     <form method="get">
                         <label for="year_level">Grade Level:</label>
-                        <input type="number" name="year_level" id="year_level" value="<?= htmlspecialchars($year_level) ?>">
+                        <select name="year_level" id="year_level">
+                            <option value="">-- Select Grade Level --</option>
+                            <?php for ($i = 1; $i <= 6; $i++): ?>
+                                <option value="<?= $i ?>" <?= $year_level == $i ? 'selected' : '' ?>>Grade <?= $i ?></option>
+                            <?php endfor; ?>
+                        </select>
 
                         <label for="year">Year:</label>
-                        <input type="number" name="year" id="year" value="<?= htmlspecialchars($year) ?>">
+                        <select name="year" id="year">
+                            <option value="">-- Select Year --</option>
+                            <?php for ($y = 2020; $y <= 2030; $y++): ?>
+                                <option value="<?= $y ?>" <?= $year == $y ? 'selected' : '' ?>><?= $y ?></option>
+                            <?php endfor; ?>
+                        </select>
 
                         <label for="subject_filter">Subject:</label>
                         <select name="subject_filter" id="subject_filter">
@@ -122,7 +132,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                         <button type="submit">Filter</button>
                     </form>
 
-                    <h2>Subjects</h2>
+                    <header><h1>Subjects</h1></header>
                     <table class="subject-table">
                         <thead>
                             <tr>
@@ -149,21 +159,33 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                     <br>
                 </section>
 
-                <h2>Section Subjects</h2>
-                <ul>
-                    <?php if ($section_subjects_result->num_rows > 0): ?>
-                        <?php while ($section_subject = $section_subjects_result->fetch_assoc()): ?>
-                            <li>
-                                <strong>Year:</strong> <?= htmlspecialchars($section_subject['year']) ?>
-                                <strong>Grade Level:</strong> <?= htmlspecialchars($section_subject['year_level']) ?>
-                                <strong>Section:</strong> <?= htmlspecialchars($section_subject['section_name']) ?>
-                                <strong>Subject:</strong> <?= htmlspecialchars($section_subject['subject_name']) ?>
-                            </li>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <li>No section subjects found.</li>
-                    <?php endif; ?>
-                </ul>
+                <header><h1>Section Subjects</h1></header>
+                <table class="section-subject-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Grade Level</th>
+                            <th>Section</th>
+                            <th>Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($section_subjects_result->num_rows > 0): ?>
+                            <?php while ($section_subject = $section_subjects_result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($section_subject['year']) ?></td>
+                                    <td><?= htmlspecialchars($section_subject['year_level']) ?></td>
+                                    <td><?= htmlspecialchars($section_subject['section_name']) ?></td>
+                                    <td><?= htmlspecialchars($section_subject['subject_name']) ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4">No section subjects found.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
 
             </main>
         </div>

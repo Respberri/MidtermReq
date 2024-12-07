@@ -108,13 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endwhile; ?>
             </select><br><br>
 
-            <label for="year_level">Select Year Level:</label>
+            <label for="year_level">Select Grade Level:</label>
             <select id="year_level_filter" onchange="filterSections()" required>
                 <option value="">All</option>
                 <?php 
                 $unique_year_levels = $conn->query("SELECT DISTINCT year_level FROM sections ORDER BY year_level");
                 while ($level = $unique_year_levels->fetch_assoc()): ?>
-                    <option value="<?= $level['year_level'] ?>">Year <?= $level['year_level'] ?></option>
+                    <option value="<?= $level['year_level'] ?>">Grade <?= $level['year_level'] ?></option>
                 <?php endwhile; ?>
             </select><br><br>
 
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         class="section-option" 
                         data-year-level="<?= $section['year_level'] ?>"
                     >
-                        <?= "Year " . $section['year_level'] . " - " . $section['section_name'] ?>
+                        <?= "Grade " . $section['year_level'] . " - " . $section['section_name'] ?>
                     </option>
                 <?php endwhile; ?>
             </select><br><br>

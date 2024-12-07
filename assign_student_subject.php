@@ -66,15 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="page.css"> 
     <script>
         function filterSectionSubjects() {
-            const sectionFilter = document.getElementById('section_filter').value.toLowerCase();
-            const subjectFilter = document.getElementById('subject_filter').value.toLowerCase();
+            const sectionFilter = document.getElementById('section_filter').value;
+            const subjectFilter = document.getElementById('subject_filter').value;
 
             const checkboxes = document.querySelectorAll('.section-subject-checkbox');
             checkboxes.forEach(checkbox => {
-                const sectionName = checkbox.getAttribute('data-section').toLowerCase();
-                const subjectName = checkbox.getAttribute('data-subject').toLowerCase();
+                const sectionName = checkbox.getAttribute('data-section');
+                const subjectName = checkbox.getAttribute('data-subject');
 
-                if (sectionName.includes(sectionFilter) && subjectName.includes(subjectFilter)) {
+                if ((sectionFilter === "" || sectionName === sectionFilter) &&
+                    (subjectFilter === "" || subjectName === subjectFilter)) {
                     checkbox.parentElement.style.display = '';
                 } else {
                     checkbox.parentElement.style.display = 'none';
@@ -93,9 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ((yearFilter === "" || studentYear === yearFilter) &&
                     (levelFilter === "" || studentLevel === levelFilter)) {
-                    checkbox.parentElement.style.display = '';
+                    checkbox.style.display = ''; // Show matching student
                 } else {
-                    checkbox.parentElement.style.display = 'none';
+                    checkbox.style.display = 'none'; // Hide non-matching student
                 }
             });
         }
@@ -145,19 +146,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="level_filter">Filter by Grade Level:</label>
                 <select id="level_filter" onchange="filterStudents()">
                     <option value="">All</option>
-                    <option value="1">1st Grade</option>
-                    <option value="2">2nd Grade</option>
-                    <option value="3">3rd Grade</option>
-                    <option value="4">4th Grade</option>
-                    <option value="5">5th Grade</option>
-                    <option value="6">6th Grade</option>
+                    <option value="1">Grade 1</option>
+                    <option value="2">Grade 2</option>
+                    <option value="3">Grade 3</option>
+                    <option value="4">Grade 4</option>
+                    <option value="5">Grade 5</option>
+                    <option value="6">Grade 6</option>
                 </select><br><br>
 
                 <header><h1>Select Students:</h1></header>
                 <?php while ($student = $students_result->fetch_assoc()): ?>
-                    <div class="student-checkbox" data-year="<?= $student['enrollment_year'] ?>" data-level="<?= $student['year_level'] ?>">
+                    <div class="student-checkbox" 
+                         data-year="<?= htmlspecialchars($student['enrollment_year']) ?>" 
+                         data-level="<?= htmlspecialchars($student['year_level']) ?>">
                         <input type="checkbox" name="student_ids[]" value="<?= $student['student_id'] ?>">
-                        <?= htmlspecialchars($student['name']) ?> (Year: <?= htmlspecialchars($student['enrollment_year']) ?>, Level: <?= htmlspecialchars($student['year_level']) ?>)
+                        <?= htmlspecialchars($student['name']) ?> (Year: <?= htmlspecialchars($student['enrollment_year']) ?>, Grade: <?= htmlspecialchars($student['year_level']) ?>)
                     </div>
                 <?php endwhile; ?><br>
             </section>
@@ -165,10 +168,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Filter Section-Subjects -->
             <section>
                 <label for="section_filter">Filter by Section:</label>
-                <input type="text" id="section_filter" onkeyup="filterSectionSubjects()" placeholder="Enter section name"><br><br>
+                <select id="section_filter" onchange="filterSectionSubjects()">
+                    <option value="">All</option>
+                    <?php
+                    while ($section = $sections->fetch_assoc()) {
+                        echo "<option value='" . $section['section_name'] . "'>" . $section['section_name'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
 
                 <label for="subject_filter">Filter by Subject:</label>
-                <input type="text" id="subject_filter" onkeyup="filterSectionSubjects()" placeholder="Enter subject name"><br><br>
+                <select id="subject_filter" onchange="filterSectionSubjects()">
+                    <option value="">All</option>
+                    <?php
+                    while ($subject = $subjects->fetch_assoc()) {
+                        echo "<option value='" . $subject['name'] . "'>" . $subject['name'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
 
                 <header><h1>Select Section-Subjects:</h1></header>
                 <?php while ($ss = $section_subjects->fetch_assoc()): ?>

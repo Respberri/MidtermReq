@@ -32,12 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $age = $_POST['age'];
             $address = $_POST['address'];
             $date_of_birth = $_POST['date_of_birth'];
-
-            $student_sql = "INSERT INTO students (user_id, name, email, phone, age, address, date_of_birth) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $student_stmt = $conn->prepare($student_sql);
-            $student_stmt->bind_param("ississs", $user_id, $name, $email, $phone, $age, $address, $date_of_birth);
-            $student_stmt->execute();
-            $student_stmt->close();
+            if (!empty($name) && !empty($email) && !empty($phone) && !empty($age) && !empty($address) && !empty($date_of_birth)) {
+                $student_sql = "INSERT INTO students (user_id, name, email, phone, age, address, date_of_birth) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $student_stmt = $conn->prepare($student_sql);
+                $student_stmt->bind_param("ississs", $user_id, $name, $email, $phone, $age, $address, $date_of_birth);
+                if ($student_stmt->execute()) {
+                    $create_user_success = true;
+                } else {
+                    $create_user_error = "Error creating student profile: " . $conn->error;
+                }
+                $student_stmt->close();
+            } else {
+                $create_user_error = "Please fill in all student details.";
+            }
         } elseif ($role === 'faculty') {
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -45,19 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $age = $_POST['age'];
             $hire_date = $_POST['hire_date'];
 
-            $faculty_sql = "INSERT INTO faculty (user_id, name, email, phone, age, hire_date) VALUES (?, ?, ?, ?, ?, ?)";
-            $faculty_stmt = $conn->prepare($faculty_sql);
-            $faculty_stmt->bind_param("ississ", $user_id, $name, $email, $phone, $age, $hire_date);
-            $faculty_stmt->execute();
-            $faculty_stmt->close();
+            // Check if all fields are populated
+            if (!empty($name) && !empty($email) && !empty($phone) && !empty($age) && !empty($hire_date)) {
+                $faculty_sql = "INSERT INTO faculty (user_id, name, email, phone, age, hire_date) 
+                                VALUES (?, ?, ?, ?, ?, ?)";
+                $faculty_stmt = $conn->prepare($faculty_sql);
+                $faculty_stmt->bind_param("ississ", $user_id, $name, $email, $phone, $age, $hire_date);
+                $faculty_stmt->execute();
+                $faculty_stmt->close();
+                $create_user_success = true;
+            } else {
+                $create_user_error = "Please fill in all faculty details.";
+            }
         }
 
-        $create_user_success = true;
+        $user_stmt->close();
     } else {
         $create_user_error = "Error creating user: " . $conn->error;
     }
-
-    $user_stmt->close();
 }
 ?>
 
