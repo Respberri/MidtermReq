@@ -38,22 +38,7 @@ function setActiveStat($pageName) {
         <header>
             <h1>Students</h1>
         </header>
-        <main>
-            <div class="stats">
-                <div class="stat <?php echo setActiveStat('project'); ?>">
-                    <img src="/images/student.png" alt="Students">
-                        <h2>Students</h2>
-                </div>
-                <div class="stat">
-                    <img src="/images/course.png" alt="Courses">
-                    <h2>Courses</h2>
-                </div>
-                <div class="stat">
-                    <img src="/images/department.png" alt="Departments">
-                    <h2>Departments</h2>
-                </div>
-            </div>
-            
+        <main>         
             <!-- Student List -->
             <div class="student-list">
                 <table>

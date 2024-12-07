@@ -58,8 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include 'sidebar.php' ?>
     
     <div class="main-content">
-        <h2>Assign Subjects to Section</h2>
-        
+        <header>
+        <h1>Assign Subjects to Section</h1>
+        </header>
         <!-- Popup message -->
         <?php if ($popup_message): ?>
             <div id="popup" class="popup-message <?php echo $popup_type; ?>">
