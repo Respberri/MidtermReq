@@ -25,23 +25,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
     <div class="main-content">
         <header>
-            <h1>Dashboard</h1>
+            <h1>Student Chart</h1>
         </header>
         <main>
-            <div class="stats">
-                <div class="stat">
-                    <img src="/images/student.png" alt="Students">
-                    <h2>Students</h2>
-                </div>
-                <div class="stat">
-                    <img src="/images/course.png" alt="Courses">
-                    <h2>Courses</h2>
-                </div>
-                <div class="stat">
-                    <img src="/images/department.png" alt="Departments">
-                    <h2>Departments</h2>
-                </div>
-            </div>
             <div class="chart-container">
                 <canvas id="studentChart"></canvas>
             </div>
