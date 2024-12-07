@@ -64,28 +64,6 @@ function setActiveStat($pageName) {
     <div class="content-container">
         <div class="main-content">
             <header>
-                <h1>Subjects</h1>
-            </header>
-            <main>
-                <div class="stats">
-                    <div class="stat">
-                        <img src="/images/student.png" alt="Students">
-                        <h2>Students</h2>
-                    </div>
-                    <div class="stat <?php echo setActiveStat('courses'); ?>">
-                        <img src="/images/course.png" alt="Courses">
-                            <h2>Subjects</h2>
-                    </div>
-                    <div class="stat">
-                        <img src="/images/department.png" alt="Departments">
-                        <h2>Departments</h2>
-                    </div>
-                </div>
-            </main>
-        </div>
-
-        <div class="main-content">
-            <header>
                 <h1>Manage Subjects</h1>
             </header>
             <main>

@@ -85,21 +85,6 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                 <h1>Subjects and Section Subjects</h1>
             </header>
             <main>
-                <div class="stats">
-                    <div class="stat">
-                        <img src="/images/student.png" alt="Students">
-                        <h2>Students</h2>
-                    </div>
-                    <div class="stat">
-                        <img src="/images/course.png" alt="Courses">
-                        <h2>Courses</h2>
-                    </div>
-                    <div class="stat">
-                        <img src="/images/department.png" alt="Departments">
-                        <h2>Departments</h2>
-                    </div>
-                </div>
-
                 <section>
                     <h2>Filter Section Subjects</h2>
                     <form method="get">

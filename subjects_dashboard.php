@@ -45,27 +45,10 @@ function setActiveStat($pageName) {
     
     <div class="content-container">
         <div class="main-content">
-            <header>
-                <h1>Courses</h1>
-            </header>
             <main>
-                <div class="stats">
-                    <div class="stat">
-                        <img src="/images/student.png" alt="Students">
-                        <h2>Students</h2>
-                    </div>
-                    <div class="stat <?php echo setActiveStat('subjects_dashboard'); ?>">
-                        <img src="/images/course.png" alt="Courses">
-                            <h2>Courses</h2>
-                    </div>
-                    <div class="stat">
-                        <img src="/images/department.png" alt="Departments">
-                        <h2>Departments</h2>
-                    </div>
-                </div>
-
-                <section>
-                    <h2>Subjects</h2>
+                    <header>
+                    <h1>Subjects</h1>
+                    </header>
                     <table class="subject-table">
                         <thead>
                             <tr>
@@ -92,7 +75,6 @@ function setActiveStat($pageName) {
                     </table>
                     <br>
                     <a href="courses.php" class="add-new-subject-btn">Add New Subject</a>
-                </section>
             </main>
         </div>
     </div>
