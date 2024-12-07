@@ -75,8 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'sidebar.php' ?>
-    <h2>Students for Section: <?= htmlspecialchars($section_subject['section_name']) ?>, Subject: <?= htmlspecialchars($section_subject['subject_name']) ?></h2>
-    
+    <div class="main-content">
+    <div class="content-container">
+    <header>
+    <h1>Students for Section: <span style="font-weight:400"><?= htmlspecialchars($section_subject['section_name']) ?>,</span>
+    Subject: <span style="font-weight:400"><?= htmlspecialchars($section_subject['subject_name']) ?></span></h1>
+    </header>
     <form method="post">
         <table border="1">
             <thead>
@@ -128,7 +132,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
             </tbody>
         </table>
+        <br>
         <button type="submit">Save Grades</button>
     </form>
+    </div>
+    </div>
 </body>
 </html>
