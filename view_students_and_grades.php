@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="main-content">
     <div class="content-container">
     <header>
-    <h1>Students for Section: <span style="font-weight:400"><?= htmlspecialchars($section_subject['section_name']) ?>,</span>
+    <h1>Students for Section: <span style="font-weight:400"><?= htmlspecialchars($section_subject['section_name']) ?> | </span>
     Subject: <span style="font-weight:400"><?= htmlspecialchars($section_subject['subject_name']) ?></span></h1>
     </header>
     <form method="post">
