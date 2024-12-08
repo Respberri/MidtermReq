@@ -107,11 +107,11 @@ $subjects = $conn->query("SELECT subject_id, name FROM subjects");
             <h1>Student List</h1>
         </header>
 
-        <main style="margin-top: -10px">
+        <main>
             <!-- Filter Form -->
             <section>
-                <label for="level_filter">Filter by Grade Level:</label>
-                <select id="level_filter" onchange="filterStudents()">
+                <label for="level_filter" class="labelf">Filter by Grade Level:</label><br>
+                <select id="level_filter" onchange="filterStudents()" class="filter">
                     <option value="">All</option>
                     <option value="1" <?php echo $level_filter == "1" ? "selected" : ""; ?>>Grade 1</option>
                     <option value="2" <?php echo $level_filter == "2" ? "selected" : ""; ?>>Grade 2</option>
@@ -121,8 +121,8 @@ $subjects = $conn->query("SELECT subject_id, name FROM subjects");
                     <option value="6" <?php echo $level_filter == "6" ? "selected" : ""; ?>>Grade 6</option>
                 </select><br><br>
 
-                <label for="section_filter">Filter by Section:</label>
-                <select id="section_filter" onchange="filterStudents()">
+                <label for="section_filter" class="labelf">Filter by Section:</label><br>
+                <select id="section_filter" onchange="filterStudents()" class="filter">
                     <option value="">All</option>
                     <?php
                     foreach ($sections as $section) {
@@ -132,8 +132,8 @@ $subjects = $conn->query("SELECT subject_id, name FROM subjects");
                     ?>
                 </select><br><br>
 
-                <label for="subject_filter">Filter by Subject:</label>
-                <select id="subject_filter" onchange="filterStudents()">
+                <label for="subject_filter" class="labelf">Filter by Subject:</label><br>
+                <select id="subject_filter" onchange="filterStudents()" class="filter">
                     <option value="">All</option>
                     <?php
                     while ($subject = $subjects->fetch_assoc()) {
