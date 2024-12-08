@@ -85,10 +85,9 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                 <h1>Subjects and Section Subjects</h1>
             </header>
             <main>
-                <section>
                     <h2>Filter Section Subjects</h2>
                     <form method="get">
-                        <label for="year_level">Grade Level:</label>
+                        <label for="year_level">Grade Level:</label><br>
                         <select name="year_level" id="year_level">
                             <option value="">-- Select Grade Level --</option>
                             <?php for ($i = 1; $i <= 6; $i++): ?>
@@ -96,7 +95,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                             <?php endfor; ?>
                         </select>
 
-                        <label for="year">Year:</label>
+                        <label for="year">Year:</label><br>
                         <select name="year" id="year">
                             <option value="">-- Select Year --</option>
                             <?php for ($y = 2020; $y <= 2030; $y++): ?>
@@ -104,7 +103,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                             <?php endfor; ?>
                         </select>
 
-                        <label for="subject_filter">Subject:</label>
+                        <label for="subject_filter">Subject:</label><br>
                         <select name="subject_filter" id="subject_filter">
                             <option value="">-- Select Subject --</option>
                             <?php while ($subject = $subjects_result->fetch_assoc()): ?>
@@ -114,10 +113,12 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                             <?php endwhile; ?>
                         </select>
 
-                        <button type="submit">Filter</button>
+                        <button type="submit" style="margin-top: 10px">Filter</button>
                     </form>
-
-                    <header><h1>Subjects</h1></header>
+                    <br>
+                    <header>
+                        <h1>Subjects</h1>
+                    </header>
                     <table class="subject-table">
                         <thead>
                             <tr>
@@ -142,9 +143,10 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                         </tbody>
                     </table>
                     <br>
-                </section>
-
-                <header><h1>Section Subjects</h1></header>
+                <br>               
+                <header>
+                    <h1>Section Subjects</h1>
+                </header>
                 <table class="section-subject-table">
                     <thead>
                         <tr>

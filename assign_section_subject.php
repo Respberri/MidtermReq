@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endwhile; ?>
             </select><br><br>
 
-            <label>Select Subjects:</label><br>
+            <label>Select Subjects:</label>
             <?php while ($subject = $subjects->fetch_assoc()): ?>
                 <input type="checkbox" name="subject_ids[]" value="<?= $subject['subject_id'] ?>">
                 <?= $subject['name'] ?><br>

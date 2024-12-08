@@ -101,14 +101,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
 
         <form method="post" action="">
-            <label for="student_id">Select Student:</label>
+            <label for="student_id">Select Student:</label><br>
             <select id="student_id" name="student_id" required>
                 <?php while ($student = $students->fetch_assoc()): ?>
                     <option value="<?= $student['student_id'] ?>"><?= $student['name'] ?></option>
                 <?php endwhile; ?>
             </select><br><br>
 
-            <label for="year_level">Select Grade Level:</label>
+            <label for="year_level">Select Grade Level:</label><br>
             <select id="year_level_filter" onchange="filterSections()" required>
                 <option value="">All</option>
                 <?php 
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Hidden year_level field -->
             <input type="hidden" id="year_level" name="year_level" value="">
 
-            <label for="section_id">Select Section:</label>
+            <label for="section_id">Select Section:</label><br>
             <select id="section_id" name="section_id" required>
                 <?php while ($section = $sections->fetch_assoc()): ?>
                     <option 

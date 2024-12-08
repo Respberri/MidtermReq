@@ -78,12 +78,12 @@ $subjects = $conn->query("SELECT subject_id, name FROM subjects");
 </head>
 <body>
 <?php include 'sidebar.php' ?>
-
     <div class="main-content">
         <header>
             <h1>Student List</h1>
         </header>
-        <main>
+
+        <main style="margin-top: -10px">
             <!-- Filter Form -->
             <section>
                 <label for="level_filter">Filter by Grade Level:</label>
@@ -119,7 +119,6 @@ $subjects = $conn->query("SELECT subject_id, name FROM subjects");
                     ?>
                 </select><br><br>
             </section>
-
             <!-- Student List -->
             <div class="student-list">
                 <table>

@@ -131,7 +131,7 @@ if (isset($_GET['faculty_id'])) {
             <?php endif; ?>
 
             <!-- Fetch section-subject assignments for the faculty -->
-            <Header><h1>Assigned Section-Subjects</h1></Header>
+            <Header style="margin-top: 20px"><h1>Assigned Section-Subjects</h1></Header>
             <?php if ($section_subjects_result->num_rows > 0): ?>
                 <table>
                     <thead>

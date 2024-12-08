@@ -136,8 +136,6 @@ $conn->close();
 <?php else: ?>
     <p>No subjects found for this student.</p>
 <?php endif; ?>
-
-
         <?php else: ?>
             <p>Invalid student ID or no student found.</p>
         <?php endif; ?>

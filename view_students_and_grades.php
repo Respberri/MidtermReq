@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
         <br>
         <button type="submit">Save Grades</button>
-        <a href="view_faculty_section_subjects.php" class="btn">Back</a>
+        <a href="view_faculty_section_subjects.php" class="btn" style="text-decoration:none; display:inline-block; margin-top: 1px">Back</a>
     </form>
     </div>
     </div>
