@@ -122,14 +122,14 @@ $conn->close();
                 <p><strong>Date of Birth:</strong> <?= $student['date_of_birth'] ?></p>
             <?php endif; ?>
 
-            <header><h1>Current Subjects</h1></header>
+            <header style="margin-top: 20px"><h1>Current Subjects</h1></header>
             <?php if ($subjects_result->num_rows > 0): ?>
                 <ul>
                     <?php while ($subject = $subjects_result->fetch_assoc()): ?>
                         <li>
-                            <strong>Subject ID:</strong> <?= $subject['subject_id'] ?><br>
-                            <strong>Name:</strong> <?= $subject['name'] ?><br>
-                            <strong>Description:</strong> <?= $subject['description'] ?><br>
+                            <strong>Subject ID:</strong> <?= $subject['subject_id'] ?><br><br>
+                            <strong>Name:</strong> <?= $subject['name'] ?><br><br>
+                            <strong>Description:</strong> <?= $subject['description'] ?><br><br>
                             <a href="view_student_grades.php?student_id=<?= $student_id ?>&subject_id=<?= $subject['subject_id'] ?>" class="view-grades-btn">View Grades</a>
                         </li>
                         <hr>

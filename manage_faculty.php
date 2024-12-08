@@ -64,8 +64,8 @@ $faculty_records = $conn->query("SELECT f.faculty_id, f.name, f.email, f.phone, 
                         <td><?= htmlspecialchars($faculty['age']) ?></td>
                         <td><?= htmlspecialchars($faculty['hire_date']) ?></td>
                         <td>
-                            <a class="edit-link" href="view_faculty.php?faculty_id=<?= htmlspecialchars($faculty['faculty_id']) ?>">Edit</a> |
-                            <a class="delete-link" href="manage_faculty.php?delete=<?= htmlspecialchars($faculty['faculty_id']) ?>" onclick="return confirm('Are you sure you want to delete this faculty member?');">Delete</a>
+                            <a class="edit-link edit-btn" href="view_faculty.php?faculty_id=<?= htmlspecialchars($faculty['faculty_id']) ?>">Edit</a> |
+                            <a class="delete-link delete-btn" href="manage_faculty.php?delete=<?= htmlspecialchars($faculty['faculty_id']) ?>" onclick="return confirm('Are you sure you want to delete this faculty member?');">Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

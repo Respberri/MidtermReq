@@ -33,12 +33,11 @@ function setActiveStat($pageName) {
 </head>
 <body>
 <?php include 'sidebar.php' ?>
-
     <div class="main-content">
         <header>
             <h1>Students</h1>
         </header>
-        <main>         
+        <main style="margin-top: -10px">         
             <!-- Student List -->
             <div class="student-list">
                 <table>

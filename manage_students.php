@@ -51,14 +51,14 @@ $students = $conn->query($students_sql);
     <header>
     <h1>Manage Students and Their Assigned Subjects</h1>
     </header>
-    <main>
+    <main><br><br>
     <label for="year_level_filter">Filter by Year Level:</label>
     <select id="year_level_filter" onchange="filterStudents()">
         <option value="">All</option>
         <?php while ($level = $year_levels->fetch_assoc()): ?>
             <option value="<?= $level['year_level'] ?>">Year <?= $level['year_level'] ?></option>
         <?php endwhile; ?>
-    </select><br><br>
+    </select>
     
     <div class="student-list">
     <table border="1">

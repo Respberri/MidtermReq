@@ -47,28 +47,16 @@ $top_students = $conn->query($sql);
 <html>
 <head>
     <title>Data Analytics</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
+<?php include 'sidebar.php' ?>
+    <div class="content-container">
+        <div class="main-content">
+    <header>
     <h1>Data Analytics Dashboard</h1>
-
+    </header>
     <!-- Faculty-to-Student Ratio -->
-    <h2>Faculty-to-Student Ratio by Section</h2>
+    <h2 style="color:black; font-weight:400; margin-top: 10px; margin-bottom: 10px">Faculty-to-Student Ratio by Section</h2>
     <table>
         <tr>
             <th>Section Name</th>
@@ -87,7 +75,7 @@ $top_students = $conn->query($sql);
     </table>
 
     <!-- Grade Distribution -->
-    <h2>Grade Distribution by Subject</h2>
+    <h2 style="color:black; font-weight:400; margin-top: 40px; margin-bottom: 10px">Grade Distribution by Subject</h2>
     <table>
         <tr>
             <th>Subject</th>
@@ -104,7 +92,7 @@ $top_students = $conn->query($sql);
     </table>
 
     <!-- Top-Performing Students -->
-    <h2>Top 10 Performing Students</h2>
+    <h2 style="color:black; font-weight:400; margin-top: 40px; margin-bottom: 10px">Top 10 Performing Students</h2>
     <table>
         <tr>
             <th>Student Name</th>
@@ -117,5 +105,7 @@ $top_students = $conn->query($sql);
             </tr>
         <?php endwhile; ?>
     </table>
+    </div>
+    </div>
 </body>
 </html>

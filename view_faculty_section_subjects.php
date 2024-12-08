@@ -39,7 +39,7 @@ $result = $stmt->get_result();
     <div class="main-content">
     <div class="content-container">
     <header>
-    <h2>My Section Subjects</h2>
+    <h1>My Section Subjects</h1>
     </header>
     <?php if ($result->num_rows > 0): ?>
         <ul>

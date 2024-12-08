@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="post" action="">
-            <label for="section_name">Section Name:</label>
+            <label for="section_name">Section Name:</label><br>
             <input type="text" id="section_name" name="section_name" required><br><br>
 
-            <label for="year_level">Grade Level:</label>
+            <label for="year_level">Grade Level:</label><br>
             <select name="year_level" id="year_level" required>
                 <option value="">-- Select Grade Level --</option>
                 <?php for ($i = 1; $i <= 6; $i++): ?>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endfor; ?>
             </select><br><br>
 
-            <label for="year">Year:</label>
+            <label for="year">Year:</label><br>
             <select name="year" id="year" required>
                 <option value="">-- Select Year --</option>
                 <?php for ($y = 2020; $y <= 2030; $y++): ?>

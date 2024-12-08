@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post" action="">
             <!-- Filter Students -->
             <section>
-                <label for="year_filter">Filter by Enrollment Year:</label>
+                <label for="year_filter">Filter by Enrollment Year:</label><br>
                 <select id="year_filter" onchange="filterStudents()">
                 <option value="">All</option>
         <?php
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
     </select><br><br>
 
-                <label for="level_filter">Filter by Grade Level:</label>
+                <label for="level_filter">Filter by Grade Level:</label><br>
                 <select id="level_filter" onchange="filterStudents()">
                     <option value="">All</option>
                     <option value="1">Grade 1</option>
@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Filter Section-Subjects -->
             <section>
-                <label for="section_filter">Filter by Section:</label>
+                <label for="section_filter">Filter by Section:</label><br>
                 <select id="section_filter" onchange="filterSectionSubjects()">
                     <option value="">All</option>
                     <?php
@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select><br><br>
 
-                <label for="subject_filter">Filter by Subject:</label>
+                <label for="subject_filter">Filter by Subject:</label><br>
                 <select id="subject_filter" onchange="filterSectionSubjects()">
                     <option value="">All</option>
                     <?php

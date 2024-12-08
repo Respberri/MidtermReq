@@ -115,12 +115,12 @@ if (isset($_GET['faculty_id'])) {
             <?php endif; ?>
 
             <!-- Fetch section-subject assignments for the faculty -->
-            <Header><h1>Assigned Section-Subjects</h1></Header>
+            <Header style="margin-top: 20px"><h1>Assigned Section-Subjects</h1></Header>
             <?php if ($section_subjects_result->num_rows > 0): ?>
                 <ul>
                     <?php while ($assignment = $section_subjects_result->fetch_assoc()): ?>
                         <li>
-                            <strong>Section Name:</strong> <?= htmlspecialchars($assignment['section_name']) ?><br>
+                            <strong>Section Name:</strong> <?= htmlspecialchars($assignment['section_name']) ?><br><br>
                             <strong>Subject Name:</strong> <?= htmlspecialchars($assignment['subject_name']) ?><br>
                         </li>
                         <hr>

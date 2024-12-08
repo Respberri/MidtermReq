@@ -68,30 +68,14 @@ $current_rankings = $conn->query($sql);
 <html>
 <head>
     <title>Student Rankings</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .message {
-            margin-bottom: 10px;
-            color: green;
-        }
-    </style>
 </head>
 <body>
+<?php include 'sidebar.php' ?>
+<div class="content-container">
+    <div class="main-content">
+    <header>
     <h1>Student Rankings</h1>
-
+    </header>
     <?php if (isset($message)): ?>
         <p class="message"><?= $message ?></p>
     <?php endif; ?>
@@ -100,7 +84,7 @@ $current_rankings = $conn->query($sql);
         <button type="submit" name="update_rankings">Update Rankings</button>
     </form>
 
-    <h2>Current Rankings</h2>
+    <h2 style="color:black; margin-bottom: 10px; font-weight:400">Current Rankings</h2>
     <table>
         <tr>
             <th>Rank</th>
@@ -117,5 +101,7 @@ $current_rankings = $conn->query($sql);
             </tr>
         <?php endwhile; ?>
     </table>
+    </div>
+    </div>
 </body>
 </html>

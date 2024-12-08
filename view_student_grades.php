@@ -52,7 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'sidebar.php' ?>
+    <div class="content-container">
+    <div class="main-content">
+    <header>
     <h2>Grades for <?= $student['name'] ?></h2>
+    </header>
     <table border="1">
         <thead>
             <tr>
@@ -81,5 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endwhile; ?>
         </tbody>
     </table>
+    </div>
+    </div>
 </body>
 </html>
