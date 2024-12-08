@@ -104,6 +104,8 @@
     form input[type="text"],
     form input[type="number"],
     form input[type="password"],
+    form input[type="email"],
+    form input[type="date"],
     form textarea,
     form select {
         width: 100%;
@@ -599,3 +601,17 @@
             opacity: 0;
         }
     }
+
+.filter{
+    width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+}
+
+.labelf{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}

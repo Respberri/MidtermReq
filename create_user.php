@@ -145,16 +145,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			<div id="common-form" style="display: none;">
                 <header><h1 id="form-header">Student Details</h1></header>
-                <label for="name">Name:</label>
+                <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br><br>
 
-                <label for="email">Email:</label>
+                <label for="email">Email:</label><br>
                 <input type="email" id="email" name="email"><br><br>
 
-                <label for="phone">Phone:</label>
+                <label for="phone">Phone:</label><br>
                 <input type="text" id="phone" name="phone"><br><br>
 
-                <label for="age">Age:</label>	
+                <label for="age">Age:</label><br>
                 <input type="number" id="age" name="age"><br><br>
 			</div>
             <div id="student-form" style="display: none;">
@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div id="faculty-form" style="display: none;">
-                <label for="hire_date">Hire Date:</label>
+                <label for="hire_date">Hire Date:</label><br>
                 <input type="date" id="hire_date" name="hire_date"><br><br>
             </div>
 
