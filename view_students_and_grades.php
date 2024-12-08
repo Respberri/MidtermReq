@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Students and Grades</title>
+    <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <?php include 'sidebar.php' ?>
@@ -134,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
         <br>
         <button type="submit">Save Grades</button>
+        <a href="view_faculty_section_subjects.php" class="btn">Back</a>
     </form>
     </div>
     </div>

@@ -82,7 +82,6 @@ $_debug = false;
 				        <div class="sub-menu">
 					        <a href="" class="sub-item"></a>
 					        <a href="manage_faculty.php" class="sub-item"><i class="fa-solid fa-id-badge"></i>Faculty List</a>
-					        <a href="assign_faculty_subject.php" class="sub-item"><i class="fa-solid fa-clipboard-check"></i>Assign Faculty Subject</a>
 				        </div>
 			</div>
 			<?php endif; ?>
@@ -94,8 +93,7 @@ $_debug = false;
                     </a>
                         <div class="sub-menu">
                             <a href="" class="sub-item"></a>
-                            <a href="#" class="sub-item"><i class="fa-solid fa-user-group"></i>Faculty Section Students</a>
-                            <a href="view_students_and_grades.php" class="sub-item"><i class="fa-solid fa-folder-open"></i>View Student and Grades</a>
+                            <a href="view_faculty_section_subjects.php" class="sub-item"><i class="fa-solid fa-user-group"></i>Faculty Section Students</a>
                             <a href="#" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a> 
                         </div>
             </div>
