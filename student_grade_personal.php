@@ -116,8 +116,8 @@ $stmt->close();
         }
     </style>
     <!-- Include jsPDF and jsPDF AutoTable -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <script src="/js/jspdf.umd.min.js"></script>
+    <script src="/js/jspdf.plugin.autotable.js"></script>
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
