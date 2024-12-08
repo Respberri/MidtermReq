@@ -133,15 +133,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section>
                 <label for="year_filter">Filter by Enrollment Year:</label>
                 <select id="year_filter" onchange="filterStudents()">
-                    <option value="">All</option>
-                    <?php
-                    // Fetch unique enrollment years for the filter
-                    $years = $conn->query("SELECT DISTINCT enrollment_year FROM enrollments");
-                    while ($year = $years->fetch_assoc()) {
-                        echo "<option value='" . $year['enrollment_year'] . "'>" . $year['enrollment_year'] . "</option>";
-                    }
-                    ?>
-                </select><br><br>
+                <option value="">All</option>
+        <?php
+            // Predefined range of years from 2020 to 2030
+            for ($year = 2020; $year <= 2030; $year++) {
+                echo "<option value='$year'>$year</option>";
+            }
+        ?>
+    </select><br><br>
 
                 <label for="level_filter">Filter by Grade Level:</label>
                 <select id="level_filter" onchange="filterStudents()">

@@ -16,7 +16,7 @@ $faculty_id = $_SESSION['faculty_id'];
 $sql = "
     SELECT ss.section_subject_id, sections.section_name, subjects.name AS subject_name
     FROM faculty_section_subject fss
-    INNER JOIN section_subject ss ON fss.faculty_section_subject_id = ss.section_subject_id
+    INNER JOIN section_subject ss ON fss.section_subject_id = ss.section_subject_id
     INNER JOIN sections ON ss.section_id = sections.section_id
     INNER JOIN subjects ON ss.subject_id = subjects.subject_id
     WHERE fss.faculty_id = ?
