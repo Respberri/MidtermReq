@@ -92,6 +92,7 @@ $_debug = false;
                     </a>
                         <div class="sub-menu">
                             <a href="" class="sub-item"></a>
+                            <a href="faculty_student_list.php" class="sub-item"><i class="fa-solid fa-address-book"></i>Student List</a>
                             <a href="view_faculty_section_subjects.php" class="sub-item"><i class="fa-solid fa-user-group"></i>Faculty Section Students</a>
                             <a href="#" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a> 
                         </div>
@@ -119,18 +120,18 @@ $_debug = false;
                     </a>
                         <div class="sub-menu">
                             <a href="" class="sub-item"></a>
-                            <a href="view_student.php" class="sub-item"><i class="fa-solid fa-id-card"></i>Student Profile</a>
+                            <a href="student_personal.php" class="sub-item"><i class="fa-solid fa-id-card"></i>Student Profile</a>
                             <a href="change_password.php" class="sub-item"><i class="fa-solid fa-lock"></i>Change Password</a>
                         </div>
             </div>
 
-            <div class="item"><a class="sub-btn"><i class="fa-solid fa-chart-bar"></i></>Reports
+            <div class="item"><a class="sub-btn"><i class="fa fa-chalkboard"></i></>Class
                 <i class="fa-solid fa-chevron-down drpdown"></i>
                     </a>
                     <div class="sub-menu">
                         <a href="" class="sub-item"></a>
-                        <a href="view_student_grades.php" class="sub-item"><i class="fas fa-file-alt"></i>View Grades</a>
-                        <a href="#" class="sub-item"><i class="fa-solid fa-table-list"></i>Enrolled Subjects</a>
+                        <a href="student_announcement_view.php" class="sub-item"><i class="fa fa-bullhorn"></i>Class Announcement</a>
+                        <a href="#" class="sub-item"><i class="fa-solid fa-upload"></i>Class Assignment</a>
                     </div>
             </div>
 
