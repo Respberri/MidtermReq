@@ -76,6 +76,22 @@ if (isset($_GET['faculty_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Profile</title>
     <link rel="stylesheet" href="page.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
@@ -117,15 +133,22 @@ if (isset($_GET['faculty_id'])) {
             <!-- Fetch section-subject assignments for the faculty -->
             <Header><h1>Assigned Section-Subjects</h1></Header>
             <?php if ($section_subjects_result->num_rows > 0): ?>
-                <ul>
-                    <?php while ($assignment = $section_subjects_result->fetch_assoc()): ?>
-                        <li>
-                            <strong>Section Name:</strong> <?= htmlspecialchars($assignment['section_name']) ?><br>
-                            <strong>Subject Name:</strong> <?= htmlspecialchars($assignment['subject_name']) ?><br>
-                        </li>
-                        <hr>
-                    <?php endwhile; ?>
-                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($assignment = $section_subjects_result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($assignment['section_name']) ?></td>
+                                <td><?= htmlspecialchars($assignment['subject_name']) ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
             <?php else: ?>
                 <p>No section-subject assignments found for this faculty.</p>
             <?php endif; ?>
