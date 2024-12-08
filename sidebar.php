@@ -38,9 +38,8 @@ $_debug = false;
             </a>
                     <div class="sub-menu">
                 <a href="" class="sub-item"></a>
-                <a href="manage_students.php" class="sub-item"><i class="fa-solid fa-address-book"></i>Student List</a>
+                <a href="project.php" class="sub-item"><i class="fa-solid fa-address-book"></i>Student List</a>
                 <a href="enroll_student.php" class="sub-item"><i class="fa-solid fa-user-check"></i>Enroll Students</a>
-                <a href="project.php" class="sub-item"><i class="fa-solid fa-id-card"></i>View Students</a>
                     </div>
                 </div>
                 <a href="#" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a>   

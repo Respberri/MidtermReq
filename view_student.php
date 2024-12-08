@@ -16,8 +16,8 @@ $is_admin = $_SESSION['role'] === 'admin';
 $update_success = false;
 
 // Check if student_id parameter is provided
-if (isset($_GET['id'])) { // Changed to 'id' to match the link
-    $student_id = intval($_GET['id']); // Sanitize input
+if (isset($_GET['id'])) {
+    $student_id = intval($_GET['id']);
 
     // Fetch student details
     $sql = "SELECT * FROM students WHERE student_id = $student_id";
@@ -44,21 +44,19 @@ if (isset($_GET['id'])) { // Changed to 'id' to match the link
 
             if ($stmt->execute()) {
                 $update_success = true;
-                // echo "<p>Student details updated successfully!</p>";
-                // Reload the page to reflect changes
-                // header("Refresh:0");
             } else {
                 echo "<p>Error updating student: " . $conn->error . "</p>";
             }
             $stmt->close();
         }
 
-        // Fetch current subjects of the student
+        // Fetch current subjects of the student along with section details
         $subjects_sql = "
-            SELECT subjects.subject_id, subjects.name, subjects.description
+            SELECT subjects.subject_id, subjects.name, subjects.description, ss.section_id, sections.section_name
             FROM student_section_subject sss
             INNER JOIN section_subject ss ON sss.section_subject_id = ss.section_subject_id
             INNER JOIN subjects ON ss.subject_id = subjects.subject_id
+            INNER JOIN sections ON ss.section_id = sections.section_id
             WHERE sss.student_id = $student_id";
         $subjects_result = $conn->query($subjects_sql);
     } else {
@@ -86,9 +84,7 @@ $conn->close();
             <h1>Student Profile</h1>
         </header>
         <?php if (isset($student)): ?>
-            <!-- Display student details in either view or edit mode -->
             <?php if ($is_admin): ?>
-                <!-- If admin, allow for editing -->
                 <form method="POST" id="updateForm">
                     <label>Name:</label><br>
                     <input type="text" name="name" value="<?= htmlspecialchars($student['name']) ?>" required><br><br>
@@ -112,7 +108,6 @@ $conn->close();
                     <a href="project.php" class="btn">Back</a>
                 </form>
             <?php else: ?>
-                <!-- If not admin, just display the student information -->
                 <p><strong>Student ID:</strong> <?= $student['student_id'] ?></p>
                 <p><strong>Name:</strong> <?= $student['name'] ?></p>
                 <p><strong>Email:</strong> <?= $student['email'] ?></p>
@@ -123,21 +118,26 @@ $conn->close();
             <?php endif; ?>
 
             <header><h1>Current Subjects</h1></header>
-            <?php if ($subjects_result->num_rows > 0): ?>
-                <ul>
-                    <?php while ($subject = $subjects_result->fetch_assoc()): ?>
-                        <li>
-                            <strong>Subject ID:</strong> <?= $subject['subject_id'] ?><br>
-                            <strong>Name:</strong> <?= $subject['name'] ?><br>
-                            <strong>Description:</strong> <?= $subject['description'] ?><br>
-                            <a href="view_student_grades.php?student_id=<?= $student_id ?>&subject_id=<?= $subject['subject_id'] ?>" class="view-grades-btn">View Grades</a>
-                        </li>
-                        <hr>
-                    <?php endwhile; ?>
-                </ul>
-            <?php else: ?>
-                <p>No subjects found for this student.</p>
-            <?php endif; ?>
+<?php if ($subjects_result->num_rows > 0): ?>
+    <div class="accordion">
+        <?php while ($subject = $subjects_result->fetch_assoc()): ?>
+            <div class="accordion-item">
+                <button class="accordion-btn"><?= htmlspecialchars($subject['name']) ?></button>
+                <div class="accordion-content">
+                    <p><strong>Subject ID:</strong> <?= htmlspecialchars($subject['subject_id']) ?></p>
+                    <p><strong>Description:</strong> <?= htmlspecialchars($subject['description']) ?></p>
+                    <p><strong>Section ID:</strong> <?= htmlspecialchars($subject['section_id']) ?></p>
+                    <p><strong>Section Name:</strong> <?= htmlspecialchars($subject['section_name']) ?></p>
+                    <a href="view_student_grades.php?student_id=<?= $student_id ?>&subject_id=<?= $subject['subject_id'] ?>" class="view-grades-btn">View Grades</a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+<?php else: ?>
+    <p>No subjects found for this student.</p>
+<?php endif; ?>
+
+
         <?php else: ?>
             <p>Invalid student ID or no student found.</p>
         <?php endif; ?>
@@ -165,6 +165,28 @@ $conn->close();
                 <?php endif; ?>
             });
         </script>
+
+<script>
+    document.querySelectorAll('.accordion-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+
+            // Toggle accordion content visibility with smooth transition
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                content.classList.remove('open');
+            } else {
+                content.style.display = 'block';
+                content.classList.add('open');
+            }
+
+            // Toggle active state for the button (for visual feedback)
+            button.classList.toggle('active');
+        });
+    });
+</script>
+
+
     </div>
 </body>
 </html>

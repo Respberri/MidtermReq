@@ -127,4 +127,70 @@ input[type="date"]:focus {
     font-size: 18px;
 }
 
+.accordion {
+    margin-top: 20px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-btn {
+    background-color: #912c2c;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.accordion-btn:hover {
+    background-color: #a75656;
+    transform: scale(1.05);
+}
+
+.accordion-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    display: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.accordion-content p {
+    margin: 10px 0;
+}
+
+.accordion-content a.view-grades-btn {
+    padding: 6px 12px;
+    background-color: #45a049;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-content a.view-grades-btn:hover {
+    background-color: #45a049;
+}
+
+/* Add smooth transitions */
+.accordion-content.open {
+    max-height: 1000px;  /* Allows for expansion */
+    padding: 15px;
+}
+
+.accordion-btn.active {
+    background-color: #912c2c;
+}
 
