@@ -135,8 +135,8 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                                 <td><?= htmlspecialchars($subject['name']) ?></td>
                                 <td>
 								
-                                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this subject?');">
-                                        <a href="view_subject.php?subject_id=<?= $subject['subject_id'] ?>" class="edit-btn">View</a>
+                                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this subject?');" style="all:unset">
+                                        <a href="view_subject.php?subject_id=<?= $subject['subject_id'] ?>" class="btn">View</a>
 										|
 										<input type="hidden" name="delete_id" value="<?= $subject['subject_id'] ?>">
                                         <input type="hidden" name="type" value="subject">
@@ -170,7 +170,7 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                                     <td><?= htmlspecialchars($section_subject['section_name']) ?></td>
                                     <td><?= htmlspecialchars($section_subject['subject_name']) ?></td>
                                     <td>
-                                        <form method="post" onsubmit="return confirm('Are you sure you want to delete this section subject?');">
+                                        <form method="post" onsubmit="return confirm('Are you sure you want to delete this section subject?');" style="all:unset">
                                             <input type="hidden" name="delete_id" value="<?= $section_subject['section_subject_id'] ?>">
                                             <input type="hidden" name="type" value="section_subject">
                                             <button type="submit">Delete</button>
