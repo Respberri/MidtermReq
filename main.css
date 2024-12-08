@@ -1,600 +1,601 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    background-color: #f4f4f4;
-    display: flex;
-    min-height: 100vh;
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 350px;
-    padding: 20px;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.stat {
-    background-color: white;
-    padding: 20px;
-    width: 30%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.stat:hover {
-    transform: translateY(-5px);
-}
-
-.stat img {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.stat h2 {
-    margin-top: 0;
-    color: #9e1f1f;
-}
-
-.chart-container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.content-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-form h2 {
-    margin-bottom: 20px;
-    color: #9e1f1f;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="number"],
-form input[type="password"],
-form textarea,
-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button, .btn {
-    padding: 10px 20px;
-    background-color: rgb(158, 31, 31);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover, .btn:hover {
-    background-color: #be9191;
-    transform: translateY(-2px);
-}
-
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .sidebar ul {
+    body {
+        font-family: "Poppins", sans-serif;
+        font-style: normal;
+        background-color: #f4f4f4;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        min-height: 100vh;
     }
 
     .main-content {
-        padding: 10px;
-        margin: 10px;
-    }
-
-    .stats {
+        flex: 1;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        display: flex;
         flex-direction: column;
+        margin-left: 350px;
+        padding: 20px;
     }
 
-    .stat {
-        width: 100%;
+    header {
+        background-color: #333;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 5px;
         margin-bottom: 20px;
     }
 
-    .chart-container {
-        width: 100%;
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
-}
 
-.student-list {
-    background-color: white;
-    padding: 20px;
-    margin-top: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
+    .stat {
+        background-color: white;
+        padding: 20px;
+        width: 30%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        text-align: center;
+        transition: transform 0.2s;
+    }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+    .stat:hover {
+        transform: translateY(-5px);
+    }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+    .stat img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
 
-th {
-    background-color: #9e1f1f;
-    color: white;
-}
+    .stat h2 {
+        margin-top: 0;
+        color: #9e1f1f;
+    }
 
-tr:hover {
-    background-color: #f4f4f4;
-}
+    .chart-container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-a.btn {
-    padding: 8px 15px;
-    background-color: #9e1f1f;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
 
-a.btn:hover {
-    background-color: #be9191;
-}
+    form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
-@media (max-width: 768px) {
-    .student-list table {
-        font-size: 14px;
+    form h2 {
+        margin-bottom: 20px;
+        color: #9e1f1f;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="password"],
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button, .btn {
+        padding: 10px 20px;
+        background-color: rgb(158, 31, 31);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    button:hover, .btn:hover {
+        background-color: #be9191;
+        transform: translateY(-2px);
+    }
+
+
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+        }
+
+        .sidebar ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .main-content {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .stats {
+            flex-direction: column;
+        }
+
+        .stat {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            width: 100%;
+        }
+    }
+
+    .student-list {
+        background-color: white;
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
     }
 
     th, td {
-        padding: 8px;
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
     }
-}
 
-/* Notification Style */
-#connectionNotification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #28a745;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    display: none; 
-    z-index: 9999;
-    text-align: center;
-}
+    th {
+        background-color: #9e1f1f;
+        color: white;
+    }
 
-#connectionNotification.show {
-    display: block;
-    animation: fadeIn 1s ease-out;
-}
+    tr:hover {
+        background-color: #f4f4f4;
+    }
 
-@keyframes fadeIn {
-    0% {
+    a.btn {
+        padding: 8px 15px;
+        background-color: #9e1f1f;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    a.btn:hover {
+        background-color: #be9191;
+    }
+
+    @media (max-width: 768px) {
+        .student-list table {
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+    }
+
+    /* Notification Style */
+    #connectionNotification {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #28a745;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        display: none; 
+        z-index: 9999;
+        text-align: center;
+    }
+
+    #connectionNotification.show {
+        display: block;
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .stat.active-stat {
+        border: 2px solid rgb(158, 31, 31);
+        box-shadow: 0 0 10px rgba(158, 31, 31, 0.7);
+        transform: scale(1.05);
+    }
+
+
+    /* Sidebar Styling */
+    .sidebar{
+        background-color: #912c2c;
+        height: 100vh;
+        width: 320px;
+        position: fixed;
+        overflow-y: auto;
+        transition: 0.6, ease;
+        transition-property: left;
+    }
+
+    .bmsi-logo{
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15px;
+    }
+
+    h2{
+        color: #fff;
+        text-align: center;
+    }
+
+    .menu{
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .menu .item{
+        position: relative;
+        cursor: pointer;
+    }
+
+    .menu .item a{
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        display: block;
+        padding: 5px 30px;
+        line-height: 60px;
+    }
+
+    .item i{
+        margin-right: 15px;
+    }
+
+    .item a .drpdown{
+        position: absolute;
+        right: 0; 
+        margin: 20px;
+        transition: 0.3s ease;
+    }
+
+    .item .sub-menu{
+        background-color: #a75656;
+        display: none;
+    }
+
+    .menu .sub-menu .sub-menu {
+        background-color: #bd8080;
+    }
+
+    /* Dropdown Container */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .dropbtn {
+        background-color: #9e1f1f;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .dropbtn:hover {
+        background-color: #be9191;
+    }
+
+    /* Dropdown Content (hidden by default) */
+    .dropdown-content {
+        display: none; 
+        position: absolute;
+        background-color: #be9191;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        top: 100%;
+        left: 0;
         opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     }
-    100% {
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Hover effect on links inside dropdown */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+        color: #9e1f1f;
+    }
+
+    /* Show dropdown when toggled */
+    .dropdown .show {
+        display: block;
         opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
-}
 
-.stat.active-stat {
-    border: 2px solid rgb(158, 31, 31);
-    box-shadow: 0 0 10px rgba(158, 31, 31, 0.7);
-    transform: scale(1.05);
-}
-
-
-/* Sidebar Styling */
-.sidebar{
-    background-color: #912c2c;
-    height: 100vh;
-    width: 320px;
-    position: fixed;
-    overflow-y: auto;
-    transition: 0.6, ease;
-    transition-property: left;
-}
-
-.bmsi-logo{
-    width: 120px;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 15px;
-}
-
-h2{
-    color: #fff;
-    text-align: center;
-}
-
-.menu{
-    width: 100%;
-    margin-top: 30px;
-}
-
-.menu .item{
-    position: relative;
-    cursor: pointer;
-}
-
-.menu .item a{
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    display: block;
-    padding: 5px 30px;
-    line-height: 60px;
-}
-
-.item i{
-    margin-right: 15px;
-}
-
-.item a .drpdown{
-    position: absolute;
-    right: 0; 
-    margin: 20px;
-    transition: 0.3s ease;
-}
-
-.item .sub-menu{
-    background-color: #b14c4d;
-    display: none;
-}
-
-
-
-
-/* Dropdown Container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.dropbtn {
-    background-color: #9e1f1f;
-    color: white;
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.dropbtn:hover {
-    background-color: #be9191;
-}
-
-/* Dropdown Content (hidden by default) */
-.dropdown-content {
-    display: none; 
-    position: absolute;
-    background-color: #be9191;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    top: 100%;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: #333;
-    padding: 12px 20px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-    transition: background-color 0.2s ease;
-}
-
-/* Hover effect on links inside dropdown */
-.dropdown-content a:hover {
-    background-color: #ddd;
-    color: #9e1f1f;
-}
-
-/* Show dropdown when toggled */
-.dropdown .show {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-/* Active state for dropdown */
-.dropdown.active .dropbtn {
-    background-color: #8c1414;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Table Styling */
-.subject-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.subject-table th, .subject-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.subject-table th {
-    background-color: #8c1414;
-    font-weight: bold;
-}
-
-.subject-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Button Styling */
-.edit-btn, .delete-btn {
-    color: #007BFF;
-    text-decoration: none;
-    padding: 5px 10px;
-}
-
-.edit-btn:hover {
-    background-color: #e2e2e2;
-}
-
-.delete-btn {
-    color: red;
-}
-
-.delete-btn:hover {
-    background-color: #f8d7da;
-}
-
-/* Add New Subject Button */
-.add-new-subject-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.add-new-subject-btn:hover {
-    background-color: #218838;
-}
-
-
-/* Misison and Vision CSS */
-.main-contentbg {
-    flex: 1;
-    padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url("/images/bmsiBG.jpg") no-repeat center center fixed;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 350px;
-    padding: 20px;
-    min-height: 100vh;
-}
-
-.main-contentbg header{
-    background-color: #912c2c;
-}
-
-h3{
-    font-size: 35px;
-    margin-bottom: 8%;
-}
-
-.card-row{
-    margin: auto;
-    top: 100px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
-    border-radius: 10px;
-}
-
-.card-col{
-    background-color: #912c2c;
-    border-radius: 30px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    height: 700px;
-    width: 500px;
-    padding: 10% 10%;
-    text-align: center;
-    letter-spacing: 2.0px;
-    line-height: 1.8em;
-}
-
-
-/* Members CSS */
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: auto;
-
-}
-.card{
-    position: relative;
-    width: 300px;
-    height: 450px;
-    background-color: #912c2c;
-    border-radius: 8px;
-    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
-    padding: 16px;
-    margin: 56px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-image{
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5), 0 5px 20px 0  rgba(0, 0, 0, 0,1 );
-}
-
-.card-image img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
-.dev-info{
-    line-height: 24px;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-    text-align: center;
-    color: #fff;
-}
-
-.role{
-    margin-bottom: 30px;
-    font-style: italic;
-    text-align: center;
-    color: #fff;
-}
-
-.name{
-    margin-top: 80px;
-    font-size: 1.4em;
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 0.8px;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-/* Popup Message Styles */
-.popup-message {
-    position: fixed;
-    top: 5%;
-    left: 60%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #28a745; /* Green background for success */
-    color: #fff; /* White text */
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    opacity: 0; /* Initially hidden */
-    animation: fadeIn 1s ease-in-out forwards;
-    z-index: 1000; /* Make sure it is on top of other content */
-}
-
-/* Error Popup Message Styles */
-.popup-message.error {
-    background-color: #dc3545; /* Red background for error */
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
+    /* Active state for dropdown */
+    .dropdown.active .dropbtn {
+        background-color: #8c1414;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    100% {
-        opacity: 1;
-    }
-}
 
-/* Fade-out animation */
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
+    /* Table Styling */
+    .subject-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
     }
-    100% {
-        opacity: 0;
+
+    .subject-table th, .subject-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
     }
-}
+
+    .subject-table th {
+        background-color: #8c1414;
+        font-weight: bold;
+    }
+
+    .subject-table tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    /* Button Styling */
+    .edit-btn, .delete-btn {
+        color: #007BFF;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    .edit-btn:hover {
+        background-color: #e2e2e2;
+    }
+
+    .delete-btn {
+        color: red;
+    }
+
+    .delete-btn:hover {
+        background-color: #f8d7da;
+    }
+
+    /* Add New Subject Button */
+    .add-new-subject-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .add-new-subject-btn:hover {
+        background-color: #218838;
+    }
+
+
+    /* Misison and Vision CSS */
+    .main-contentbg {
+        flex: 1;
+        padding: 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url("/images/bmsiBG.jpg") no-repeat center center fixed;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 350px;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    .main-contentbg header{
+        background-color: #912c2c;
+    }
+
+    h3{
+        font-size: 35px;
+        margin-bottom: 8%;
+    }
+
+    .card-row{
+        margin: auto;
+        top: 100px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 50px;
+        border-radius: 10px;
+    }
+
+    .card-col{
+        background-color: #912c2c;
+        border-radius: 30px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        color: #fff;
+        height: 700px;
+        width: 500px;
+        padding: 10% 10%;
+        text-align: center;
+        letter-spacing: 2.0px;
+        line-height: 1.8em;
+    }
+
+
+    /* Members CSS */
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: auto;
+
+    }
+    .card{
+        position: relative;
+        width: 300px;
+        height: 450px;
+        background-color: #912c2c;
+        border-radius: 8px;
+        box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
+        padding: 16px;
+        margin: 56px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-image{
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5), 0 5px 20px 0  rgba(0, 0, 0, 0,1 );
+    }
+
+    .card-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .dev-info{
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .role{
+        margin-bottom: 30px;
+        font-style: italic;
+        text-align: center;
+        color: #fff;
+    }
+
+    .name{
+        margin-top: 80px;
+        font-size: 1.4em;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    /* Popup Message Styles */
+    .popup-message {
+        position: fixed;
+        top: 5%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #28a745; /* Green background for success */
+        color: #fff; /* White text */
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        opacity: 0; /* Initially hidden */
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 1000; /* Make sure it is on top of other content */
+    }
+
+    /* Error Popup Message Styles */
+    .popup-message.error {
+        background-color: #dc3545; /* Red background for error */
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Fade-out animation */
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
