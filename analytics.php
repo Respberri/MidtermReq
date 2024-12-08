@@ -50,7 +50,7 @@ $top_students = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Analytics</title>
     <link rel="stylesheet" href="page.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+    <script src="/js/chart.js"></script> <!-- Include Chart.js -->
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
