@@ -12,7 +12,7 @@ $_debug = false;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="/font-awesome/all.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/all.css">
     <script src="/js/chart.js"></script>
 </head>
 <body>
