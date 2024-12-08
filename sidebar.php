@@ -42,7 +42,7 @@ $_debug = false;
                 <a href="enroll_student.php" class="sub-item"><i class="fa-solid fa-user-check"></i>Enroll Students</a>
                     </div>
                 </div>
-                <a href="#" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a>   
+                <a href="analytics.php" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a>   
 
                 </div>
             </div>
