@@ -85,8 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
         function showForm() {
             const role = document.getElementById('role').value;
+			document.getElementById('common-form').style.display = role !== 'admin' ? 'block' : 'none';
             document.getElementById('student-form').style.display = role === 'student' ? 'block' : 'none';
             document.getElementById('faculty-form').style.display = role === 'faculty' ? 'block' : 'none';
+			document.getElementById('form-header').innerText = role === 'student' ? "Student Details" : "Faculty Details";
         }
 
         // Function to display the success or error popup
@@ -141,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="student">Student</option>
             </select><br><br>
 
-            <div id="student-form" style="display: none;">
-                <header><h1>Student Details</h1></header>
+			<div id="common-form" style="display: none;">
+                <header><h1 id="form-header">Student Details</h1></header>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name"><br><br>
 
@@ -152,9 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="phone">Phone:</label>
                 <input type="text" id="phone" name="phone"><br><br>
 
-                <label for="age">Age:</label>
+                <label for="age">Age:</label>	
                 <input type="number" id="age" name="age"><br><br>
-
+			</div>
+            <div id="student-form" style="display: none;">
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address"><br><br>
 
@@ -163,19 +166,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div id="faculty-form" style="display: none;">
-                <header><h1>Faculty Details</h1></header>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name"><br><br>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br><br>
-
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" name="phone"><br><br>
-
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age"><br><br>
-
                 <label for="hire_date">Hire Date:</label>
                 <input type="date" id="hire_date" name="hire_date"><br><br>
             </div>
