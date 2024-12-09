@@ -103,7 +103,6 @@ $_debug = false;
                     </a>
                         <div class="sub-menu">
                             <a href="" class="sub-item"></a>
-                            <a href="#" class="sub-item"><i class="fa-solid fa-upload"></i>Assignments</a>
                             <a href="faculty_announcements.php" class="sub-item"><i class="fa fa-bullhorn"></i>Announcement</a>
                         </div>
             </div>
@@ -131,7 +130,6 @@ $_debug = false;
                     <div class="sub-menu">
                         <a href="" class="sub-item"></a>
                         <a href="student_announcement_view.php" class="sub-item"><i class="fa fa-bullhorn"></i>Class Announcement</a>
-                        <a href="#" class="sub-item"><i class="fa-solid fa-upload"></i>Class Assignment</a>
                     </div>
             </div>
 
