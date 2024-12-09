@@ -94,7 +94,7 @@ $_debug = false;
                             <a href="" class="sub-item"></a>
                             <a href="faculty_student_list.php" class="sub-item"><i class="fa-solid fa-address-book"></i>Student List</a>
                             <a href="view_faculty_section_subjects.php" class="sub-item"><i class="fa-solid fa-user-group"></i>Faculty Section Students</a>
-                            <a href="#" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a> 
+                            <a href="analytics.php" class="sub-item"><i class="fa-solid fa-trophy"></i>Academic Records</a> 
                         </div>
             </div>
 

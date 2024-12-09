@@ -75,6 +75,17 @@ $section_subjects_result = $conn->query($section_subjects_sql);
     <title>View Subject List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="page.css">
+    <style>
+        .subject-table th:nth-child(1) {
+            width: 30%; 
+        }
+        .subject-table th:nth-child(2) {
+            width: 30%;
+        }
+        .subject-table th:nth-child(3) {
+            width: 30%; 
+        }
+    </style>
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
