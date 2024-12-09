@@ -27,10 +27,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 <div class="card-image">
                     <img src="/images/pic_rjc.jpg" alt="picture of Cruz">
                 </div>
-                    <p class="name">Ralph Jaisell S. Cruz</p>
+                    <p class="name">Ralph Jaisell S.<br>Cruz</p>
                     <p class="role">Back-End Developer</p>
-                    <p class="dev-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorem ab quas fugiat pariatur eveniet commodi quos magni est error
-                    repudiandae qui sint reiciendis, iusto quibusdam nobis minus fuga praesentium!</p>
+                    <p class="dev-info">Course: BS Computer Science Major in Software Development <br><br> School: Bataan Peninsula State University <br><br> Year Level: Third Year </p>
             </div>
             <div class="card">
                 <div class="card-image">
@@ -38,8 +37,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
                     <p class="name">Marc Steven G. Nagamany</p>
                     <p class="role">Front-End Developer</p>
-                    <p class="dev-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorem ab quas fugiat pariatur eveniet commodi quos magni est error
-                    repudiandae qui sint reiciendis, iusto quibusdam nobis minus fuga praesentium!</p>
+                    <p class="dev-info">Course: BS Computer Science Major in Software Development <br><br> School: Bataan Peninsula State University <br><br> Year Level: Third Year </p>
             </div>
             <div class="card">
                 <div class="card-image">
@@ -47,8 +45,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
                     <p class="name">Lhyon Victor S. Salenga</p>
                     <p class="role">Back-End Developer</p>
-                    <p class="dev-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorem ab quas fugiat pariatur eveniet commodi quos magni est error
-                    repudiandae qui sint reiciendis, iusto quibusdam nobis minus fuga praesentium!</p>
+                    <p class="dev-info">Course: BS Computer Science Major in Software Development <br><br> School: Bataan Peninsula State University <br><br> Year Level: Third Year </p>
             </div>
             <div class="card">
                 <div class="card-image">
@@ -56,8 +53,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
                     <p class="name">Kurt Timothy Aston C. Valdecañas</p>
                     <p class="role">System Analyst</p>
-                    <p class="dev-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorem ab quas fugiat pariatur eveniet commodi quos magni est error
-                    repudiandae qui sint reiciendis, iusto quibusdam nobis minus fuga praesentium!</p>
+                    <p class="dev-info">Course: BS Computer Science Major in Software Development <br><br> School: Bataan Peninsula State University <br><br> Year Level: Third Year </p>
             </div>
         </div>
     </div>
