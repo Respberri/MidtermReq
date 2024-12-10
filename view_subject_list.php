@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'], $_POST['
     } elseif ($type === 'section_subject') {
         $sql = "DELETE FROM section_subject WHERE section_subject_id = ?";
     } else {
-        echo "<p>Invalid deletion type.</p>";
+        //echo "<p>Invalid deletion type.</p>";
         exit();
     }
 
@@ -27,11 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'], $_POST['
     $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-        echo "<p>Item deleted successfully!</p>";
+        $success_message = "Subject Deleted Successfully!";
+        $popup_type = "success";
     } else {
-        echo "<p>Error deleting item: " . $conn->error . "</p>";
+        $error_message = "Error creating section: " . $conn->error;
+        $popup_type = "error";
     }
-    $stmt->close();
 }
 
 // Fetch filter values
@@ -196,6 +197,30 @@ $section_subjects_result = $conn->query($section_subjects_sql);
                         <?php endif; ?>
                     </tbody>
                 </table>
+
+        <!-- Display Success/Error Popup Message -->
+        <?php if (isset($success_message)): ?>
+            <div class="popup-message" id="popup-message">
+                <?= $success_message ?>
+            </div>
+        <?php elseif (isset($error_message)): ?>
+            <div class="popup-message error" id="popup-message">
+                <?= $error_message ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- JavaScript to fade out the popup message -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupMessage = document.getElementById('popup-message');
+            if (popupMessage) {
+                // Fade-out effect after 3 seconds
+                setTimeout(function() {
+                    popupMessage.style.animation = 'fadeOut 1s ease-in-out forwards';
+                }, 3000); // Wait 3 seconds before starting fade-out
+            }
+        });
+    </script>
             </main>
         </div>
     </div>
