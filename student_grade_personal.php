@@ -46,11 +46,10 @@ if (!$subject) {
     exit();
 }
 
-// Fetch grades for the student, grouped by period (avoiding duplication)
+// Fetch grades for the student
 $grades_sql = "
-    SELECT g.grade_id, sub.name AS subject_name, g.period, MAX(g.grade) AS grade
+    SELECT g.grade_id, g.period, MAX(g.grade) AS grade
     FROM grades g
-    INNER JOIN subjects sub ON g.subject_id = sub.subject_id
     WHERE g.student_id = ? AND g.subject_id = ?
     GROUP BY g.period
     ORDER BY g.period
@@ -60,7 +59,27 @@ $stmt->bind_param("ii", $student_id, $subject_id);
 $stmt->execute();
 $grades = $stmt->get_result();
 $stmt->close();
+
+// Initialize variables for calculating the final grade
+$total_grade = 0;
+$period_count = 0;
+$period_grades = [];
+
+// Process grades for periods 1-4
+while ($grade = $grades->fetch_assoc()) {
+    $period = intval($grade['period']);
+    $period_grades[$period] = floatval($grade['grade']);
+
+    if ($period >= 1 && $period <= 4) {
+        $total_grade += $grade['grade'];
+        $period_count++;
+    }
+}
+
+// Calculate the final grade (average of periods 1-4)
+$final_grade = $period_count > 0 ? round($total_grade / $period_count, 2) : null;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,13 +157,22 @@ $stmt->close();
                 </tr>
             </thead>
             <tbody>
-                <?php while ($grade = $grades->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $grade['period'] == 5 ? "Final" : "Period " . htmlspecialchars($grade['period']) ?></td>
-                        <td><?= htmlspecialchars($grade['grade']) ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
+			<?php for ($period = 1; $period <= 5; $period++): ?>
+				<tr>
+					<td><?= $period == 5 ? "Final" : "Period " . htmlspecialchars($period) ?></td>
+					<td>
+						<?php
+						if ($period < 5) {
+							echo htmlspecialchars($period_grades[$period] ?? 'N/A');
+						} else {
+							echo htmlspecialchars($final_grade ?? 'N/A'); // Dynamically calculated final grade
+						}
+						?>
+					</td>
+				</tr>
+			<?php endfor; ?>
+</tbody>
+
         </table>
     </div>
 
