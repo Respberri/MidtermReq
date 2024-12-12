@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $update_stmt->execute();
         }
     }
-    echo "<p>Grades updated successfully!</p>";
+    // echo "<p>Grades updated successfully!</p>";
     header("Refresh:0"); // Refresh the page to show updated grades
     exit();
 }
@@ -95,43 +95,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             </thead>
             <tbody>
-                <?php if ($students_result->num_rows > 0): ?>
-                    <?php while ($student = $students_result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($student['student_name']) ?></td>
-                            <?php
-                            // Fetch grades for the student for all periods
-                            $grades_query = "
-                                SELECT period, grade 
-                                FROM grades 
-                                WHERE student_id = ? AND subject_id = ? 
-                                ORDER BY period ASC
-                            ";
-                            $grades_stmt = $conn->prepare($grades_query);
-                            $grades_stmt->bind_param("ii", $student['student_id'], $section_subject['subject_id']);
-                            $grades_stmt->execute();
-                            $grades_result = $grades_stmt->get_result();
-                            $student_grades = [];
-                            while ($grade_row = $grades_result->fetch_assoc()) {
-                                $student_grades[$grade_row['period']] = $grade_row['grade'];
-                            }
-                            ?>
-                            <?php for ($period = 1; $period <= 5; $period++): ?>
-                                <td>
-                                    <input type="number" 
-                                           name="grades[<?= $student['student_id'] ?>][<?= $period ?>]" 
-                                           value="<?= isset($student_grades[$period]) ? htmlspecialchars($student_grades[$period]) : '' ?>" 
-                                           step="0.01" min="0" max="100">
-                                </td>
-                            <?php endfor; ?>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6">No students found in this section subject.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
+				<?php if ($students_result->num_rows > 0): ?>
+					<?php while ($student = $students_result->fetch_assoc()): ?>
+						<tr>
+							<td><?= htmlspecialchars($student['student_name']) ?></td>
+							<?php
+							// Fetch grades for the student for all periods
+							$grades_query = "
+								SELECT period, grade 
+								FROM grades 
+								WHERE student_id = ? AND subject_id = ? 
+								ORDER BY period ASC
+							";
+							$grades_stmt = $conn->prepare($grades_query);
+							$grades_stmt->bind_param("ii", $student['student_id'], $section_subject['subject_id']);
+							$grades_stmt->execute();
+							$grades_result = $grades_stmt->get_result();
+							$student_grades = [];
+							while ($grade_row = $grades_result->fetch_assoc()) {
+								$student_grades[$grade_row['period']] = $grade_row['grade'];
+							}
+
+							// Calculate the final grade (average of all existing grades)
+							$total = 0;
+							$count = 0;
+							for ($period = 1; $period <= 4; $period++) {
+								$grade = $student_grades[$period] ?? null;
+								if ($grade !== null) {
+									$total += $grade;
+									$count++;
+								}
+							}
+							$final_grade = $count > 0 ? round($total / $count, 2) : null;
+							?>
+							<?php for ($period = 1; $period <= 4; $period++): ?>
+								<td>
+									<input type="number" 
+										   name="grades[<?= $student['student_id'] ?>][<?= $period ?>]" 
+										   value="<?= isset($student_grades[$period]) ? htmlspecialchars($student_grades[$period]) : '' ?>" 
+										   step="0.01" min="0" max="100">
+								</td>
+							<?php endfor; ?>
+							<td>
+								<input type="text" 
+									   value="<?= $final_grade !== null ? htmlspecialchars($final_grade) : '' ?>" 
+									   readonly>
+							</td>
+						</tr>
+					<?php endwhile; ?>
+				<?php else: ?>
+					<tr>
+						<td colspan="6">No students found in this section subject.</td>
+					</tr>
+				<?php endif; ?>
+			</tbody>
         </table>
         <br>
         <button type="submit">Save Grades</button>

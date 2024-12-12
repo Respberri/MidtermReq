@@ -20,6 +20,79 @@ if (!$student || !$subject) {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $grade_id = intval($_POST['grade_id'] ?? 0); // Default to 0 if not set
+    $new_grade = floatval($_POST['grade']);
+
+    // Validate the grade
+    if ($new_grade < 0 || $new_grade > 100) {
+        echo "<p class='message error'>Invalid grade. Please enter a value between 0 and 100.</p>";
+        exit();
+    }
+
+    if ($grade_id > 0) {
+        // Update the specific period's grade
+        $update_sql = "UPDATE grades SET grade = ? WHERE grade_id = ?";
+        $stmt = $conn->prepare($update_sql);
+        $stmt->bind_param("di", $new_grade, $grade_id);
+    } else {
+        // Insert a new grade if grade_id is not set
+        $insert_sql = "INSERT INTO grades (student_id, subject_id, period, grade) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($insert_sql);
+
+        // Determine the period based on the form submission context
+		error_log("Period . " . $_POST['period']);
+        $period = intval($_POST['period'] ?? 0); // Ensure the period is provided
+        if ($period < 1 || $period > 4) {
+            echo "<p class='message error'>Invalid period. Please provide a valid period (1-4).</p>";
+            exit();
+        }
+
+        $stmt->bind_param("iiid", $student_id, $subject_id, $period, $new_grade);
+    }
+
+    if ($stmt->execute()) {
+        // Recalculate the final grade for the student
+        $grades_sql = "
+            SELECT grade 
+            FROM grades 
+            WHERE student_id = ? AND subject_id = ? AND period BETWEEN 1 AND 4
+        ";
+        $calc_stmt = $conn->prepare($grades_sql);
+        $calc_stmt->bind_param("ii", $student_id, $subject_id);
+        $calc_stmt->execute();
+        $result = $calc_stmt->get_result();
+
+        $total = 0;
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            $total += $row['grade'];
+            $count++;
+        }
+
+        $final_grade = $count > 0 ? round($total / $count, 2) : null;
+
+        // Update or insert the final grade
+        if ($final_grade !== null) {
+            $final_grade_sql = "
+                INSERT INTO grades (student_id, subject_id, period, grade)
+                VALUES (?, ?, 5, ?)
+                ON DUPLICATE KEY UPDATE grade = VALUES(grade)
+            ";
+            $final_stmt = $conn->prepare($final_grade_sql);
+            $final_stmt->bind_param("iid", $student_id, $subject_id, $final_grade);
+            $final_stmt->execute();
+        }
+
+        echo "<p class='message success'>Grade updated successfully, and final grade recalculated!</p>";
+        header("Location: view_student_grades.php?student_id=$student_id&subject_id=$subject_id");
+        exit();
+    } else {
+        echo "<p class='message error'>Error updating grade: " . $conn->error . "</p>";
+    }
+    $stmt->close();
+}
+
 // Fetch grades for the student, grouped by period (avoiding duplication)
 $grades_sql = "
     SELECT g.grade_id, sub.name AS subject_name, g.period, MAX(g.grade) AS grade
@@ -31,23 +104,26 @@ $grades_sql = "
 ";
 $grades = $conn->query($grades_sql);
 
-// Handle grade update
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $grade_id = intval($_POST['grade_id']);
-    $new_grade = floatval($_POST['grade']);
-    $update_sql = "UPDATE grades SET grade = ? WHERE grade_id = ?";
-    $stmt = $conn->prepare($update_sql);
-    $stmt->bind_param("di", $new_grade, $grade_id);
+// Initialize data for final grade calculation
+$period_grades = [];
+$total_grade = 0;
+$period_count = 0;
 
-    if ($stmt->execute()) {
-        echo "<p class='message success'>Grade updated successfully!</p>";
-        header("Location: view_student_grades.php?student_id=$student_id&subject_id=$subject_id");
-        exit();
-    } else {
-        echo "<p class='message error'>Error updating grade: " . $conn->error . "</p>";
+while ($grade_row = $grades->fetch_assoc()) {
+    $period = intval($grade_row['period']);
+    $grade = floatval($grade_row['grade']);
+    
+    if ($period >= 1 && $period <= 4) { // Include only regular periods for average calculation
+        $total_grade += $grade;
+        $period_count++;
     }
-    $stmt->close();
+    
+    $period_grades[$period] = $grade_row; // Store grade details for rendering
 }
+
+// Calculate the final grade (average of periods 1-4)
+$final_grade = $period_count > 0 ? round($total_grade / $period_count, 2) : null;
+
 ?>
 
 <!DOCTYPE html>
@@ -146,20 +222,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             </thead>
             <tbody>
-                <?php while ($grade = $grades->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $grade['period'] == 5 ? "Final" : "Period " . htmlspecialchars($grade['period']) ?></td>
-                        <td><?= htmlspecialchars($grade['grade']) ?></td>
-                        <td>
-                            <form method="post" class="update-form">
-                                <input type="hidden" name="grade_id" value="<?= $grade['grade_id'] ?>">
-                                <input type="number" step="0.01" name="grade" value="<?= $grade['grade'] ?>" required>
-                                <button type="submit">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
+				<?php for ($period = 1; $period <= 5; $period++): ?>
+					<tr>
+						<td><?= $period == 5 ? "Final" : "Period " . htmlspecialchars($period) ?></td>
+						<td>
+							<?php
+							if ($period < 5): // Display grades for periods 1-4
+								$grade = $period_grades[$period]['grade'] ?? null;
+								echo htmlspecialchars($grade ?? 'N/A');
+							else: // Display the calculated final grade for period 5
+								echo htmlspecialchars($final_grade ?? 'N/A');
+							endif;
+							?>
+						</td>
+						<td>
+							<?php if ($period < 5): // Allow updates only for periods 1-4 ?>
+								<form method="post" class="update-form">
+									<input type="hidden" name="grade_id" value="<?= htmlspecialchars($period_grades[$period]['grade_id'] ?? '') ?>">
+									<input type="hidden" name="period" value=<?=htmlspecialchars($period)?>>
+									<input type="number" step="0.01" name="grade" value="<?= htmlspecialchars($grade ?? '') ?>" required>
+									<button type="submit">Update</button>
+								</form>
+							<?php else: // No actions for the calculated final grade ?>
+								<span></span>
+							<?php endif; ?>
+						</td>
+					</tr>
+				<?php endfor; ?>
+			</tbody>
         </table>
     </div>
 </body>
